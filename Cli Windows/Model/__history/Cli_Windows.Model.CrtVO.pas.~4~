@@ -1,0 +1,35 @@
+unit Cli_Windows.Model.CrtVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+Type
+  TCrtVO = class(TInterfacedObject, IBaseVO)
+    private
+      FId: integer;
+      FCrt: string;
+      FDescricao: string;
+    public
+      property Id: integer read FId write FId;
+      property Crt: string read FCrt write FCrt;
+      property Descricao: string read FDescricao write FDescricao;
+      function toJson(): string;
+      function fromJson<TCrtVO>(json: string): TCrtVO;
+  end;
+
+implementation
+
+{ TCrtVO }
+
+function TCrtVO.fromJson<TCrtVO>(json: string): TCrtVO;
+begin
+  Result := TJson.JsonToObject<TCrtVO>(json);
+end;
+
+function TCrtVO.toJson: string;
+begin
+   Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

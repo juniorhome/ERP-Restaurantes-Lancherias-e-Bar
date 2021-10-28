@@ -1,0 +1,41 @@
+unit Cli_Windows.Model.UsuarioVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TUsuarioVO = class(TInterfacedObject, IBaseVO<TUsuarioVO>)
+    private
+       FId: integer;
+       FNome: string;
+       FLogin: string;
+       FSenha: string;
+       FFoto: string;
+       FAtivo: string;
+    public
+       property Id: integer read FId write FId;
+       property Login: string read FLogin write FLogin;
+       property Senha: string read FSenha write FSenha;
+       property Foto: string read FFoto write FFoto;
+       property Ativo: string read FAtivo write FAtivo;
+       function toJson(): string;
+       function fromJson(json: string): TUsuarioVO;
+  end;
+
+implementation
+
+{ TUsuarioVO }
+
+function TUsuarioVO.fromJson(json: string): TUsuarioVO;
+begin
+  Result := TJson.JsonToObject<TUsuarioVO>(json);
+end;
+
+function TUsuarioVO.toJson: string;
+begin
+  Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

@@ -1,0 +1,46 @@
+unit Cli_Windows.Model.CestVO;
+
+interface
+
+uses orm.IBaseVO, orm.Atributos, System.JSON, System.SysUtils;
+
+type
+  [TTabela('CEST', 'CE', 'CEST', 'CESTs')]
+  TCESTVO = class(TInterfacedObject, IBaseVO<TCESTVO>)
+  private
+    FId: integer;
+    FCest: string;
+    FDescricao: string;
+  public
+    [TChavePrimaria('ID', 'Código', 'Códigos')]
+    property Id: integer read FId write FId;
+    [TCampoTexto('CEST','Cód. CEST', 'Cód. CESTs', '', 20, False)]
+    property Cest: string read FCest write FCest;
+    [TCampoTexto('DESCRICAO', 'Descrição', 'Descrições', '', 200, False)]
+    property Descricao: string read FDescricao write FDescricao;
+    function toJson(): TJSONValue;
+    function fromJson(json:string): TCESTVO;
+  end;
+
+implementation
+
+{ TCESTVO }
+
+function TCESTVO.fromJson(json: string): TCESTVO;
+var
+   json_value: TJSONValue;
+begin
+   //Implementar a conversão para objeto.
+   Result := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(json), 0) as TCESTVO;
+end;
+
+function TCESTVO.toJson: TJSONValue;
+var
+  json_value:TJSONValue;
+begin
+  //implementar a conversão de objeto para json.
+  json_value := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(Self), 0);
+  Result := json_value;
+end;
+
+end.

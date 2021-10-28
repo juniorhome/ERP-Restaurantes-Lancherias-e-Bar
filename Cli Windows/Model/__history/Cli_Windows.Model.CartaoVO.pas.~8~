@@ -1,0 +1,44 @@
+unit Cli_Windows.Model.CartaoVO;
+
+interface
+
+uses
+  orm.IBaseVO, orm.Atributos, System.JSON, System.SysUtils;
+
+type
+  [TTabela('CARTAO','C','Cartão','Cartões')]
+  TCartaoVO = class(TInterfacedObject, IBaseVO<TCartaoVO>)
+    private
+      FId: integer;
+      FBandeira: string;
+      FTaxa: double;
+    public
+      [TChavePrimaria('ID','Código','Códigos')]
+      property Id: integer read FId write FId;
+      [TCampoTexto('BANDEIRA','Bandeira','Bandeiras','',80,False)]
+      property Bandeira: string read FBandeira write FBandeira;
+      [TCampoExtended('TAXA','Taxa','Taxas','000000000000000.000',15,3)]
+      property Taxa: double read FTaxa write FTaxa;
+      function toJson(): TJSONValue;
+      function fromJson(json:string): TCartaoVO;
+  end;
+implementation
+
+{ TCartaoVO }
+
+function TCartaoVO.fromJson(json: string): TCartaoVO;
+var
+  json_value: TJSONValue;
+begin
+   Result := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(json), 0) as TCartaoVO;
+end;
+
+function TCartaoVO.toJson: TJSONValue;
+var
+  json_value: TJSOnValue;
+begin
+    json_value := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(Self), 0);
+    Result := json_value;
+end;
+
+end.

@@ -1,0 +1,16 @@
+unit Cli_Windows.Model.CsosnVO;
+
+interface
+
+uses
+   orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TCsosnVO = class(TInterfacedObject, IBaseVO)
+    private
+    public
+  end;
+
+implementation
+
+end.

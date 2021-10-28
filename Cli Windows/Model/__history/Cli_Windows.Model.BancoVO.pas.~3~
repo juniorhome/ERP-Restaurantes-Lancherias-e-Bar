@@ -1,0 +1,58 @@
+unit Cli_Windows.Model.BancoVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TBancoVO = class(TInterfacedObject, IBaseVO<TBancoVO>)
+    private
+      FId: integer;
+      FNum_Banco: string; //tam=5
+      FDigito_Banco: string; //tam=2
+      FNome_Banco: string; //tam=50
+      FNome_Agencia: string; //tam=50
+      FNum_Agencia: string; //tam=10
+      FDigito_Agencia: string; //tam=2
+      FNum_Conta: string; //tam=50
+      FDigito_Conta: string; //tam=2
+      FCidade_Agencia: string; //tam=80
+      FUf_Agencia: string; //tam=2
+      FNosso_Numero: string; //tam=20
+      FCedente: string; //tam=50
+      FCod_Cedente: string; //tam=20
+    public
+      property Id: integer read FId write FId;
+      property NumBanco: string read FNum_Banco write FNum_Banco;
+      property DigitoBanco: string read FDigito_Banco write FDigito_Banco;
+      property NomeBanco: string read FNome_Banco write FNome_Banco;
+      property NomeAgencia: string read FNome_Agencia write FNome_Agencia;
+      property NumAgencia: string read FNum_Agencia write FNum_Agencia;
+      property DigitoAgencia: string read FDigito_Agencia write FDigito_Agencia;
+      property NumConta: string read FNum_Conta write FNum_Conta;
+      property DigitoConta: string read FDigito_Conta write FDigito_Conta;
+      property CidadeAgencia: string read FCidade_Agencia write FCidade_Agencia;
+      property UfAgencia: string read FUf_Agencia write FUf_Agencia;
+      property NossoNumero: string read FNosso_Numero write FNosso_Numero;
+      property Cedente: string read FCedente write FCedente;
+      property CodCedente: string read FCod_Cedente write FCod_Cedente;
+      function toJson(): string;
+      function fromJson(json: string): TBancoVO;
+  end;
+
+implementation
+
+{ TBancoVO }
+
+function TBancoVO.fromJson(json: string): TBancoVO;
+begin
+  Result := TJson.JsonToObject<TBancoVO>(json);
+end;
+
+function TBancoVO.toJson: string;
+begin
+  Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

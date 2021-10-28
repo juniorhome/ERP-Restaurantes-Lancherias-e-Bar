@@ -1,0 +1,62 @@
+unit Cli_Windows.Model.PessoaVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  [TTabela('PESSOA', 'P', 'Pessoa', 'Pessoas')]
+  [TTabelaEstrangeira('CIDADE', 'CID', 'ID', 'IDCIDADE', 'LeftJoin')]
+  TPessoaVO = class(TInterfacedObject, IBaseVO<TPessoaVO>)
+    private
+      FId: integer;
+      FNome: string;
+      FEndereco: string;
+      FNumero: integer;
+      FBairro: string;
+      FComplemento: string;
+      FCep: string;
+      FEmail: string;
+      FData_Nasc: TDate;
+      FData_Cad: TDate;
+      FTelefone: string;
+      FCelular: string;
+      FAtivo: string;
+      FIdCidade: integer;
+      FCidadeCidade: string;
+    public
+      property Id: integer read FId write FId;
+      property Nome: string read FNome write FNome;
+      property Endereco: string read FEndereco write FEndereco;
+      property Numero: integer read FNumero write FNumero;
+      property Bairro: string read FBairro write FBairro;
+      property Complemento: string read FComplemento write FComplemento;
+      property Cep: string read FCep write FCep;
+      property Email: string read FEmail write FEmail;
+      property DataNasc: TDate read FData_Nasc write FData_Nasc;
+      property DataCad: TDate read FData_Cad write FData_Cad;
+      property Telefone: string read FTelefone write FTelefone;
+      property Celular: string read FCelular write FCelular;
+      property Ativo: string read FAtivo write FAtivo;
+      property IdCidade: integer read FIdCidade write FIdCidade;
+      property CidadeCidade: string read FCidadeCidade write FCidadeCidade;
+      function toJson(): string;
+      function fromJson(json: string): TPessoaVO;
+  end;
+
+implementation
+
+{ TPessoaVO }
+
+function TPessoaVO.fromJson(json: string): TPessoaVO;
+begin
+  Result := TJson.JsonToObject<TPessoaVO>(json);
+end;
+
+function TPessoaVO.toJson: string;
+begin
+  Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

@@ -1,0 +1,42 @@
+unit Cli_Windows.Model.PessoaJuridicaVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TPessoaJuridicaVO = class(TInterfacedObject, IBaseVO<TPessoaJuridicaVO>)
+    private
+      FId: integer;
+      FRazao_Social: string;
+      FFantasia: string;
+      FIe: string;
+      FIm: string;
+      FCnpj: string;
+      FIdPessoa: integer;
+      FNomePessoa: string;
+      FEnderecoPessoa: string;
+      FComplementoPessoa: string;
+      FNumeroPessoa: integer;
+      FBairroPessoa: string;
+      FCepPessoa: string;
+    public
+      property Id: integer read FId write FId;
+      property RazaoSocial: string read FRazao_Social write FRazao_Social;
+      property Fantasia: string read FFantasia write FFantasia;
+      property Ie: string read FIe write FIe;
+      property Im: string read FIm write FIm;
+      property Cnpj: string read FCnpj write FCnpj;
+      property IdPessoa: integer read FIdPessoa write FIdPessoa;
+      property NomePessoa: string read FNomePessoa write FNomePessoa;
+      property EnderecoPessoa: string read FEnderecoPessoa write FEnderecoPessoa;
+      property ComplementoPessoa: string read FComplementoPessoa write FComplementoPessoa;
+      property NumeroPessoa: integer read FNumeroPessoa write FNumeroPessoa;
+      property BairroPessoa: string read FBairroPessoa write FBairroPessoa;
+      property CepPessoa: string read FCepPessoa write FCepPessoa;
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,22 @@
+unit Cli_Windows.Model.NcmVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TNcmVO = class(TInterfacedObject, IBaseVO<TNcmVO>)
+    private
+      FId: integer;
+      FNcm: string;
+      FDescricao: string;
+    public
+      property Id: integer read FId write FId;
+      property Ncm: string read FNcm write FNcm;
+      property Descricao: string read FDescricao write FDescricao;
+  end;
+
+implementation
+
+end.

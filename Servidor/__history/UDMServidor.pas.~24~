@@ -1,0 +1,70 @@
+unit UDMServidor;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, uDWDataModule, uRESTDWPoolerDB,
+  uRESTDWDriverZEOS, uDWAbout, IniFiles, uRESTDWDriverFD, orm.conexao.ModelConexaoFactory;
+
+type
+  TDMServidor = class(TServerMethodDataModule)
+    RESTDWPoolerDB1: TRESTDWPoolerDB;
+  private
+    { Private declarations }
+    FArqIni: TIniFile;
+    FDriverZeos: TRESTDWDriverZeos;
+    FDriverFD: TRESTDWDriverFD;
+  public
+    { Public declarations }
+    procedure ConfiguraConexao;
+  end;
+
+var
+  DMServidor: TDMServidor;
+
+implementation
+
+uses
+  Vcl.Forms, ZConnection;
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TDMServidor }
+
+procedure TDMServidor.ConfiguraConexao;
+var sFramework: string;
+begin
+  {
+    Método que configura a conexão do banco de dados. Se é Zeos,Firedac.
+  }
+  FArqIni := TIniFile.Create(ExtractFilePath(Application.ExeName)+'\Config.ini');
+  try
+    sFramework := FArqIni.ReadString('Banco', 'Framework', '');
+    if sFramework = 'Zeos' then
+    begin
+      FDriverZeos := TRESTDWDriverZeos.Create(self);
+      try
+        RESTDWPoolerDB1.RESTDriver := FDriverZeos;
+        FDriverZeos.Connection :=  TZConnection(TModelConexaoFactory.New.Conexao(1).Connection);
+      finally
+        FDriverZeos.Free;
+      end;
+    end
+    else if sFramework = 'Firedac' then
+         begin
+           FDriverFD := TRESTDWDriverFD.Create(self);
+           try
+             RESTDWPoolerDB1.RESTDriver := FDriverFD;
+             //FDriverFD.Connection := Aqui recebe a conexão feita no banco de dados.
+           finally
+             FDriverFD.Free;
+           end;
+         end;
+  finally
+    FArqIni.Free;
+  end;
+end;
+
+end.

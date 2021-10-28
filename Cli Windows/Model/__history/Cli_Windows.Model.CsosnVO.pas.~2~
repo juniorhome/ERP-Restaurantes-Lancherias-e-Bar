@@ -1,0 +1,22 @@
+unit Cli_Windows.Model.CsosnVO;
+
+interface
+
+uses
+   orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TCsosnVO = class(TInterfacedObject, IBaseVO)
+    private
+      FId: integer;
+      FCsosn: string;
+      FDescricao: string;
+    public
+      property Id: integer read FId write FId;
+      property Csosn: string read FCsosn write FCsosn;
+      property Descricao: string read FDescricao write FDescricao;
+  end;
+
+implementation
+
+end.

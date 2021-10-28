@@ -1,0 +1,88 @@
+unit Cli_Windows.Model.ProdutoVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TProdutoVO = class(TInterfacedObject, IBaseVO<TProdutoVO>)
+    private
+      FId: integer;
+      FDescricao: string;
+      FBarras: string;
+      FQuantidade: double;
+      FEstoque: double;
+      FCritico: double;
+      FPreco_Custo: currency;
+      FPreco_Venda: currency;
+      FMarkup: double;
+      FUnidade: string;
+      FIdCfop: integer;
+      FIdNcm: integer;
+      FIdCest: integer;
+      FCfopCfop: string;
+      FDescricaoCfop: string;
+      FNcmNcm: string;
+      FDescricaoNcm: string;
+      FCestCest: string;
+      FDescricaoCest: string;
+      FNomeFornecedor: string;
+    public
+      property Id: integer read FId write FId;
+      property Descricao: string read FDescricao write FDescricao;
+      property Barras: string read FBarras write FBarras;
+      property Quantidade: double read FQuantidade write FQuantidade;
+      property Estoque: double read FEstoque write FEstoque;
+      property Critico: double read FCritico write FCritico;
+      property PrecoCusto: currency read FPreco_Custo write FPreco_Custo;
+      property PrecoVenda: currency read FPreco_Venda write FPreco_Venda;
+      property Markup: double read FMarkup write FMarkup;
+      property Unidade: string read FUnidade write FUnidade;
+      property IdCfop: integer read FIdCfop write FIdCfop;
+      property IdNcm: integer read FIdNcm write FIdNcm;
+      property IdCest: integer read FIdCest write FIdCest;
+      property CfopCfop: string read FCfopCfop write FCfopCfop;
+      property DescricaoCfop: string read FDescricaoCfop write FDescricaoCfop;
+      property NcmNcm: string read FNcmNcm write FNcmNcm;
+      property DescricaoNcm: string read FDescricaoNcm write FDescricaoNcm;
+      property CestCest: string read FCestCest write FCestCest;
+      property DescricaoCest: string read FDescricaoCest write FDescricaoCest;
+      constructor Create;
+      destructor Destroy;override;
+      class function New: IBaseVO<TProdutoVO>;
+      function toJson: string;
+      function fromJson(json: string): TProdutoVO;
+  end;
+
+implementation
+
+{ TProdutoVO }
+
+constructor TProdutoVO.Create;
+begin
+  //
+end;
+
+destructor TProdutoVO.Destroy;
+begin
+  //
+  inherited;
+end;
+
+function TProdutoVO.fromJson(json: string): TProdutoVO;
+begin
+  Result := TJson.JsonToObject<TProdutoVO>(json);
+end;
+
+class function TProdutoVO.New: IBaseVO<TProdutoVO>;
+begin
+   Result := Self.Create;
+end;
+
+function TProdutoVO.toJson: string;
+begin
+   Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

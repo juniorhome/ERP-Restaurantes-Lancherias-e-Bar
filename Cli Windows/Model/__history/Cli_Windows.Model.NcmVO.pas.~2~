@@ -1,0 +1,36 @@
+unit Cli_Windows.Model.NcmVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TNcmVO = class(TInterfacedObject, IBaseVO<TNcmVO>)
+    private
+      FId: integer;
+      FNcm: string;
+      FDescricao: string;
+    public
+      property Id: integer read FId write FId;
+      property Ncm: string read FNcm write FNcm;
+      property Descricao: string read FDescricao write FDescricao;
+      function toJson(): string;
+      function fromJson(json: string): TNcmVO;
+  end;
+
+implementation
+
+{ TNcmVO }
+
+function TNcmVO.fromJson(json: string): TNcmVO;
+begin
+   Result := TJson.JsonToObject<TNcmVO>(json);
+end;
+
+function TNcmVO.toJson: string;
+begin
+  Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

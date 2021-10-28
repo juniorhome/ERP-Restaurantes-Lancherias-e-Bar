@@ -1,0 +1,30 @@
+unit Cli_Windows.Model.ClienteVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TClienteVO = class(TInterfacedObject, IBaseVO<TClienteVO>)
+    private
+      FId: integer;
+      FRestricao: string;
+      FLimite: extended;
+      FEhCliente: string;
+      FIdPessoa: integer;
+      FNomePessoa: string;
+      FEnderecoPessoa: string;
+      FBairroPessoa: string;
+      FCepPessoa: string;
+      FNumeroPessoa: integer;
+      FComplementoPessoa: string;
+    public
+      property Id: integer read FId write FId;
+      property Restricao: string read FRestricao write FRestricao;
+      property Limite: extended read FLimite write FLimite;
+  end;
+
+implementation
+
+end.

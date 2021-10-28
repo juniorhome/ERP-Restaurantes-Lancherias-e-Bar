@@ -1,0 +1,26 @@
+unit Cli_Windows.Model.CidadeVO;
+
+interface
+
+uses
+   orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TCidadeVO = class(TInterfacedObject, IBaseVO<TCidadeVO>)
+    private
+      FId: integer;
+      FCidade: string;
+      FCod_Ibge: string;
+      FIdUf: string;
+      FSiglaUf: string;
+    public
+      property Id: integer read FId write FId;
+      property Cidade: string read FCidade write FCidade;
+      property CodIbge: string read FCod_Ibge write FCod_Ibge;
+      property IdUf: integer read FId write FIdUf;
+      property SiglaUf: string read FSiglaUf write FSiglaUf;
+  end;
+
+implementation
+
+end.

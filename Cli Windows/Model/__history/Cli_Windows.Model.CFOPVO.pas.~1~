@@ -1,0 +1,22 @@
+unit Cli_Windows.Model.CFOPVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos;
+
+ type
+   TCFOPVO = class(TInterfacedObject, IBaseVO<TCFOPVO>)
+     private
+       FId: integer;
+       FCfop: string;
+       FDescricao: string;
+     public
+       property Id: integer read FId write FId;
+       property Cfop: string read FCfop write FCfop;
+       property Descricao: string read FDescricao write FDescricao;
+   end;
+
+implementation
+
+end.

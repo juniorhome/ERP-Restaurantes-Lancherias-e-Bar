@@ -1,0 +1,37 @@
+unit Cli_Windows.Model.CstPisVO;
+
+interface
+
+uses
+     orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  [TTabela('CST_PIS', 'CPIS', 'CST PIS', 'CSTs PIS')]
+  TCstPisVO = class(TInterfacedObject, IBaseVO<TCstPisVO>)
+    private
+      FId: integer;
+      FCst: string;
+      FDescricao: string;
+    public
+      property Id: integer read FId write FId;
+      property Cst: string read FCst write FCst;
+      property Descricao: string read FDescricao write FDescricao;
+      function toJson(): string;
+      function fromJson(json: string): TCstPisVO;
+  end;
+
+implementation
+
+{ TCstPisVO }
+
+function TCstPisVO.fromJson(json: string): TCstPisVO;
+begin
+  Result := TJson.JsonToObject<TCstPisVO>(json);
+end;
+
+function TCstPisVO.toJson: string;
+begin
+   Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

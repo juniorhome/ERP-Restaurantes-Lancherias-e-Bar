@@ -1,0 +1,400 @@
+unit Cli_Windows.View.ufrmPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  Vcl.WinXCtrls, Vcl.CategoryButtons, frxClass, System.Actions, Vcl.ActnList,
+  System.ImageList, Vcl.ImgList, Vcl.Buttons, Vcl.StdCtrls;
+
+type
+  TfrmPrincipal = class(TForm)
+    pnlTitulo: TPanel;
+    pnlFundo: TPanel;
+    imgMenu: TImage;
+    Image1: TImage;
+    pnlMenu: TPanel;
+    btnGeral: TSpeedButton;
+    ImageList1: TImageList;
+    btnDfe: TSpeedButton;
+    btnEstoque: TSpeedButton;
+    btnTributacao: TSpeedButton;
+    btnFinanceiro: TSpeedButton;
+    btnPedido: TSpeedButton;
+    btnVenda: TSpeedButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    lblUsuario: TLabel;
+    Label3: TLabel;
+    lblDataHorario: TLabel;
+    Label4: TLabel;
+    lblCidade: TLabel;
+    lblTemperatura: TLabel;
+    imgFigura: TImage;
+    btnSair: TSpeedButton;
+    pnlGeral: TPanel;
+    btnBanco: TSpeedButton;
+    btnCartao: TSpeedButton;
+    btnCidade: TSpeedButton;
+    btnFormaPgto: TSpeedButton;
+    btnMesa: TSpeedButton;
+    btnPessoa: TSpeedButton;
+    btnPlanoConta: TSpeedButton;
+    pnlDfe: TPanel;
+    btnNfe: TSpeedButton;
+    btnNfce: TSpeedButton;
+    btnNfse: TSpeedButton;
+    pnlNfe: TPanel;
+    btnCancelarNfe: TSpeedButton;
+    btnEmitirNfe: TSpeedButton;
+    btnInutilizar: TSpeedButton;
+    pnlNfce: TPanel;
+    btnCancelarNfce: TSpeedButton;
+    btnEmitirNfce: TSpeedButton;
+    btnInutilizarNfce: TSpeedButton;
+    pnlNfse: TPanel;
+    btnEmitirNfse: TSpeedButton;
+    lblPerfil: TLabel;
+    pnlEstoque: TPanel;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
+    pnlFinanceiro: TPanel;
+    SpeedButton5: TSpeedButton;
+    SpeedButton6: TSpeedButton;
+    SpeedButton7: TSpeedButton;
+    pnlTributacao: TPanel;
+    SpeedButton8: TSpeedButton;
+    SpeedButton9: TSpeedButton;
+    SpeedButton10: TSpeedButton;
+    pnlSelecionado: TPanel;
+    pnlPedido: TPanel;
+    btnFazerPedido: TSpeedButton;
+    btnRelatórios: TSpeedButton;
+    procedure imgMenuClick(Sender: TObject);
+    procedure btnGeralMouseEnter(Sender: TObject);
+    procedure btnDfeMouseEnter(Sender: TObject);
+    procedure btnGeralMouseLeave(Sender: TObject);
+    procedure btnDfeMouseLeave(Sender: TObject);
+    procedure btnEstoqueMouseEnter(Sender: TObject);
+    procedure btnFinanceiroMouseEnter(Sender: TObject);
+    procedure btnEstoqueMouseLeave(Sender: TObject);
+    procedure btnFinanceiroMouseLeave(Sender: TObject);
+    procedure btnTributacaoMouseEnter(Sender: TObject);
+    procedure btnTributacaoMouseLeave(Sender: TObject);
+    procedure btnPedidoMouseEnter(Sender: TObject);
+    procedure btnPedidoMouseLeave(Sender: TObject);
+    procedure btnVendaMouseEnter(Sender: TObject);
+    procedure btnVendaMouseLeave(Sender: TObject);
+    procedure btnSairMouseEnter(Sender: TObject);
+    procedure btnSairMouseLeave(Sender: TObject);
+    procedure btnSairClick(Sender: TObject);
+    procedure btnBancoMouseEnter(Sender: TObject);
+    procedure btnBancoMouseLeave(Sender: TObject);
+    procedure btnGeralClick(Sender: TObject);
+    procedure btnCartaoMouseEnter(Sender: TObject);
+    procedure btnCidadeMouseEnter(Sender: TObject);
+    procedure btnCartaoMouseLeave(Sender: TObject);
+    procedure btnCidadeMouseLeave(Sender: TObject);
+    procedure btnFormaPgtoMouseEnter(Sender: TObject);
+    procedure btnFormaPgtoMouseLeave(Sender: TObject);
+    procedure btnMesaMouseEnter(Sender: TObject);
+    procedure btnMesaMouseLeave(Sender: TObject);
+    procedure btnPessoaMouseEnter(Sender: TObject);
+    procedure btnPessoaMouseLeave(Sender: TObject);
+    procedure btnPlanoContaMouseEnter(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure IconBmp(Btn: TSpeedButton; ind: integer);
+    procedure Focar(painel: TPanel; btn: TSpeedButton; focado: boolean);
+    procedure MostrarEsconderPanel(painel: TPanel; btn: TSpeedButton; mostrar: boolean);
+    procedure FocarSubMenu(painel: TPanel; btn: TSpeedButton; focar: boolean);
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+  bExpandido: boolean;
+
+implementation
+
+{$R *.dfm}
+
+{ TfrmPrincipal }
+
+procedure TfrmPrincipal.btnBancoMouseEnter(Sender: TObject);
+begin
+   FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnBancoMouseLeave(Sender: TObject);
+begin
+  FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnCartaoMouseEnter(Sender: TObject);
+begin
+   FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnCartaoMouseLeave(Sender: TObject);
+begin
+  FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnCidadeMouseEnter(Sender: TObject);
+begin
+  FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnCidadeMouseLeave(Sender: TObject);
+begin
+  FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnDfeMouseEnter(Sender: TObject);
+begin
+   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnDfeMouseLeave(Sender: TObject);
+begin
+  Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnEstoqueMouseEnter(Sender: TObject);
+begin
+   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnEstoqueMouseLeave(Sender: TObject);
+begin
+  Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnFinanceiroMouseEnter(Sender: TObject);
+begin
+   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnFinanceiroMouseLeave(Sender: TObject);
+begin
+   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnFormaPgtoMouseEnter(Sender: TObject);
+begin
+   FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnFormaPgtoMouseLeave(Sender: TObject);
+begin
+  FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnGeralClick(Sender: TObject);
+begin
+   pnlGeral.Visible := not pnlGeral.Visible;
+end;
+
+procedure TfrmPrincipal.btnGeralMouseEnter(Sender: TObject);
+begin
+   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnGeralMouseLeave(Sender: TObject);
+begin
+  Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnMesaMouseEnter(Sender: TObject);
+begin
+   FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnMesaMouseLeave(Sender: TObject);
+begin
+  FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnPedidoMouseEnter(Sender: TObject);
+begin
+   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnPedidoMouseLeave(Sender: TObject);
+begin
+   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnPessoaMouseEnter(Sender: TObject);
+begin
+  FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnPessoaMouseLeave(Sender: TObject);
+begin
+  FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnPlanoContaMouseEnter(Sender: TObject);
+begin
+  FocarSubMenu(pnlGeral, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnSairClick(Sender: TObject);
+begin
+   Application.Terminate;
+end;
+
+procedure TfrmPrincipal.btnSairMouseEnter(Sender: TObject);
+begin
+  Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnSairMouseLeave(Sender: TObject);
+begin
+   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnTributacaoMouseEnter(Sender: TObject);
+begin
+   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnTributacaoMouseLeave(Sender: TObject);
+begin
+   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnVendaMouseEnter(Sender: TObject);
+begin
+   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), True);
+end;
+
+procedure TfrmPrincipal.btnVendaMouseLeave(Sender: TObject);
+begin
+  Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.Focar(painel: TPanel; btn: TSpeedButton;
+  focado: boolean);
+var i: integer;
+begin
+   if focado then
+   begin
+     for i := 0 to frmPrincipal.ComponentCount - 1 do
+     begin
+       if (frmPrincipal.Components[i] is TSpeedButton) and ((frmPrincipal.Components[i] as TSpeedButton).Tag = btn.Tag) then
+       begin
+         painel.Visible := True;
+         painel.Left := btn.Left;
+         painel.Top := btn.Top;
+         (frmPrincipal.Components[i] as TSpeedButton).Font.Color := $004080FF;
+         (frmPrincipal.Components[i] as TSpeedButton).Font.Style := [fsBold, fsUnderline];
+         (frmPrincipal.Components[i] as TSpeedButton).Font.Size := 12;
+       end;
+     end;
+   end
+   else
+   begin
+     for i := 0 to frmPrincipal.ComponentCount - 1 do
+     begin
+       if frmPrincipal.Components[i] is TSpeedButton then
+       begin
+         painel.Visible := False;
+         (frmPrincipal.Components[i] as TSpeedButton).Font.Color := clHotLight;
+         (frmPrincipal.Components[i] as TSpeedButton).Font.Style := [fsBold];
+         (frmPrincipal.Components[i] as TSpeedButton).Font.Size := 10;
+       end;
+     end;
+   end;
+end;
+
+procedure TfrmPrincipal.FocarSubMenu(painel: TPanel; btn: TSpeedButton;
+  focar: boolean);
+var i, j: integer;
+begin
+   if focar then
+   begin
+     for i := 0 to frmPrincipal.ComponentCount - 1 do
+     begin
+       if (frmPrincipal.Components[i] is TSpeedButton) and ((frmPrincipal.Components[i] as TSpeedButton).Tag = btn.Tag) then
+       begin
+         (frmPrincipal.Components[i] as TSpeedButton).Font.Color := $004080FF;
+         (frmPrincipal.Components[i] as TSpeedButton).Font.Style := [fsBold, fsUnderline];
+         (frmPrincipal.Components[i] as TSpeedButton).Font.Size := 12;
+       end;
+     end;
+   end
+   else
+   begin
+    for j := 0 to frmPrincipal.ComponentCount - 1 do
+     begin
+       if (frmPrincipal.Components[j] is TSpeedButton) then
+       begin
+         (frmPrincipal.Components[j] as TSpeedButton).Font.Color := clHotLight;
+         (frmPrincipal.Components[j] as TSpeedButton).Font.Style := [fsBold];
+         (frmPrincipal.Components[j] as TSpeedButton).Font.Size := 10;
+       end;
+     end;
+   end;
+end;
+
+procedure TfrmPrincipal.IconBmp(Btn: TSpeedButton; ind: integer);
+var
+  bmp: TBitmap;
+begin
+   bmp := TBitmap.Create;
+   try
+     ImageList1.GetBitmap(ind, bmp);
+     Btn.Glyph := bmp;
+   finally
+     bmp.Free;
+   end;
+end;
+
+procedure TfrmPrincipal.imgMenuClick(Sender: TObject);
+begin
+   if bExpandido then
+      pnlMenu.Width := 38
+   else
+      pnlMenu.Width := 115;
+   bExpandido := not bExpandido;
+end;
+
+procedure TfrmPrincipal.MostrarEsconderPanel(painel: TPanel; btn: TSpeedButton;
+  mostrar: boolean);
+var i, j: integer;
+begin
+   if mostrar then
+   begin
+     for i := 0 to frmPrincipal.ComponentCount - 1 do
+     begin
+       if (frmPrincipal.Components[i] is TPanel) and ((frmPrincipal.Components[i] as TPanel).Tag = btn.Tag) then
+          (frmPrincipal.Components[i] as TPanel).Visible := True;
+     end;
+     {for j := 0 to painel.ControlCount - 1 do
+     begin
+       if painel.Controls[j] is TSpeedButton then
+       begin
+         (painel.Controls[j] as TSpeedButton).Font.Color := $004080FF;
+         (painel.Controls[j] as TSpeedButton).Font.Style := [fsBold, fsUnderline];
+         (painel.Controls[j] as TSpeedButton).Font.Size := 12;
+       end;
+     end;}
+   end
+   else
+   begin
+     for j := 0 to frmPrincipal.ComponentCount - 1 do
+     begin
+       if (frmPrincipal.Components[j] is TPanel) and ((frmPrincipal.Components[j] as TPanel).Tag = btn.Tag) then
+         (frmPrincipal.Components[j] as TPanel).Visible := False;
+     end;
+   end;
+end;
+
+end.

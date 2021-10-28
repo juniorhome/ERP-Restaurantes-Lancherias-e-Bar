@@ -1,0 +1,36 @@
+unit Cli_Windows.Model.CstIcmsVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TCstIcmsVO = class(TInterfacedObject, IBaseVO<TCstIcmsVO>)
+     private
+        FId: integer;
+        FCst: string;
+        FDescricao: string;
+     public
+        property Id: integer read FId write FId;
+        property Cst: string read FCst write FCst;
+        property Descricao: string read FDescricao write FDescricao;
+        function toJson(): string;
+        function fromJson(json: string): TCstIcmsVO;
+  end;
+
+implementation
+
+{ TCstIcmsVO }
+
+function TCstIcmsVO.fromJson(json: string): TCstIcmsVO;
+begin
+  Result := TJson.JsonToObject<TCstIcmsVO>(json);
+end;
+
+function TCstIcmsVO.toJson: string;
+begin
+   Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

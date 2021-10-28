@@ -1,0 +1,176 @@
+object frmCadBasico: TfrmCadBasico
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'frmCadBasico'
+  ClientHeight = 527
+  ClientWidth = 1113
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  WindowState = wsMaximized
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlFundo: TPanel
+    Left = 0
+    Top = 0
+    Width = 1113
+    Height = 527
+    Align = alClient
+    BevelOuter = bvNone
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 0
+    object pnlCadastro: TPanel
+      Left = 624
+      Top = 208
+      Width = 185
+      Height = 41
+      BevelOuter = bvNone
+      Color = clHighlight
+      ParentBackground = False
+      TabOrder = 1
+    end
+    object pnlListagem: TPanel
+      Left = 0
+      Top = 0
+      Width = 1113
+      Height = 527
+      Align = alClient
+      BevelOuter = bvNone
+      Color = 16443110
+      ParentBackground = False
+      TabOrder = 0
+      object pnlPesquisa: TPanel
+        Left = 16
+        Top = 24
+        Width = 1080
+        Height = 105
+        Hint = 'Clique para pesquisar'
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 0
+        object btnPesquisar: TSpeedButton
+          Left = 744
+          Top = 40
+          Width = 25
+          Height = 25
+          Glyph.Data = {
+            36030000424D3603000000000000360000002800000010000000100000000100
+            18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFF7F7F7131313FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5F5F5000000F4F4F4FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5F5
+            F5000000F1F1F1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFF5F5F5000000F1F1F1FFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5F5F5000000F1F1
+            F1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9999995757574646466A6A6AFD
+            FDFDFFFFFFF5F5F5000000F1F1F1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5F5F5
+            0000005D5D5DCCCCCCE4E4E4949494000000727272000000F1F1F1FFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFF000000F1F1F1FFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFF343434727272FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF636363A8A8A8
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FCFCFCFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFF050505FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFF9494946B6B6BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF161616FFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE3E3E3464646FFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFCCCCCC595959FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF515151D9D9D9
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5B5B5B9B9B9BFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFF3F3F3000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFEFEFEF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC6C6C6
+            000000D9D9D9FFFFFFFFFFFFFFFFFFA9A9A9000000F5F5F5FFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4F4F451515100000015151506060662
+            6262FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+        end
+        object Label1: TLabel
+          Left = 280
+          Top = 24
+          Width = 231
+          Height = 17
+          Caption = 'Informe um param'#234'tro para pesquisa;'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label2: TLabel
+          Left = 9
+          Top = 24
+          Width = 34
+          Height = 17
+          Caption = 'Filtro:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object edtPesquisar: TEdit
+          Left = 280
+          Top = 40
+          Width = 465
+          Height = 25
+          CharCase = ecUpperCase
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+        end
+        object cmbFiltros: TComboBox
+          Left = 9
+          Top = 40
+          Width = 145
+          Height = 21
+          TabOrder = 1
+          Text = 'cmbFiltros'
+        end
+      end
+      object pnlGrid: TPanel
+        Left = 16
+        Top = 144
+        Width = 1081
+        Height = 361
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 1
+        object dbgGeral: TDBGrid
+          Left = 1
+          Top = 1
+          Width = 1079
+          Height = 359
+          Align = alClient
+          DataSource = dsGeral
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+        end
+      end
+    end
+  end
+  object dsGeral: TDataSource
+    DataSet = cdsGeral
+    Left = 664
+    Top = 184
+  end
+  object cdsGeral: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 760
+    Top = 176
+  end
+end

@@ -1,0 +1,15 @@
+unit Cli_Windows.Model.CrtVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+Type
+  TCrtVO = class(TInterfacedObject, IBaseVO)
+    private
+    public
+  end;
+
+implementation
+
+end.

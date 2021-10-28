@@ -1,0 +1,52 @@
+unit Cli_Windows.Model.PessoaFisicaVO;
+
+interface
+
+uses
+   orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TPessoaFisicaVO = class(TInterfacedObject, IBaseVO<TPessoaFisicaVO>)
+    private
+      FId: integer;
+      FRg: string;
+      FCpf: string;
+      FIdPessoa: integer;
+      FNomePessoa: string;
+      FEnderecoPessoa: string;
+      FBairroPessoa: string;
+      FNumeroPessoa: integer;
+      FCepPessoa: string;
+      FComplementoPessoa: string;
+      FCidadeCidade: string;
+    public
+      property Id: integer read FId write FId;
+      property Rg: string read FRg write FRg;
+      property Cpf: string read FCpf write FCpf;
+      property IdPessoa: integer read FIdPessoa write FIdPessoa;
+      property NomePessoa: string read FNomePessoa write FNomePessoa;
+      property EnderecoPessoa: string read FEnderecoPessoa write FEnderecoPessoa;
+      property BairroPessoa: string read FBairroPessoa write FBairroPessoa;
+      property NumeroPessoa: integer read FNumeroPessoa write FNumeroPessoa;
+      property CepPessoa: string read FCepPessoa write FCepPessoa;
+      property ComplementoPessoa: string read FComplementoPessoa write FComplementoPessoa;
+      property CidadeCidade: string read FCidadeCidade write FCidadeCidade;
+      function toJson(): string;
+      function fromJson(json: string): TPessoaFisicaVO;
+  end;
+
+implementation
+
+{ TPessoaFisicaVO }
+
+function TPessoaFisicaVO.fromJson(json: string): TPessoaFisicaVO;
+begin
+   Result := TJson.JsonToObject<TPessoaFisicaVO>(json);
+end;
+
+function TPessoaFisicaVO.toJson: string;
+begin
+  Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

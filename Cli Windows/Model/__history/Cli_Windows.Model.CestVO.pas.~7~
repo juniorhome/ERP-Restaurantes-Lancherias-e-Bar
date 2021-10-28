@@ -1,0 +1,43 @@
+unit Cli_Windows.Model.CestVO;
+
+interface
+
+uses orm.IBaseVO, orm.Atributos, System.JSON, System.SysUtils;
+
+type
+  TCESTVO = class(TInterfacedObject, IBaseVO<TCESTVO>)
+  private
+    FId: integer;
+    FCest: string;
+    FDescricao: string;
+  public
+    property Id: integer read FId write FId;
+    property Cest: string read FCest write FCest;
+    property Descricao: string read FDescricao write FDescricao;
+    function toJson(): TJSONValue;
+    function fromJson(json:string): TCESTVO;
+  end;
+
+implementation
+
+{ TCESTVO }
+
+function TCESTVO.fromJson(json: string): TCESTVO;
+var
+   json_value: TJSONValue;
+begin
+   //Implementar a conversão para objeto.
+   Result := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(json), 0) as TCESTVO;
+
+end;
+
+function TCESTVO.toJson: TJSONValue;
+var
+  json_value:TJSONValue;
+begin
+  //implementar a conversão de objeto para json.
+  json_value := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(Self), 0);
+  Result := json_value;
+end;
+
+end.

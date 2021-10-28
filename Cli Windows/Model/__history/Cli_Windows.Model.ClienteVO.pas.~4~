@@ -1,0 +1,45 @@
+unit Cli_Windows.Model.ClienteVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  [TTabela('CLIENTE', 'CLI', 'Cliente', 'Clientes')]
+  [TTabelaEstrangeira('PESSOA', 'P', 'ID', 'IDPESSOA', 'LeftJoin')]
+  TClienteVO = class(TInterfacedObject, IBaseVO<TClienteVO>)
+    private
+      FId: integer;
+      FRestricao: string;
+      FLimite: extended;
+      FEhCliente: string;
+      FIdPessoa: integer;
+      FNomePessoa: string;
+      FEnderecoPessoa: string;
+      FBairroPessoa: string;
+      FCepPessoa: string;
+      FNumeroPessoa: integer;
+      FComplementoPessoa: string;
+    public
+      [TChavePrimaria('ID', 'Códigos', 'Códigos')]
+      property Id: integer read FId write FId;
+      [TCampoTexto('RESTRICAO', 'Restrição', 'Restrições', '', 1, False)]
+      property Restricao: string read FRestricao write FRestricao;
+      [TCampoExtended('LIMITE', 'Limite', 'Limites', '00.0000,000', 15, 3)]
+      property Limite: extended read FLimite write FLimite;
+      [TCampoTexto('EHCLIENTE', 'É Cliente', 'São Clientes', '', 1, False)]
+      property EhCliente: string read FEhCliente write FEhCliente;
+      [TChaveEstrangeira('IDPESSOA', 'PESSOA')]
+      property IdPessoa: integer read FIdPessoa write FIdPessoa;
+      property NomePessoa: string read FNomePessoa write FNomePessoa;
+      property EnderecoPessoa: string read FEnderecoPessoa write FEnderecoPessoa;
+      property BairroPessoa: string read FBairroPessoa write FBairroPessoa;
+      property CepPessoa: string read FCepPessoa write FCepPessoa;
+      property NumeroPessoa: integer read FNumeroPessoa write FNumeroPessoa;
+      property ComplementoPessoa: string read FComplementoPessoa write FComplementoPessoa;
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,31 @@
+unit Cli_Windows.Model.UfVO;
+
+interface
+
+uses
+   orm.IBaseVO, orm.Atributos, REST.Json;
+
+type
+  [TTabela('UF','U','Estado','Estados')]
+  TUFVO = class(TInterfacedObject, IBaseVO<TUFVO>)
+    private
+      FId: integer;
+      FUf: string;
+    public
+      [TChavePrimaria('ID','Código','Códigos')]
+      property Id: integer read FId write FId;
+      [TCampoTexto('UF','Estado','Estados','',2,False)]
+      property Uf: string read FUf write FUf;
+      function toJson(): string;
+  end;
+
+implementation
+
+{ TUFVO }
+
+function TUFVO.toJson: string;
+begin
+  Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

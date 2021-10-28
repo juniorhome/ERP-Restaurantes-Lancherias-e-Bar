@@ -1,0 +1,26 @@
+unit Cli_Windows.Model.PerfilUsuarioVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TPerfilUsuarioVO = class(TInterfacedObject, IBaseVO<TPerfilUsuarioVO>)
+    private
+      FId: integer;
+      FPerfil: string;
+      FGeral: string;
+      FFinanceiro: string;
+      FEstoque: string;
+      FVendas: string;
+      FFiscal: string;
+      FDfe: string;
+      FIdUsuario: integer;
+      FNomeUsuario: string;
+    public
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,38 @@
+unit Cli_Windows.Model.MesaVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TMesaVO = class(TInterfacedObject, IBaseVO<TMesaVO>)
+    private
+      FId: integer;
+      FNum_Cadeiras: integer;
+      FTamanho: string;
+      FStatus: string;
+    public
+      property Id: integer read FId write FId;
+      property NumCadeiras: integer read FNum_Cadeiras write FNum_Cadeiras;
+      property Tamanho: string read FTamanho write FTamanho;
+      property Status: string read FStatus write FStatus;
+      function toJson(): string;
+      function fromJson(json: string): TMesaVO;
+  end;
+
+implementation
+
+{ TMesaVO }
+
+function TMesaVO.fromJson(json: string): TMesaVO;
+begin
+  Result := TJson.JsonToObject<TMesaVO>(json);
+end;
+
+function TMesaVO.toJson: string;
+begin
+  Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

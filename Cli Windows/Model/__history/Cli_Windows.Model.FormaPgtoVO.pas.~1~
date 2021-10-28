@@ -1,0 +1,34 @@
+unit Cli_Windows.Model.FormaPgtoVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TFormaPgtoVO = class(TInterfacedObject, IBaseVO<TFormaPgtoVO>)
+    private
+      FId: integer;
+      FDescricao: string;
+    public
+      property Id: integer read FId write FId;
+      property Descricao: string read FDescricao write FDescricao;
+      function toJson(): string;
+      function fromJson(json: string): TFormaPgtoVO;
+  end;
+
+implementation
+
+{ TFormaPgtoVO }
+
+function TFormaPgtoVO.fromJson(json: string): TFormaPgtoVO;
+begin
+  Result := TJson.JsonToObject<TFormaPgtoVO>(json);
+end;
+
+function TFormaPgtoVO.toJson: string;
+begin
+  Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

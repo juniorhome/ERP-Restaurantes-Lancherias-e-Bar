@@ -1,0 +1,25 @@
+unit Cli_Windows.Model.CartaoVO;
+
+interface
+
+uses
+  orm.IBaseVO, orm.Atributos;
+
+type
+  [TTabela('CARTAO','C','Cartão','Cartões')]
+  TCartaoVO = class(TInterfacedObject, IBaseVO<TCartaoVO>)
+    private
+      FId: integer;
+      FBandeira: string;
+      FTaxa: double;
+    public
+      [TChavePrimaria('ID','Código','Códigos')]
+      property Id: integer read FId write FId;
+      [TCampoTexto('BANDEIRA','Bandeira','Bandeiras','',80,False)]
+      property Bandeira: string read FBandeira write FBandeira;
+      [TCampoExtended('TAXA','Taxa','Taxas','000000000000000.000',15,3)]
+      property Taxa: double read FTaxa write FTaxa;
+  end;
+implementation
+
+end.

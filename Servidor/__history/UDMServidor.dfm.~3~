@@ -1,0 +1,24 @@
+object DMServidor: TDMServidor
+  OldCreateOrder = False
+  Encoding = esUtf8
+  Height = 306
+  Width = 456
+  object RESTDWPoolerDB1: TRESTDWPoolerDB
+    RESTDriver = RESTDWDriverZeos1
+    Compression = True
+    Encoding = esUtf8
+    StrsTrim = False
+    StrsEmpty2Null = False
+    StrsTrim2Len = True
+    Active = True
+    PoolerOffMessage = 'RESTPooler not active.'
+    ParamCreate = True
+    Left = 64
+    Top = 184
+  end
+  object RESTDWDriverZeos1: TRESTDWDriverZeos
+    CommitRecords = 100
+    Left = 56
+    Top = 104
+  end
+end

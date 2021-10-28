@@ -1,0 +1,19 @@
+unit Cli_Windows.Model.CstCofinsVO;
+
+interface
+
+uses
+   orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  TCstCofinsVO = class(TInterfacedObject, IBaseVO<TCstCofinsVO>)
+  private
+    FId: integer;
+    FCst: string;
+    FDescricao: string;
+  public
+  end;
+
+implementation
+
+end.
