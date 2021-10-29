@@ -25,7 +25,6 @@
     Color = 16443110
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 1054
     object imgMenu: TImage
       Left = 2
       Top = 23
@@ -748,8 +747,6 @@
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitWidth = 1054
-    ExplicitHeight = 393
     object pnlMenu: TPanel
       Left = 0
       Top = 0
@@ -760,7 +757,6 @@
       Color = 16443110
       ParentBackground = False
       TabOrder = 0
-      ExplicitHeight = 393
       object btnGeral: TSpeedButton
         Tag = 1
         Left = 0
@@ -2057,5 +2053,10 @@
     Width = 48
     Left = 672
     Top = 89
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 848
+    Top = 97
   end
 end

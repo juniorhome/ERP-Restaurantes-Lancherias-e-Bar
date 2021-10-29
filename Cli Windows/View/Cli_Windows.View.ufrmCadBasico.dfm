@@ -36,10 +36,6 @@ object frmCadBasico: TfrmCadBasico
       Color = 16443110
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = 624
-      ExplicitTop = 208
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object pnlBotoes: TPanel
         Left = 0
         Top = 0
@@ -311,10 +307,6 @@ object frmCadBasico: TfrmCadBasico
         Color = 16443110
         ParentBackground = False
         TabOrder = 1
-        ExplicitLeft = 88
-        ExplicitTop = 128
-        ExplicitWidth = 185
-        ExplicitHeight = 41
       end
     end
     object pnlListagem: TPanel

@@ -73,6 +73,7 @@ type
     pnlPedido: TPanel;
     btnFazerPedido: TSpeedButton;
     btnRelatórios: TSpeedButton;
+    Timer1: TTimer;
     procedure imgMenuClick(Sender: TObject);
     procedure btnGeralMouseEnter(Sender: TObject);
     procedure btnDfeMouseEnter(Sender: TObject);
@@ -113,6 +114,7 @@ type
     procedure btnFinanceiroClick(Sender: TObject);
     procedure btnTributacaoClick(Sender: TObject);
     procedure btnPedidoClick(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -443,6 +445,11 @@ begin
          (frmPrincipal.Components[j] as TPanel).Visible := False;
      end;
    end;
+end;
+
+procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
+begin
+   lblDataHorario.Caption := DateTimeToStr(Now);
 end;
 
 end.

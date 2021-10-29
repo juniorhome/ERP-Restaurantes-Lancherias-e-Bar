@@ -37,6 +37,7 @@ type
     procedure ArredondarCantos(componente: TWinControl; y: string);
     procedure CarregarCombo(AObj: TObject);
     procedure MontarGrid(AObj: TObject);
+    procedure CarregarObjeto(); virtual; abstract;
   end;
 
 var
@@ -92,6 +93,7 @@ begin
    ArredondarCantos(pnlPesquisa, '100');
    ArredondarCantos(edtPesquisar, '100');
    ArredondarCantos(pnlListagem, '100');
+   ArredondarCantos(dbgGeral, '100');
 end;
 
 procedure TfrmCadBasico.MontarGrid(AObj: TObject);

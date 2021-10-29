@@ -42,7 +42,8 @@ uses
   orm.conexao.model_firedac.ModelFiredacConexao in '..\..\Framework\ORM\Conexao\Model_Firedac\orm.conexao.model_firedac.ModelFiredacConexao.pas',
   orm.conexao.model_firedac.ModelFiredacQuery in '..\..\Framework\ORM\Conexao\Model_Firedac\orm.conexao.model_firedac.ModelFiredacQuery.pas' {/Cli_Windows.Model.CartaoVO in 'Model\Cli_Windows.Model.CartaoVO.pas',},
   Cli_Windows.View.uDM in 'View\Cli_Windows.View.uDM.pas' {DMCliente: TDataModule},
-  Cli_Windows.View.ufrmCadBasico in 'View\Cli_Windows.View.ufrmCadBasico.pas' {frmCadBasico};
+  Cli_Windows.View.ufrmCadBasico in 'View\Cli_Windows.View.ufrmCadBasico.pas' {frmCadBasico},
+  Cli_Windows.Controller.PessoaController in 'Controller\Cli_Windows.Controller.PessoaController.pas';
 
 //Cli_Windows.Model.CartaoVO in 'Model\Cli_Windows.Model.CartaoVO.pas',
   //Cli_Windows.Model.CFOPVO in 'Model\Cli_Windows.Model.CFOPVO.pas',
