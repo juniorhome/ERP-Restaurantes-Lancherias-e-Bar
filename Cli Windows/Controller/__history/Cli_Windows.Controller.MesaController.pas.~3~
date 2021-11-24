@@ -1,0 +1,39 @@
+unit Cli_Windows.Controller.MesaController;
+
+interface
+
+uses orm.dao.BaseDAO, orm.conexao.interfaces.Interfaces, Cli_Windows.Model.MesaVO,
+     DB, uRESTDWPoolerDB;
+
+type
+  TMesaController = class(TInterfacedObject, IController<TMesaVO>)
+    private
+      FConexao: TRESTDWDatabase;
+    public
+      class function New(AConexao: TRESTDWDatabase): IController<TMesaVO>;
+      constructor Create(AConexao: TRESTDWDatabase);
+      destructor Destroy;override;
+  end;
+
+implementation
+
+{ TMesaController }
+
+constructor TMesaController.Create(AConexao: TRESTDWDatabase);
+begin
+   FConexao := AConexao;
+end;
+
+destructor TMesaController.Destroy;
+begin
+  FConexao.Free;
+  inherited;
+end;
+
+class function TMesaController.New(
+  AConexao: TRESTDWDatabase): IController<TMesaVO>;
+begin
+   Self.Create(AConexao);
+end;
+
+end.

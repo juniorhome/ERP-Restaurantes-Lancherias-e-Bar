@@ -1,0 +1,43 @@
+unit Cli_Windows.Controller.PessoaController;
+
+interface
+
+uses orm.dao.BaseDAO, orm.conexao.interfaces.Interfaces, Cli_Windows.Model.PessoaVO,
+     DB, Cli_Windows.View.uDM;
+
+type
+  TPessoaController = class(TInterfacedObject, IController<TPessoaVO>)
+    private
+      FDAO: IDAO<TPessoaVO>;
+    public
+      function Salvar(obj: TPessoaVO): integer;
+      function Atualizar(obj: TPessoaVO): boolean;
+      function Excluir(obj: TPessoaVO): boolean;
+      function Listagem(obj: TPessoaVO): TDataSet;
+  end;
+
+implementation
+
+{ TPessoaController }
+
+function TPessoaController.Atualizar(obj: TPessoaVO): boolean;
+begin
+   TBaseDAO.new(DM.RESTDWDatabase1).Atualizar(obj);
+end;
+
+function TPessoaController.Excluir(obj: TPessoaVO): boolean;
+begin
+
+end;
+
+function TPessoaController.Listagem(obj: TPessoaVO): TDataSet;
+begin
+
+end;
+
+function TPessoaController.Salvar(obj: TPessoaVO): integer;
+begin
+
+end;
+
+end.
