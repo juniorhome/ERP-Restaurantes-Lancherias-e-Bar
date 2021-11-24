@@ -43,7 +43,10 @@ uses
   orm.conexao.model_firedac.ModelFiredacQuery in '..\..\Framework\ORM\Conexao\Model_Firedac\orm.conexao.model_firedac.ModelFiredacQuery.pas' {/Cli_Windows.Model.CartaoVO in 'Model\Cli_Windows.Model.CartaoVO.pas',},
   Cli_Windows.View.uDM in 'View\Cli_Windows.View.uDM.pas' {DMCliente: TDataModule},
   Cli_Windows.View.ufrmCadBasico in 'View\Cli_Windows.View.ufrmCadBasico.pas' {frmCadBasico},
-  Cli_Windows.Controller.PessoaController in 'Controller\Cli_Windows.Controller.PessoaController.pas';
+  Cli_Windows.Controller.PessoaController in 'Controller\Cli_Windows.Controller.PessoaController.pas',
+  Cli_Windows.Controller.CidadeController in 'Controller\Cli_Windows.Controller.CidadeController.pas',
+  Cli_Windows.Controller.MesaController in 'Controller\Cli_Windows.Controller.MesaController.pas',
+  Cli_Windows.View.uFrmLogin in 'View\Cli_Windows.View.uFrmLogin.pas' {frmLogin};
 
 //Cli_Windows.Model.CartaoVO in 'Model\Cli_Windows.Model.CartaoVO.pas',
   //Cli_Windows.Model.CFOPVO in 'Model\Cli_Windows.Model.CFOPVO.pas',
@@ -62,5 +65,6 @@ begin
   Application.CreateForm(TDMCliente, DMCliente);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmCadBasico, frmCadBasico);
+  Application.CreateForm(TfrmLogin, frmLogin);
   Application.Run;
 end.

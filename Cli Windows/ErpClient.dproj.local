@@ -2,15 +2,15 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2021/05/03 20:45:44.000.354,=C:\Users\Carlos Jr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/05/03 20:48:42.000.812,C:\Users\Carlos Jr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\View\Cli_Windows.View.ufrmPrincipal.dfm</Transaction>
     <Transaction>2021/05/03 20:48:42.000.812,C:\Users\Carlos Jr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\View\Cli_Windows.View.ufrmPrincipal.pas</Transaction>
+    <Transaction>2021/05/03 20:48:42.000.812,C:\Users\Carlos Jr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\View\Cli_Windows.View.ufrmPrincipal.dfm</Transaction>
     <Transaction>2021/05/03 20:49:20.000.467,C:\Users\Carlos Jr\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\ErpClient.dproj</Transaction>
     <Transaction>2021/05/26 18:39:45.000.487,=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
     <Transaction>2021/05/26 18:52:22.000.419,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Model\Cli_Windows.Model.UfVO.pas=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
-    <Transaction>2021/05/26 18:53:25.000.053,=C:\Projetos\Framework\Fabrica_Objetos\Fabrica_Objetos.FabricaObjeto.pas</Transaction>
     <Transaction>2021/05/26 18:53:25.000.036,=C:\Projetos\Framework\Fabrica_Objetos\Fabica_Objetos.IFactoryMethod.pas</Transaction>
-    <Transaction>2021/05/26 18:53:54.000.494,=C:\Projetos\Framework\ORM\orm.IBaseVO.pas</Transaction>
+    <Transaction>2021/05/26 18:53:25.000.053,=C:\Projetos\Framework\Fabrica_Objetos\Fabrica_Objetos.FabricaObjeto.pas</Transaction>
     <Transaction>2021/05/26 18:53:54.000.445,=C:\Projetos\Framework\ORM\orm.Atributos.pas</Transaction>
+    <Transaction>2021/05/26 18:53:54.000.494,=C:\Projetos\Framework\ORM\orm.IBaseVO.pas</Transaction>
     <Transaction>2021/05/26 19:39:44.000.139,=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
     <Transaction>2021/05/26 19:42:07.000.217,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Model\Cli_Windows.Model.CartaoVO.pas=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
     <Transaction>2021/05/26 20:48:10.000.819,=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
@@ -71,12 +71,19 @@
     <Transaction>2021/10/21 14:53:27.000.208,=C:\Projetos\Framework\ORM\Conexao\Model_Firedac\orm.conexao.model_firedac.ModelFiredacConexao.pas</Transaction>
     <Transaction>2021/10/21 14:54:04.000.713,=C:\Projetos\Framework\ORM\Conexao\Model_Firedac\orm.conexao.model_firedac.ModelFiredacQuery.pas</Transaction>
     <Transaction>2021/10/25 12:04:44.000.427,=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
-    <Transaction>2021/10/25 12:10:18.000.879,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\View\Cli_Windows.View.uDM.pas</Transaction>
     <Transaction>2021/10/25 12:10:18.000.879,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.dfm=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\View\Cli_Windows.View.uDM.dfm</Transaction>
+    <Transaction>2021/10/25 12:10:18.000.879,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\View\Cli_Windows.View.uDM.pas</Transaction>
     <Transaction>2021/10/25 12:15:59.000.099,=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
-    <Transaction>2021/10/25 12:17:25.000.373,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\View\Cli_Windows.View.ufrmCadBasico.pas</Transaction>
     <Transaction>2021/10/25 12:17:25.000.373,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.dfm=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\View\Cli_Windows.View.ufrmCadBasico.dfm</Transaction>
-    <Transaction>2021/10/29 14:07:37.143,=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
-    <Transaction>2021/10/29 14:19:06.780,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Controller\Cli_Windows.Controller.PessoaController.pas=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
+    <Transaction>2021/10/25 12:17:25.000.373,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\View\Cli_Windows.View.ufrmCadBasico.pas</Transaction>
+    <Transaction>2021/10/29 14:07:37.000.143,=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
+    <Transaction>2021/10/29 14:19:06.000.780,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Controller\Cli_Windows.Controller.PessoaController.pas=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
+    <Transaction>2021/11/18 10:56:00.000.200,=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
+    <Transaction>2021/11/18 10:59:32.000.419,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Controller\Cli_Windows.Controller.CidadeController.pas</Transaction>
+    <Transaction>2021/11/18 14:01:05.000.496,=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
+    <Transaction>2021/11/18 14:05:48.000.873,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Controller\Cli_Windows.Controller.MesaController.pas</Transaction>
+    <Transaction>2021/11/18 22:08:33.000.503,=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas</Transaction>
+    <Transaction>2021/11/18 22:09:55.000.648,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.pas=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\View\Cli_Windows.View.uFrmLogin.pas</Transaction>
+    <Transaction>2021/11/18 22:09:55.000.648,C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\Unit1.dfm=C:\Projetos\ERP Restaurantes,Lancherias e Bar\Cli Windows\View\Cli_Windows.View.uFrmLogin.dfm</Transaction>
   </Transactions>
 </BorlandProject>
