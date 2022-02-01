@@ -425,12 +425,20 @@ object frmCadBasico: TfrmCadBasico
           Height = 359
           Align = alClient
           DataSource = dsGeral
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -11
-          TitleFont.Name = 'Tahoma'
-          TitleFont.Style = []
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = [fsBold]
+          OnDrawColumnCell = dbgGeralDrawColumnCell
+          OnTitleClick = dbgGeralTitleClick
         end
       end
     end

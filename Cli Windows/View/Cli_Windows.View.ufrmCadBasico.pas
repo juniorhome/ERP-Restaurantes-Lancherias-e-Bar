@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ComCtrls,
   Vcl.StdCtrls, Vcl.Buttons, Data.DB, Datasnap.DBClient, Vcl.Grids, Vcl.DBGrids, Rtti,
-  orm.Atributos, orm.IBaseVO;
+  orm.Atributos, orm.IBaseVO, orm.lib.Biblioteca;
 
 type
   TfrmCadBasico = class(TForm)
@@ -30,6 +30,9 @@ type
     btnCancelar: TSpeedButton;
     pnlCampos: TPanel;
     procedure FormCreate(Sender: TObject);
+    procedure dbgGeralDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure dbgGeralTitleClick(Column: TColumn);
   private
     { Private declarations }
   public
@@ -85,6 +88,30 @@ begin
 
    finally
      contexto.Free;
+   end;
+end;
+
+procedure TfrmCadBasico.dbgGeralDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  Lib: TLib<TfrmCadBasico>;
+begin
+  Lib := TLib<TfrmCadBasico>.Create;
+  try
+    Lib.GridZebrado(dbgGeral, Rect, DataCol, Column, State);
+  finally
+    Lib.Free;
+  end;
+end;
+
+procedure TfrmCadBasico.dbgGeralTitleClick(Column: TColumn);
+var Lib: TLib<TfrmCadBasico>;
+begin
+   Lib := TLib<TfrmCadBasico>.Create;
+   try
+     Lib.OrdenarColunaGrid(dbgGeral, cdsGeral);
+   finally
+     Lib.Free;
    end;
 end;
 
