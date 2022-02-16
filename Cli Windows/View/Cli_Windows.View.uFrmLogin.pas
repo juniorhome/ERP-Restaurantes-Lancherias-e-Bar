@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage;
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Vcl.Buttons;
 
 type
   TfrmLogin = class(TForm)
@@ -16,7 +16,21 @@ type
     Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
+    pnlUsuario: TPanel;
+    pnlSenha: TPanel;
+    Label3: TLabel;
+    edtNomeUsuario: TEdit;
+    Label4: TLabel;
+    edtSenha: TEdit;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Image2: TImage;
+    pnlBotaoEntrar: TPanel;
+    pnlBotaoCancelar: TPanel;
+    btnCancelar: TSpeedButton;
+    btnEntrar: TSpeedButton;
     procedure FormResize(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,6 +48,11 @@ procedure TfrmLogin.FormResize(Sender: TObject);
 begin
    pnlLogin.Top := Round(frmLogin.Height / 2 - pnlLogin.Height / 2);
    pnlLogin.Left := Round(frmLogin.Width / 2 - pnlLogin.Width / 2);
+end;
+
+procedure TfrmLogin.btnCancelarClick(Sender: TObject);
+begin
+  Application.Terminate;
 end;
 
 end.
