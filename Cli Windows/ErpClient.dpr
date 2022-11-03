@@ -46,7 +46,14 @@ uses
   Cli_Windows.Controller.PessoaController in 'Controller\Cli_Windows.Controller.PessoaController.pas',
   Cli_Windows.Controller.CidadeController in 'Controller\Cli_Windows.Controller.CidadeController.pas',
   Cli_Windows.Controller.MesaController in 'Controller\Cli_Windows.Controller.MesaController.pas',
-  Cli_Windows.View.uFrmLogin in 'View\Cli_Windows.View.uFrmLogin.pas' {frmLogin};
+  Cli_Windows.View.uFrmLogin in 'View\Cli_Windows.View.uFrmLogin.pas' {frmLogin},
+  Cli_Windows.View.ufrmConsulta in 'View\Cli_Windows.View.ufrmConsulta.pas' {frmConsulta},
+  Cli_Windos.View.ufrmRelatorioBase in 'View\Cli_Windos.View.ufrmRelatorioBase.pas' {frmRelatorioBase},
+  orm.lib.Constantes in '..\..\Framework\ORM\Lib\orm.lib.Constantes.pas',
+  orm.seguranca.criptografia in '..\..\Framework\ORM\Seguranca\orm.seguranca.criptografia.pas',
+  orm.Validacao in '..\..\Framework\ORM\Validacao\orm.Validacao.pas',
+  Cli_Windows.View.ufrmCadGrupo in 'View\Cli_Windows.View.ufrmCadGrupo.pas' {frmCadBasico1},
+  orm.lib.SessaoUsuario in '..\..\Framework\ORM\Lib\orm.lib.SessaoUsuario.pas';
 
 //Cli_Windows.Model.CartaoVO in 'Model\Cli_Windows.Model.CartaoVO.pas',
   //Cli_Windows.Model.CFOPVO in 'Model\Cli_Windows.Model.CFOPVO.pas',
@@ -63,8 +70,9 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDMCliente, DMCliente);
-  Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmCadBasico, frmCadBasico);
   Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmRelatorioBase, frmRelatorioBase);
+  Application.CreateForm(TfrmCadBasico1, frmCadBasico1);
   Application.Run;
 end.

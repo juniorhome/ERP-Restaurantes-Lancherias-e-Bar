@@ -29,10 +29,22 @@ type
     btnSalvar: TSpeedButton;
     btnCancelar: TSpeedButton;
     pnlCampos: TPanel;
+    pnlBtnNovo: TPanel;
+    pnlVoltar: TPanel;
+    btnNovo: TSpeedButton;
+    btnVoltar: TSpeedButton;
+    pnlPesquisaData: TPanel;
+    Label3: TLabel;
+    dtpDataInicio: TDateTimePicker;
+    dtpDataFim: TDateTimePicker;
+    Label4: TLabel;
+    pnlPesquisaGeral: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure dbgGeralDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure dbgGeralTitleClick(Column: TColumn);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,6 +53,9 @@ type
     procedure CarregarCombo(AObj: TObject);
     procedure MontarGrid(AObj: TObject);
     procedure CarregarObjeto(); virtual; abstract;
+    procedure CarregarCds(); virtual; abstract;
+    procedure LimparTela;
+    procedure TrocarPanel<T: class>(obj: T);
   end;
 
 var
@@ -69,13 +84,23 @@ begin
   end;
 end;
 
+procedure TfrmCadBasico.btnNovoClick(Sender: TObject);
+begin
+    pnlCadastro.BringToFront;
+end;
+
+procedure TfrmCadBasico.btnVoltarClick(Sender: TObject);
+begin
+  Close;
+end;
+
 procedure TfrmCadBasico.CarregarCombo(AObj: TObject);
 var contexto: TRttiContext;
 propriedade: TRttiProperty;
 tipo: TRttiType;
 atributo: TCustomAttribute;
 begin
-   contexto := TRttiContext.Create(nil);
+   contexto := TRttiContext.Create;
    try
      tipo := contexto.GetType(AObj.ClassInfo);
 
@@ -123,6 +148,22 @@ begin
    ArredondarCantos(dbgGeral, '100');
 end;
 
+procedure TfrmCadBasico.LimparTela;
+var i: integer;
+begin
+   for i := 0 to frmCadBasico.ComponentCount - 1 do
+   begin
+     if Components[i] is TEdit then
+       (Components[i] as TEdit).Text := EmptyStr;
+     if Components[i] is TComboBox then
+        (Components[i] as TComboBox).ItemIndex := -1;
+     if Components[i] is TMemo then
+        (Components[i] as TMemo).Lines.Text := EmptyStr;
+     if Components[i] is TCheckBox then
+        (Components[i] as TCheckBox).Checked := False;
+   end;
+end;
+
 procedure TfrmCadBasico.MontarGrid(AObj: TObject);
 var
   contexto: TRttiContext;
@@ -132,7 +173,7 @@ var
   contador: integer;
 begin
    contador := 0;
-   contexto := TRttiContext.Create(nil);
+   contexto := TRttiContext.Create;
    try
      tipo := contexto.GetType(AObj.ClassInfo);
      for propriedade in tipo.GetProperties do
@@ -149,6 +190,41 @@ begin
            inc(contador);
          end;
        end;
+   finally
+     contexto.Free;
+   end;
+end;
+
+procedure TfrmCadBasico.TrocarPanel<T>(obj: T);
+var contexto: TRttiContext;
+    prop: TRttiProperty;
+    tipo: TRttiType;
+    atributo: TCustomAttribute;
+    contador: integer;
+begin
+   contexto := TRttiContext.Create;
+   try
+     tipo := contexto.GetType(TObject(obj).ClassInfo);
+     contador := 0;
+     for prop in tipo.GetProperties do
+       for atributo in prop.GetAttributes do
+       begin
+         if atributo is TCampoFiltro then
+         begin
+           if TCampoFiltro(atributo).Nome = cmbFiltros.Items.Names[contador] then
+           begin
+             if (prop.PropertyType.TypeKind = tkInteger) or (prop.PropertyType.TypeKind = tkChar) or (prop.PropertyType.TypeKind = tkString) then
+                pnlPesquisaGeral.BringToFront;
+             if prop.PropertyType.TypeKind = tkFloat then
+             begin
+                if CompareText(prop.PropertyType.Name, 'TDateTime') = 0 then
+                   pnlPesquisaData.BringToFront;
+             end;
+           end;
+         end;
+         inc(contador);
+       end;
+
    finally
      contexto.Free;
    end;

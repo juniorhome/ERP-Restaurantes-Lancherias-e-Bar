@@ -1,0 +1,50 @@
+unit Cli_Windos.Vie.ufrmRelatorioBase;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, RLReport, Vcl.Buttons,
+  Vcl.StdCtrls;
+
+type
+  TfrmRelatorioBase = class(TForm)
+    pnlBotoes: TPanel;
+    pnlRelatorio: TPanel;
+    pnlBotaoImprimir: TPanel;
+    pnlBotaoFechar: TPanel;
+    RelatórioBase: TRLReport;
+    btnImprir: TSpeedButton;
+    btnFechar: TSpeedButton;
+    GroupBox1: TGroupBox;
+    rdbVisualizar: TRadioButton;
+    rdbImprimir: TRadioButton;
+    procedure btnFecharClick(Sender: TObject);
+    procedure btnImprirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRelatorioBase: TfrmRelatorioBase;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmRelatorioBase.btnFecharClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmRelatorioBase.btnImprirClick(Sender: TObject);
+begin
+   if rdbVisualizar.Checked then
+     RelatórioBase.Preview();
+   if rdbImprimir.Checked then
+     RelatórioBase.Print;
+end;
+
+end.
