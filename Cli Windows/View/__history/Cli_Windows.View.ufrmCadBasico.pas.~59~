@@ -1,0 +1,224 @@
+unit Cli_Windows.View.ufrmCadBasico;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ComCtrls,
+  Vcl.StdCtrls, Vcl.Buttons, Data.DB, Datasnap.DBClient, Vcl.Grids, Vcl.DBGrids, Rtti,
+  orm.Atributos, orm.IBaseVO, orm.lib.Biblioteca;
+
+type
+  TfrmCadBasico = class(TForm)
+    pnlFundo: TPanel;
+    pnlListagem: TPanel;
+    pnlCadastro: TPanel;
+    pnlPesquisa: TPanel;
+    edtPesquisar: TEdit;
+    btnPesquisar: TSpeedButton;
+    Label1: TLabel;
+    cmbFiltros: TComboBox;
+    Label2: TLabel;
+    pnlGrid: TPanel;
+    dbgGeral: TDBGrid;
+    dsGeral: TDataSource;
+    cdsGeral: TClientDataSet;
+    pnlBotoes: TPanel;
+    pnlBotaoSalvar: TPanel;
+    pnlBotaoCancelar: TPanel;
+    btnSalvar: TSpeedButton;
+    btnCancelar: TSpeedButton;
+    pnlCampos: TPanel;
+    pnlBtnNovo: TPanel;
+    pnlVoltar: TPanel;
+    btnNovo: TSpeedButton;
+    btnVoltar: TSpeedButton;
+    pnlPesquisaData: TPanel;
+    Label3: TLabel;
+    dtpDataInicio: TDateTimePicker;
+    dtpDataFim: TDateTimePicker;
+    Label4: TLabel;
+    pnlPesquisaGeral: TPanel;
+    procedure FormCreate(Sender: TObject);
+    procedure dbgGeralDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure dbgGeralTitleClick(Column: TColumn);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure ArredondarCantos(componente: TWinControl; y: string);
+    procedure CarregarCombo(AObj: TObject);
+    procedure MontarGrid(AObj: TObject);
+    procedure CarregarObjeto(); virtual; abstract;
+    procedure CarregarCds(); virtual; abstract;
+    procedure LimparTela;
+    procedure TrocarPanel<T: class>(obj: T);
+  end;
+
+var
+  frmCadBasico: TfrmCadBasico;
+
+implementation
+
+{$R *.dfm}
+
+{ TfrmCadBasico }
+
+procedure TfrmCadBasico.ArredondarCantos(componente: TWinControl; y: string);
+var
+  bx: TRect;
+  mdo: HRGN;
+begin
+  with componente do
+  begin
+    bx := ClientRect;
+    mdo := CreateRoundRectRgn(bx.Left, bx.Top, bx.Right, bx.Bottom, StrToInt(y), StrToInt(y));
+    Perform(EM_GETRECT, 0, lParam(@bx));
+    InflateRect(bx, -4, -4);
+    Perform(EM_SETRECTNP, 0, lParam(@bx));
+    SetWindowRgn(Handle, mdo, True);
+    Invalidate;
+  end;
+end;
+
+procedure TfrmCadBasico.btnNovoClick(Sender: TObject);
+begin
+    pnlCadastro.BringToFront;
+end;
+
+procedure TfrmCadBasico.btnVoltarClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmCadBasico.CarregarCombo(AObj: TObject);
+var contexto: TRttiContext;
+propriedade: TRttiProperty;
+tipo: TRttiType;
+atributo: TCustomAttribute;
+begin
+   contexto := TRttiContext.Create;
+   try
+     tipo := contexto.GetType(AObj.ClassInfo);
+
+     for propriedade in tipo.GetProperties do
+       for atributo in propriedade.GetAttributes do
+       begin
+         if atributo is TCampoFiltro then
+           cmbFiltros.Items.Add(TCampoFiltro(atributo).Nome);
+       end;
+
+   finally
+     contexto.Free;
+   end;
+end;
+
+procedure TfrmCadBasico.dbgGeralDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  Lib: TLib<TfrmCadBasico>;
+begin
+  Lib := TLib<TfrmCadBasico>.Create;
+  try
+    Lib.GridZebrado(dbgGeral, Rect, DataCol, Column, State);
+  finally
+    Lib.Free;
+  end;
+end;
+
+procedure TfrmCadBasico.dbgGeralTitleClick(Column: TColumn);
+var Lib: TLib<TfrmCadBasico>;
+begin
+   Lib := TLib<TfrmCadBasico>.Create;
+   try
+     Lib.OrdenarColunaGrid(dbgGeral, cdsGeral);
+   finally
+     Lib.Free;
+   end;
+end;
+
+procedure TfrmCadBasico.FormCreate(Sender: TObject);
+begin
+   ArredondarCantos(pnlPesquisa, '100');
+   ArredondarCantos(edtPesquisar, '100');
+   ArredondarCantos(pnlListagem, '100');
+   ArredondarCantos(dbgGeral, '100');
+end;
+
+procedure TfrmCadBasico.LimparTela;
+var i: integer;
+begin
+   for i := 0 to frmCadBasico.ComponentCount - 1 do
+   begin
+     if Components[i] is TEdit then
+       (Components[i] as TEdit).Text := EmptyStr;
+     if Components[i] is TComboBox then
+        (Components[i] as TComboBox).ItemIndex := -1;
+     if Components[i] is TMemo then
+        (Components[i] as TMemo).Lines.Text := EmptyStr;
+     if Components[i] is TCheckBox then
+        (Components[i] as TCheckBox).Checked := False;
+   end;
+end;
+
+procedure TfrmCadBasico.MontarGrid(AObj: TObject);
+var
+  contexto: TRttiContext;
+  tipo: TRttiType;
+  propriedade: TRttiProperty;
+  atributo: TCustomAttribute;
+  contador: integer;
+begin
+   contador := 0;
+   contexto := TRttiContext.Create;
+   try
+     tipo := contexto.GetType(AObj.ClassInfo);
+     for propriedade in tipo.GetProperties do
+       for atributo in propriedade.GetAttributes do
+       begin
+         if atributo is TGridCadastro then
+         begin
+           dbgGeral.Columns.Insert(contador);
+           dbgGeral.Columns[contador].FieldName := TGridCadastro(atributo).Nome;
+           dbgGeral.Columns[contador].Title.Caption := TGridCadastro(atributo).CaptionSingular;
+           dbgGeral.Columns[contador].Title.Alignment := taCenter;
+           dbgGeral.Columns[contador].Font.Style := [fsBold];
+           dbgGeral.Columns[contador].Width := TGridCadastro(atributo).Tamanho;
+           inc(contador);
+         end;
+       end;
+   finally
+     contexto.Free;
+   end;
+end;
+
+procedure TfrmCadBasico.TrocarPanel<T>(obj: T);
+var contexto: TRttiContext;
+    prop: TRttiProperty;
+    tipo: TRttiType;
+    atributo: TCustomAttribute;
+    contador: integer;
+begin
+   contexto := TRttiContext.Create;
+   try
+     tipo := contexto.GetType(TObject(obj).ClassInfo);
+     contador := 0;
+     for prop in tipo.GetProperties do
+       for atributo in prop.GetAttributes do
+       begin
+         if atributo is TCampoFiltro then
+         begin
+
+         end;
+         inc(contador);
+       end;
+
+   finally
+     contexto.Free;
+   end;
+end;
+
+end.

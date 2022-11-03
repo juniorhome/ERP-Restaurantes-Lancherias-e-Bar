@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Vcl.Buttons;
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Vcl.Buttons, orm.lib.SessaoUsuario, orm.Validacao, orm.seguranca.criptografia;
 
 type
   TfrmLogin = class(TForm)
@@ -29,8 +29,11 @@ type
     pnlBotaoCancelar: TPanel;
     btnCancelar: TSpeedButton;
     btnEntrar: TSpeedButton;
+    chkLembrar: TCheckBox;
     procedure FormResize(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnEntrarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,6 +46,23 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmLogin.btnEntrarClick(Sender: TObject);
+var senha: string;
+begin
+   if (edtNomeUsuario.Text <> EmptyStr) and (edtSenha.Text <> EmptyStr) then
+   begin
+     senha := TCriptografia.MD5(edtSenha.Text);
+   end;
+
+end;
+
+procedure TfrmLogin.FormCreate(Sender: TObject);
+begin
+   TSessaoUsuario.LerIni;
+   edtNomeUsuario.Text := TSessaoUsuario.Apelido;
+   chkLembrar.Checked := TSessaoUsuario.Lembrar;
+end;
 
 procedure TfrmLogin.FormResize(Sender: TObject);
 begin

@@ -10,7 +10,7 @@ type
     private
       FConexao: TRESTDWDatabase;
     public
-      function Inserir(obj: TCidadeVO): integer;
+      function Salvar(obj: TCidadeVO): integer;
       function Atualizar(obj: TCidadeVO): boolean;
       function Excluir(obj: TCidadeVO): boolean;
       function Listagem(obj: TCidadeVO): TDataSet;
@@ -37,7 +37,7 @@ begin
    Result := TBaseDAO<TCidadeVO>.New(FConexao).Excluir(obj);
 end;
 
-function TCidadeController.Inserir(obj: TCidadeVO): integer;
+function TCidadeController.Salvar(obj: TCidadeVO): integer;
 begin
    Result := TBaseDAO<TCidadeVO>.New(FConexao).Inserir(obj);
 end;
