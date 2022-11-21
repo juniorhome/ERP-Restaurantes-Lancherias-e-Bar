@@ -5,7 +5,9 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Vcl.Buttons, orm.lib.SessaoUsuario, orm.Validacao, orm.seguranca.criptografia;
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Vcl.Buttons, orm.lib.SessaoUsuario, orm.Validacao, orm.seguranca.criptografia,
+  Cli_Windows.Model.UsuarioVO, Cli_Windows.Controller.UsuarioController, Fabrica_Objetos.FabricaObjeto,
+  Fabica_Objetos.IFactoryMethod, orm.IBaseVO, System.IniFiles;
 
 type
   TfrmLogin = class(TForm)
@@ -36,8 +38,12 @@ type
     procedure btnEntrarClick(Sender: TObject);
   private
     { Private declarations }
+    FUsuario: TUsuarioVO;
+    FController: TUsuarioController;
+    FFabrica: IFactoryMethod<TUsuarioVO>;
   public
     { Public declarations }
+    procedure preencherObjeto;
   end;
 
 var
@@ -48,11 +54,17 @@ implementation
 {$R *.dfm}
 
 procedure TfrmLogin.btnEntrarClick(Sender: TObject);
+var UsuarioVO: TUsuarioVO;
 begin
    if (edtNomeUsuario.Text <> EmptyStr) and (edtSenha.Text <> EmptyStr) then
    begin
-     TCriptografia.MD5(edtSenha.Text);
-   end;
+     preencherObjeto;
+     UsuarioVO := FController.Login(FUsuario);
+     TSessaoUsuario.Id := UsuarioVO.Id;
+     TSessaoUsuario.Apelido := UsuarioVO.Login;
+     TSessaoUsuario.CaminhoFoto := UsuarioVO.Foto;
+   end
+   else raise Exception.Create('Usuário ou Senha está vazio ou ambos.');
 
 end;
 
@@ -61,12 +73,20 @@ begin
    TSessaoUsuario.LerIni;
    edtNomeUsuario.Text := TSessaoUsuario.Apelido;
    chkLembrar.Checked := TSessaoUsuario.Lembrar;
+   FFabrica := TFabricaObjeto<TUsuarioVO>.Create;
+   FUsuario := FFabrica.FabricaObjeto(ttUsuario);
 end;
 
 procedure TfrmLogin.FormResize(Sender: TObject);
 begin
    pnlLogin.Top := Round(frmLogin.Height / 2 - pnlLogin.Height / 2);
    pnlLogin.Left := Round(frmLogin.Width / 2 - pnlLogin.Width / 2);
+end;
+
+procedure TfrmLogin.preencherObjeto;
+begin
+  FUsuario.Login := edtNomeUsuario.Text;
+  FUsuario.Senha := TCriptografia.MD5(edtSenha.Text);
 end;
 
 procedure TfrmLogin.btnCancelarClick(Sender: TObject);

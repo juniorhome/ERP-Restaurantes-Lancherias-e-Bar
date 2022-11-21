@@ -1,0 +1,55 @@
+unit Cli_Windows.Controller.UsuarioController;
+
+interface
+
+uses orm.conexao.interfaces.Interfaces, orm.dao.BaseDAO, DB, uRESTDWPoolerDB, Cli_Windows.Model.UsuarioVO;
+
+type
+  TUsuarioController = class(TInterfacedObject, IController<TUsuarioVO>)
+  private
+    FConexao: TRESTDWDataBase;
+  public
+    function Salvar(obj: TUsuarioVO): integer;
+    function Atualizar(obj: TUsuarioVO): boolean;
+    function Excluir(obj: TUsuarioVO): boolean;
+    function Listagem(obj: TUsuarioVO): TDataSet;
+    class function New(AConexao: TRESTDWDataBase): IController<TUsuarioVO>;
+    constructor Create(AConexao: TRESTDWDataBase);
+  end;
+
+implementation
+
+{ TUsuarioController }
+
+function TUsuarioController.Atualizar(obj: TUsuarioVO): boolean;
+begin
+   Result := TBaseDAO<TUsuarioVO>.New(FConexao).Atualizar(obj);
+end;
+
+constructor TUsuarioController.Create(AConexao: TRESTDWDataBase);
+begin
+  FConexao := AConexao;
+end;
+
+function TUsuarioController.Excluir(obj: TUsuarioVO): boolean;
+begin
+   Result := TBaseDAO<TUsuarioVO>.New(FConexao).Excluir(obj);
+end;
+
+function TUsuarioController.Listagem(obj: TUsuarioVO): TDataSet;
+begin
+  Result := TBaseDAO<TUsuarioVO>.New(FConexao).Listagem(obj, '', '', False);
+end;
+
+class function TUsuarioController.New(
+  AConexao: TRESTDWDataBase): IController<TUsuarioVO>;
+begin
+   Result := Self.Create(AConexao);
+end;
+
+function TUsuarioController.Salvar(obj: TUsuarioVO): integer;
+begin
+   Result := TBaseDAO<TUsuarioVO>.New(FConexao).Inserir(obj);
+end;
+
+end.

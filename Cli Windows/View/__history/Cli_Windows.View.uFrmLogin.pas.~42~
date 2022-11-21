@@ -60,15 +60,10 @@ begin
    begin
      preencherObjeto;
      UsuarioVO := FController.Login(FUsuario);
-     if UsuarioVO.Id > 0 then
-     begin
-       TSessaoUsuario.Id := UsuarioVO.Id;
-       TSessaoUsuario.Apelido := UsuarioVO.Login;
-       TSessaoUsuario.CaminhoFoto := UsuarioVO.Foto;
-       TSessaoUsuario.EscreverIni(UsuarioVO.Id, UsuarioVO.Login, UsuarioVO.Foto, chkLembrar.Checked);
-     end
-     else
-       ShowMessage('Usuário não cadastrado.');
+     TSessaoUsuario.Id := UsuarioVO.Id;
+     TSessaoUsuario.Apelido := UsuarioVO.Login;
+     TSessaoUsuario.CaminhoFoto := UsuarioVO.Foto;
+     TSessaoUsuario.EscreverIni(UsuarioVO.Id, UsuarioVO.Login, UsuarioVO.Foto, chkLembrar.Checked);
    end
    else raise Exception.Create('Usuário ou Senha está vazio ou ambos.');
 
@@ -97,9 +92,7 @@ end;
 
 procedure TfrmLogin.btnCancelarClick(Sender: TObject);
 begin
-  edtNomeUsuario.Text := EmptyStr;
-  edtSenha.Text := EmptyStr;
-  //Application.Terminate;
+  Application.Terminate;
 end;
 
 end.

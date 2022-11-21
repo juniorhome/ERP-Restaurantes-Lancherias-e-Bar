@@ -1,0 +1,20 @@
+unit Cli_Windows.Controller.UsuarioController;
+
+interface
+
+uses orm.conexao.interfaces.Interfaces, orm.dao.BaseDAO, DB, uRESTDWPoolerDB, Cli_Windows.Model.UsuarioVO;
+
+type
+  TUsuarioController = class(TInterfacedObject, IController<TUsuarioVO>)
+  private
+    FConexao: TRESTDWDataBase;
+  public
+    function Salvar(obj: TUsuarioVO): integer;
+    function Atualizar(obj: TUsuarioVO): boolean;
+    function Excluir(obj: TUsuarioVO): boolean;
+    function Listagem(obj: TUsuarioVO): TDataSet;
+  end;
+
+implementation
+
+end.

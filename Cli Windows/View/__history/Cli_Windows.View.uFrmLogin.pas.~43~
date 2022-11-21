@@ -66,9 +66,7 @@ begin
        TSessaoUsuario.Apelido := UsuarioVO.Login;
        TSessaoUsuario.CaminhoFoto := UsuarioVO.Foto;
        TSessaoUsuario.EscreverIni(UsuarioVO.Id, UsuarioVO.Login, UsuarioVO.Foto, chkLembrar.Checked);
-     end
-     else
-       ShowMessage('Usuário não cadastrado.');
+     end;
    end
    else raise Exception.Create('Usuário ou Senha está vazio ou ambos.');
 
@@ -97,9 +95,7 @@ end;
 
 procedure TfrmLogin.btnCancelarClick(Sender: TObject);
 begin
-  edtNomeUsuario.Text := EmptyStr;
-  edtSenha.Text := EmptyStr;
-  //Application.Terminate;
+  Application.Terminate;
 end;
 
 end.

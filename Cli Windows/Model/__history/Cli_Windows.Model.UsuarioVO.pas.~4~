@@ -16,30 +16,23 @@ type
        FFoto: string;
        FAtivo: string;
     public
-       [TChavePrimaria('ID', 'Código', 'Códigos')]
-       [TGridCadastro('ID', 'Código', 'Códigos', 5)]
-       [TGridConsulta('ID', 'Código', 'Códigos', 5)]
-       [TCampoFiltro('ID', True)]
+      [TChavePrimaria('ID', 'Código', 'Códigos')]
+      [TGridCadastro('ID', 'Código', 'Códigos', 5)]
+      [TGridConsulta('ID', '')]
        property Id: integer read FId write FId;
        [TCampoTexto('NOME', 'Nome', 'Nomes', '', 100, False)]
-       [TGridCadastro('NOME', 'Nome', 'Nomes', 55)]
-       [TGridConsulta('NOME', 'Nome', 'Nomes', 95)]
-       [TCampoFiltro('NOME', True)]
        property Nome: string read FNome write FNome;
        [TCampoTexto('LOGIN', 'Login', 'Logins', '', 150, False)]
-       [TGridCadastro('LOGIN', 'Login', 'Logins', 35)]
-       [TCampoFiltro('LOGIN', True)]
        property Login: string read FLogin write FLogin;
        [TCampoTexto('SENHA', 'Senha', 'Senhas', '', 10, False)]
-       [TCampoFiltro('SENHA', False)]
        property Senha: string read FSenha write FSenha;
        [TCamppoTexto('FOTO', 'Foto', 'Fotos', '', 255, False)]
        property Foto: string read FFoto write FFoto;
        [TCampoTexto('ATIVO', 'Ativo', 'Ativos', '', 1, False)]
-       [TGridCadastro('ATIVO', 'Ativo', 'Ativos', 5)]
        property Ativo: string read FAtivo write FAtivo;
        constructor Create;
        destructor Destroy;override;
+       class function New: IBaseVO<TUsuarioVO>;
        function toJson(): string;
        function fromJson(json: string): TUsuarioVO;
   end;
@@ -62,6 +55,11 @@ end;
 function TUsuarioVO.fromJson(json: string): TUsuarioVO;
 begin
   Result := TJson.JsonToObject<TUsuarioVO>(json);
+end;
+
+class function TUsuarioVO.New: IBaseVO<TUsuarioVO>;
+begin
+   Result := Self.Create;
 end;
 
 function TUsuarioVO.toJson: string;
