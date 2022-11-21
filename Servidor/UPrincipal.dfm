@@ -284,6 +284,7 @@ object FrmPrincipal: TFrmPrincipal
       
         'Access-Control-Allow-Headers=Content-Type, Origin, Accept, Autho' +
         'rization, X-CUSTOM-HEADER')
+    PathTraversalRaiseError = True
     RequestTimeout = -1
     ServicePort = 8082
     ProxyOptions.Port = 8888
@@ -304,7 +305,6 @@ object FrmPrincipal: TFrmPrincipal
     ForceWelcomeAccess = False
     CriptOptions.Use = False
     CriptOptions.Key = 'RDWBASEKEY256'
-    MultiCORE = False
     Left = 576
     Top = 48
   end
