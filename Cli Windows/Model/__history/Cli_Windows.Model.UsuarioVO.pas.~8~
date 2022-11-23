@@ -40,6 +40,7 @@ type
        property Ativo: string read FAtivo write FAtivo;
        constructor Create;
        destructor Destroy;override;
+       class function New: IBaseVO<TUsuarioVO>;
        function toJson(): string;
        function fromJson(json: string): TUsuarioVO;
   end;
@@ -62,6 +63,11 @@ end;
 function TUsuarioVO.fromJson(json: string): TUsuarioVO;
 begin
   Result := TJson.JsonToObject<TUsuarioVO>(json);
+end;
+
+class function TUsuarioVO.New: IBaseVO<TUsuarioVO>;
+begin
+   Result := Self.Create;
 end;
 
 function TUsuarioVO.toJson: string;

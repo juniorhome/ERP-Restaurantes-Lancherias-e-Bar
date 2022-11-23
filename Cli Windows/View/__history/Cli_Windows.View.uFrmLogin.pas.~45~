@@ -5,7 +5,9 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Vcl.Buttons, orm.lib.SessaoUsuario;
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Vcl.Buttons, orm.lib.SessaoUsuario, orm.Validacao, orm.seguranca.criptografia,
+  Cli_Windows.Model.UsuarioVO, Cli_Windows.Controller.UsuarioController, Fabrica_Objetos.FabricaObjeto,
+  Fabica_Objetos.IFactoryMethod, orm.IBaseVO, System.IniFiles;
 
 type
   TfrmLogin = class(TForm)
@@ -33,10 +35,15 @@ type
     procedure FormResize(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btnEntrarClick(Sender: TObject);
   private
     { Private declarations }
+    FUsuario: TUsuarioVO;
+    FController: TUsuarioController;
+    FFabrica: IFactoryMethod<TUsuarioVO>;
   public
     { Public declarations }
+    procedure preencherObjeto;
   end;
 
 var
@@ -46,11 +53,32 @@ implementation
 
 {$R *.dfm}
 
+procedure TfrmLogin.btnEntrarClick(Sender: TObject);
+var UsuarioVO: TUsuarioVO;
+begin
+   if (edtNomeUsuario.Text <> EmptyStr) and (edtSenha.Text <> EmptyStr) then
+   begin
+     preencherObjeto;
+     UsuarioVO := FController.Login(FUsuario);
+     if UsuarioVO.Id > 0 then
+     begin
+       TSessaoUsuario.Id := UsuarioVO.Id;
+       TSessaoUsuario.Apelido := UsuarioVO.Login;
+       TSessaoUsuario.CaminhoFoto := UsuarioVO.Foto;
+       TSessaoUsuario.EscreverIni(UsuarioVO.Id, UsuarioVO.Login, UsuarioVO.Foto, chkLembrar.Checked);
+     end;
+   end
+   else raise Exception.Create('Usuário ou Senha está vazio ou ambos.');
+
+end;
+
 procedure TfrmLogin.FormCreate(Sender: TObject);
 begin
    TSessaoUsuario.LerIni;
    edtNomeUsuario.Text := TSessaoUsuario.Apelido;
    chkLembrar.Checked := TSessaoUsuario.Lembrar;
+   FFabrica := TFabricaObjeto<TUsuarioVO>.Create;
+   FUsuario := FFabrica.FabricaObjeto(ttUsuario);
 end;
 
 procedure TfrmLogin.FormResize(Sender: TObject);
@@ -59,9 +87,17 @@ begin
    pnlLogin.Left := Round(frmLogin.Width / 2 - pnlLogin.Width / 2);
 end;
 
+procedure TfrmLogin.preencherObjeto;
+begin
+  FUsuario.Login := edtNomeUsuario.Text;
+  FUsuario.Senha := TCriptografia.MD5(edtSenha.Text);
+end;
+
 procedure TfrmLogin.btnCancelarClick(Sender: TObject);
 begin
-  Application.Terminate;
+  edtNomeUsuario.Text := EmptyStr;
+  edtSenha.Text := EmptyStr;
+  //Application.Terminate;
 end;
 
 end.

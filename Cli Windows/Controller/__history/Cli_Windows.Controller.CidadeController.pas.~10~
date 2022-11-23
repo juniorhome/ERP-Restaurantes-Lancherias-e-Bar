@@ -44,7 +44,7 @@ end;
 
 function TCidadeController.Listagem(obj: TCidadeVO): TDataSet;
 begin
-   Result := TBaseDAO<TCidadeVO>.New(FConexao).Listagem(obj, '', '', False);
+   Result := TBaseDAO<TCidadeVO>.New(FConexao).Listagem(obj);
 end;
 
 class function TCidadeController.New(
