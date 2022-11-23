@@ -5,14 +5,14 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uDWAbout, uRESTDWBase, Vcl.StdCtrls,
-  Vcl.ExtCtrls, IniFiles;
+  Vcl.ExtCtrls, IniFiles, ServerUtils;
 
 type
   TFrmPrincipal = class(TForm)
     pnlConfigServidor: TPanel;
     Label1: TLabel;
     edtPorta: TEdit;
-    RESTServicePooler1: TRESTServicePooler;
+    RESTServicePooler: TRESTServicePooler;
     Label2: TLabel;
     edtUsuario: TEdit;
     Label3: TLabel;
@@ -45,6 +45,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnGerarArquivoClick(Sender: TObject);
     procedure btnConectarClick(Sender: TObject);
+    procedure btnDesconectarClick(Sender: TObject);
   private
     { Private declarations }
     FArqIni: TIniFile;
@@ -52,6 +53,7 @@ type
     procedure LerIni();
   public
     { Public declarations }
+    procedure ConfiguraRDW;
   end;
 
 var
@@ -66,7 +68,12 @@ uses UDMServidor;
 procedure TFrmPrincipal.btnConectarClick(Sender: TObject);
 begin
   DMServidor.ConfiguraConexao;
-  RESTServicePooler1.Active := True;
+  RESTServicePooler.Active := True;
+end;
+
+procedure TFrmPrincipal.btnDesconectarClick(Sender: TObject);
+begin
+  RESTServicePooler.Active := False;
 end;
 
 procedure TFrmPrincipal.btnGerarArquivoClick(Sender: TObject);
@@ -77,6 +84,13 @@ end;
 procedure TFrmPrincipal.btnSairClick(Sender: TObject);
 begin
    Application.Terminate;
+end;
+
+procedure TFrmPrincipal.ConfiguraRDW;
+begin
+   RESTServicePooler.AuthenticationOptions.OptionParams.AuthDialog := CheckBox1.Checked;
+   TRDWAuthOptionBasic(RESTServicePooler.AuthenticationOptions.OptionParams).Username := edtUsuario.Text;
+   TRDWAuthOptionBasic(RESTServicePooler.AuthenticationOptions.OptionParams).Password := edtSenha.Text;
 end;
 
 procedure TFrmPrincipal.EscreverIni;
@@ -103,7 +117,7 @@ end;
 
 procedure TFrmPrincipal.FormCreate(Sender: TObject);
 begin
-   RESTServicePooler1.ServerMethodClass := TDMServidor;
+   RESTServicePooler.ServerMethodClass := TDMServidor;
 
    if FileExists(ExtractFilePath(Application.ExeName) + '\' + 'Config.ini') then
    begin
@@ -127,14 +141,14 @@ begin
      edtPorta.Text := FArqIni.ReadString('Servidor', 'Porta', '');
      edtUsuario.Text := FArqIni.ReadString('Servidor', 'Usuario', '');
      edtSenha.Text := FArqIni.ReadString('Servidor', 'Senha', '');
-     CheckBox1.Checked := FArqIni.ReadBool('Servidor', 'Autenticacao', '');
-     cmbDriver.Items := FArqIni.ReadString('Banco', 'Base', '');
+     CheckBox1.Checked := FArqIni.ReadBool('Servidor', 'Autenticacao', True);
+     cmbDriver.Text := FArqIni.ReadString('Banco', 'Base', '');
      edtUsuarioBanco.Text := FArqIni.ReadString('Banco', 'Usuario', '');
      edtSenhaBanco.Text := FArqIni.ReadString('Banco', 'Senha', '');
      edtLocal.Text := FArqIni.ReadString('Banco', 'Servidor', '');
      edtCaminhoDLL.Text := FArqIni.ReadString('Banco', 'Biblioteca', '');
      edtCaminhoBanco.Text := FArqIni.ReadString('Banco', 'Caminho', '');
-     ComboBox1.Items := FArqIni.ReadString('Banco', 'Framework', '');
+     ComboBox1.Text := FArqIni.ReadString('Banco', 'Framework', '');
    finally
      FArqIni.Free;
    end;

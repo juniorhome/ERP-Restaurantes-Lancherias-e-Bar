@@ -90,10 +90,11 @@ begin
        json.AddPair('Foto', StreamOut.DataString);
      end
      else
-     begin
-       json.AddPair('Codigo', '500');
-       json.AddPair('Mensagem', 'Foto não encontrada.');
-     end;
+       //Montar o JSON de retorno com o erro.
+       {
+         código: 500;
+         msg: Foto não encontrada;
+       }
     finally
       json.Free;
     end;

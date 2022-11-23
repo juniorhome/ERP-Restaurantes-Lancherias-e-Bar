@@ -85,15 +85,13 @@ begin
        StreamOut := TStringStream.Create;
        TNetEncoding.Base64.Encode(StreamIn, StreamOut);
        StreamOut.Position := 0;
-       json.AddPair('Codigo', '200');
-       json.AddPair('Mensagem', 'Foto encontada com sucesso.');
-       json.AddPair('Foto', StreamOut.DataString);
      end
      else
-     begin
-       json.AddPair('Codigo', '500');
-       json.AddPair('Mensagem', 'Foto não encontrada.');
-     end;
+       //Montar o JSON de retorno com o erro.
+       {
+         código: 500;
+         msg: Foto não encontrada;
+       }
     finally
       json.Free;
     end;
