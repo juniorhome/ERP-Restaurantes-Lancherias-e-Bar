@@ -5,8 +5,11 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.WinXCtrls, Vcl.CategoryButtons, frxClass, System.Actions, Vcl.ActnList,
-  System.ImageList, Vcl.ImgList, Vcl.Buttons, Vcl.StdCtrls;
+  Vcl.WinXCtrls, Vcl.CategoryButtons, System.Actions, Vcl.ActnList,
+  System.ImageList, Vcl.ImgList, Vcl.Buttons, Vcl.StdCtrls,
+  Cli_Windows.Model.PerfilUsuarioVO, Fabica_Objetos.IFactoryMethod,
+  Fabrica_Objetos.FabricaObjeto, Cli_Windows.Controller.PerfilUsuarioController,
+  orm.IBaseVO;
 
 type
   TfrmPrincipal = class(TForm)
@@ -115,8 +118,12 @@ type
     procedure btnTributacaoClick(Sender: TObject);
     procedure btnPedidoClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    FPerfil: TPerfilUsuarioVO;
+    //FFabrica: IFactoryMethod<TPerfilUsuarioVO>;
+    FController: TPerfilUsuarioController;
   public
     { Public declarations }
     procedure IconBmp(Btn: TSpeedButton; ind: integer);
@@ -392,6 +399,13 @@ begin
        end;
      end;
    end;
+end;
+
+procedure TfrmPrincipal.FormCreate(Sender: TObject);
+begin
+  //FFabrica := TFabricaObjeto<TPerfilUsuarioVO>.Create;
+  FPerfil := TPerfilUsuarioVO.Create;
+  FController := TPerfilUsuarioController<TPerfilUsuarioVO>.Create;
 end;
 
 procedure TfrmPrincipal.IconBmp(Btn: TSpeedButton; ind: integer);

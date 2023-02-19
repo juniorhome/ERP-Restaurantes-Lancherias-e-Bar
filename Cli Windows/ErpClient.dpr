@@ -54,7 +54,8 @@ uses
   orm.Validacao in '..\..\Framework\ORM\Validacao\orm.Validacao.pas',
   Cli_Windows.View.ufrmCadGrupo in 'View\Cli_Windows.View.ufrmCadGrupo.pas' {frmCadBasico1},
   orm.lib.SessaoUsuario in '..\..\Framework\ORM\Lib\orm.lib.SessaoUsuario.pas',
-  Cli_Windows.Controller.UsuarioController in 'Controller\Cli_Windows.Controller.UsuarioController.pas';
+  Cli_Windows.Controller.UsuarioController in 'Controller\Cli_Windows.Controller.UsuarioController.pas',
+  Cli_Windows.Controller.PerfilUsuarioController in 'Controller\Cli_Windows.Controller.PerfilUsuarioController.pas';
 
 //Cli_Windows.Model.CartaoVO in 'Model\Cli_Windows.Model.CartaoVO.pas',
   //Cli_Windows.Model.CFOPVO in 'Model\Cli_Windows.Model.CFOPVO.pas',

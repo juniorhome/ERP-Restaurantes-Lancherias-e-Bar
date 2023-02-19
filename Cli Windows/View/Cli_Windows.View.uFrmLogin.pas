@@ -38,7 +38,7 @@ type
     procedure btnEntrarClick(Sender: TObject);
   private
     { Private declarations }
-    FUsuario: TUsuarioVO;
+    FUsuario: IBaseVO<TUsuarioVO>;
     FController: TUsuarioController;
     FFabrica: IFactoryMethod<TUsuarioVO>;
   public
@@ -59,7 +59,7 @@ begin
    if (edtNomeUsuario.Text <> EmptyStr) and (edtSenha.Text <> EmptyStr) then
    begin
      preencherObjeto;
-     UsuarioVO := FController.Login(FUsuario);
+     UsuarioVO := FController.Login((FUsuario as TUsuarioVO));
      if UsuarioVO.Id > 0 then
      begin
        TSessaoUsuario.Id := UsuarioVO.Id;
@@ -91,8 +91,8 @@ end;
 
 procedure TfrmLogin.preencherObjeto;
 begin
-  FUsuario.Login := edtNomeUsuario.Text;
-  FUsuario.Senha := TCriptografia.MD5(edtSenha.Text);
+  (FUsuario as TUsuarioVO).Login := edtNomeUsuario.Text;
+  (FUsuario as TUsuarioVO).Senha := TCriptografia.MD5(edtSenha.Text);
 end;
 
 procedure TfrmLogin.btnCancelarClick(Sender: TObject);
