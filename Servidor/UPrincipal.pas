@@ -5,14 +5,14 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uDWAbout, uRESTDWBase, Vcl.StdCtrls,
-  Vcl.ExtCtrls, IniFiles;
+  Vcl.ExtCtrls, IniFiles, ServerUtils;
 
 type
   TFrmPrincipal = class(TForm)
     pnlConfigServidor: TPanel;
     Label1: TLabel;
     edtPorta: TEdit;
-    RESTServicePooler1: TRESTServicePooler;
+    RESTServicePooler: TRESTServicePooler;
     Label2: TLabel;
     edtUsuario: TEdit;
     Label3: TLabel;
@@ -53,6 +53,7 @@ type
     procedure LerIni();
   public
     { Public declarations }
+    procedure ConfiguraRDW;
   end;
 
 var
@@ -66,13 +67,14 @@ uses UDMServidor;
 
 procedure TFrmPrincipal.btnConectarClick(Sender: TObject);
 begin
+  ConfiguraRDW;
   DMServidor.ConfiguraConexao;
-  RESTServicePooler1.Active := True;
+  RESTServicePooler.Active := True;
 end;
 
 procedure TFrmPrincipal.btnDesconectarClick(Sender: TObject);
 begin
-  RESTServicePooler1.Active := False;
+  RESTServicePooler.Active := False;
 end;
 
 procedure TFrmPrincipal.btnGerarArquivoClick(Sender: TObject);
@@ -83,6 +85,14 @@ end;
 procedure TFrmPrincipal.btnSairClick(Sender: TObject);
 begin
    Application.Terminate;
+end;
+
+procedure TFrmPrincipal.ConfiguraRDW;
+begin
+   RESTServicePooler.AuthenticationOptions.OptionParams.AuthDialog := CheckBox1.Checked;
+   TRDWAuthOptionBasic(RESTServicePooler.AuthenticationOptions.OptionParams).Username := edtUsuario.Text;
+   TRDWAuthOptionBasic(RESTServicePooler.AuthenticationOptions.OptionParams).Password := edtSenha.Text;
+   RESTServicePooler.ServicePort := StrToInt(edtPorta.Text);
 end;
 
 procedure TFrmPrincipal.EscreverIni;
@@ -109,7 +119,7 @@ end;
 
 procedure TFrmPrincipal.FormCreate(Sender: TObject);
 begin
-   RESTServicePooler1.ServerMethodClass := TDMServidor;
+   RESTServicePooler.ServerMethodClass := TDMServidor;
 
    if FileExists(ExtractFilePath(Application.ExeName) + '\' + 'Config.ini') then
    begin

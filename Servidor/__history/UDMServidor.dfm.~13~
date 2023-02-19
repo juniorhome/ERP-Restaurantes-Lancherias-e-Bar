@@ -12,7 +12,23 @@ object DMServidor: TDMServidor
     Active = True
     PoolerOffMessage = 'RESTPooler not active.'
     ParamCreate = True
-    Left = 64
-    Top = 184
+    Left = 48
+    Top = 96
+  end
+  object RESTDWDriverZeos1: TRESTDWDriverZeos
+    CommitRecords = 100
+    Left = 352
+    Top = 16
+  end
+  object RESTDWDriverFD1: TRESTDWDriverFD
+    CommitRecords = 100
+    Left = 392
+    Top = 16
+  end
+  object DWServerEvents1: TDWServerEvents
+    IgnoreInvalidParams = False
+    Events = <>
+    Left = 144
+    Top = 96
   end
 end

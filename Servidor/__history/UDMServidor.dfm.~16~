@@ -56,8 +56,8 @@ object DMServidor: TDMServidor
     Active = True
     Aggregates = <>
     Params = <>
-    Left = 392
-    Top = 72
+    Left = 312
+    Top = 88
     object cdsImagemFOTO: TBlobField
       FieldName = 'FOTO'
     end

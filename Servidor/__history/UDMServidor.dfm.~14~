@@ -49,17 +49,4 @@ object DMServidor: TDMServidor
     Left = 144
     Top = 96
   end
-  object cdsImagem: TClientDataSet
-    PersistDataPacket.Data = {
-      3C0000009619E0BD0100000018000000010000000000030000003C0004464F54
-      4F04004B0000000100075355425459504502004900070042696E617279000000}
-    Active = True
-    Aggregates = <>
-    Params = <>
-    Left = 392
-    Top = 72
-    object cdsImagemFOTO: TBlobField
-      FieldName = 'FOTO'
-    end
-  end
 end

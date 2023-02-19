@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Classes, uDWDataModule, uRESTDWPoolerDB,
   uRESTDWDriverZEOS, uDWAbout, IniFiles, uRESTDWDriverFD, orm.conexao.ModelConexaoFactory,
   FireDAC.Comp.Client, uRESTDWServerEvents, uDWJSONObject, System.JSON, Data.DB,
-  Datasnap.DBClient, System.NetEncoding;
+  Datasnap.DBClient;
 
 type
   TDMServidor = class(TServerMethodDataModule)
@@ -81,19 +81,13 @@ begin
        cdsImagemFOTO.LoadFromFile(Params.ItemsString['caminhoFoto'].AsString);
        cdsImagem.Post;
        cdsImagem.Open;
-       StreamIn := cdsImagem.CreateBlobStream(cdsImagem.Fields[cdsImagem.RecNo], bmRead);
-       StreamOut := TStringStream.Create;
-       TNetEncoding.Base64.Encode(StreamIn, StreamOut);
-       StreamOut.Position := 0;
-       json.AddPair('Codigo', '200');
-       json.AddPair('Mensagem', 'Foto encontada com sucesso.');
-       json.AddPair('Foto', StreamOut.DataString);
      end
      else
-     begin
-       json.AddPair('Codigo', '500');
-       json.AddPair('Mensagem', 'Foto não encontrada.');
-     end;
+       //Montar o JSON de retorno com o erro.
+       {
+         código: 500;
+         msg: Foto não encontrada;
+       }
     finally
       json.Free;
     end;

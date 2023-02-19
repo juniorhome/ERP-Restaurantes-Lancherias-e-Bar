@@ -43,6 +43,9 @@ type
     Label14: TLabel;
     procedure btnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btnGerarArquivoClick(Sender: TObject);
+    procedure btnConectarClick(Sender: TObject);
+    procedure btnDesconectarClick(Sender: TObject);
   private
     { Private declarations }
     FArqIni: TIniFile;
@@ -60,6 +63,22 @@ implementation
 {$R *.dfm}
 
 uses UDMServidor;
+
+procedure TFrmPrincipal.btnConectarClick(Sender: TObject);
+begin
+  DMServidor.ConfiguraConexao;
+  RESTServicePooler1.Active := True;
+end;
+
+procedure TFrmPrincipal.btnDesconectarClick(Sender: TObject);
+begin
+  RESTServicePooler1.Active := False;
+end;
+
+procedure TFrmPrincipal.btnGerarArquivoClick(Sender: TObject);
+begin
+   EscreverIni;
+end;
 
 procedure TFrmPrincipal.btnSairClick(Sender: TObject);
 begin
@@ -96,6 +115,7 @@ begin
    begin
      Label14.Caption := 'Existe Arquivo';
      Label14.Font.Color := clGreen;
+     LerIni;
    end
    else
    begin
@@ -113,14 +133,14 @@ begin
      edtPorta.Text := FArqIni.ReadString('Servidor', 'Porta', '');
      edtUsuario.Text := FArqIni.ReadString('Servidor', 'Usuario', '');
      edtSenha.Text := FArqIni.ReadString('Servidor', 'Senha', '');
-     CheckBox1.Checked := FArqIni.ReadBool('Servidor', 'Autenticacao', '');
-     cmbDriver.Items := FArqIni.ReadString('Banco', 'Base', '');
+     CheckBox1.Checked := FArqIni.ReadBool('Servidor', 'Autenticacao', True);
+     cmbDriver.Text := FArqIni.ReadString('Banco', 'Base', '');
      edtUsuarioBanco.Text := FArqIni.ReadString('Banco', 'Usuario', '');
      edtSenhaBanco.Text := FArqIni.ReadString('Banco', 'Senha', '');
      edtLocal.Text := FArqIni.ReadString('Banco', 'Servidor', '');
      edtCaminhoDLL.Text := FArqIni.ReadString('Banco', 'Biblioteca', '');
      edtCaminhoBanco.Text := FArqIni.ReadString('Banco', 'Caminho', '');
-     ComboBox1.Items := FArqIni.ReadString('Banco', 'Framework', '');
+     ComboBox1.Text := FArqIni.ReadString('Banco', 'Framework', '');
    finally
      FArqIni.Free;
    end;

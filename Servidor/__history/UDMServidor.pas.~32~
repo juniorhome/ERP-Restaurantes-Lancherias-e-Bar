@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Classes, uDWDataModule, uRESTDWPoolerDB,
   uRESTDWDriverZEOS, uDWAbout, IniFiles, uRESTDWDriverFD, orm.conexao.ModelConexaoFactory,
-  FireDAC.Comp.Client, uRESTDWServerEvents;
+  FireDAC.Comp.Client, uRESTDWServerEvents, uDWJSONObject, System.JSON, Data.DB,
+  Datasnap.DBClient;
 
 type
   TDMServidor = class(TServerMethodDataModule)
@@ -13,6 +14,10 @@ type
     RESTDWDriverZeos1: TRESTDWDriverZeos;
     RESTDWDriverFD1: TRESTDWDriverFD;
     DWServerEvents1: TDWServerEvents;
+    cdsImagem: TClientDataSet;
+    cdsImagemFOTO: TBlobField;
+    procedure DWServerEvents1EventsgetFotoReplyEvent(var Params: TDWParams;
+      var Result: string);
   private
     { Private declarations }
     FArqIni: TIniFile;
@@ -57,6 +62,21 @@ begin
   finally
     FArqIni.Free;
   end;
+end;
+
+procedure TDMServidor.DWServerEvents1EventsgetFotoReplyEvent(
+  var Params: TDWParams; var Result: string);
+var json: TJSONObject;
+    StreamIn: TStream;
+    StreamOut: TStringStream;
+    arq: TFileStream;
+begin
+   //popular o cds.
+   cdsImagem.Close;
+   cdsImagem.Append;
+   cdsImagemFOTO.LoadFromFile(Params.ItemsString['caminhoFoto'].AsString);
+   cdsImagem.Post;
+   cdsImagem.Open;
 end;
 
 end.
