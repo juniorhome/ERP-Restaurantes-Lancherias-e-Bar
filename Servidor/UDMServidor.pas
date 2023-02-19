@@ -48,7 +48,7 @@ begin
   }
   FArqIni := TIniFile.Create(ExtractFilePath(Application.ExeName)+'\Config.ini');
   try
-    sFramework := FArqIni.ReadString('Banco', 'Framework', '');
+    sFramework := FArqIni.ReadString('Banco', 'Framework', 'Framework');
     if sFramework = 'Zeos' then
     begin
        RESTDWPoolerDB1.RESTDriver := RESTDWDriverZeos1;
@@ -94,6 +94,7 @@ begin
        json.AddPair('Codigo', '500');
        json.AddPair('Mensagem', 'Foto não encontrada.');
      end;
+     Result := json.ToString;
     finally
       json.Free;
     end;
