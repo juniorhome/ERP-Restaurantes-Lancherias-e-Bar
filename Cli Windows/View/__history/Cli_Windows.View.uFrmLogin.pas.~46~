@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Vcl.Buttons, orm.lib.SessaoUsuario, orm.Validacao, orm.seguranca.criptografia,
   Cli_Windows.Model.UsuarioVO, Cli_Windows.Controller.UsuarioController, Fabrica_Objetos.FabricaObjeto,
-  Fabica_Objetos.IFactoryMethod, orm.IBaseVO;
+  Fabica_Objetos.IFactoryMethod, orm.IBaseVO, System.IniFiles;
 
 type
   TfrmLogin = class(TForm)
@@ -59,7 +59,16 @@ begin
    if (edtNomeUsuario.Text <> EmptyStr) and (edtSenha.Text <> EmptyStr) then
    begin
      preencherObjeto;
-
+     UsuarioVO := FController.Login(FUsuario);
+     if UsuarioVO.Id > 0 then
+     begin
+       TSessaoUsuario.Id := UsuarioVO.Id;
+       TSessaoUsuario.Apelido := UsuarioVO.Login;
+       TSessaoUsuario.CaminhoFoto := UsuarioVO.Foto;
+       TSessaoUsuario.EscreverIni(UsuarioVO.Id, UsuarioVO.Login, UsuarioVO.Foto, chkLembrar.Checked);
+     end
+     else
+       ShowMessage('Usuário não cadastrado.');
    end
    else raise Exception.Create('Usuário ou Senha está vazio ou ambos.');
 
@@ -88,7 +97,9 @@ end;
 
 procedure TfrmLogin.btnCancelarClick(Sender: TObject);
 begin
-  Application.Terminate;
+  edtNomeUsuario.Text := EmptyStr;
+  edtSenha.Text := EmptyStr;
+  //Application.Terminate;
 end;
 
 end.

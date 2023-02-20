@@ -33,7 +33,7 @@ type
        [TCampoTexto('SENHA', 'Senha', 'Senhas', '', 10, False)]
        [TCampoFiltro('SENHA', False)]
        property Senha: string read FSenha write FSenha;
-       [TCamppoTexto('FOTO', 'Foto', 'Fotos', '', 255, False)]
+       [TCampoTexto('FOTO', 'Foto', 'Fotos', '', 255, False)]
        property Foto: string read FFoto write FFoto;
        [TCampoTexto('ATIVO', 'Ativo', 'Ativos', '', 1, False)]
        [TGridCadastro('ATIVO', 'Ativo', 'Ativos', 5)]

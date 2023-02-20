@@ -1,0 +1,93 @@
+unit Cli_Windows.Model.PerfilUsuarioVO;
+
+interface
+
+uses
+    orm.IBaseVO, orm.Atributos, REST.json;
+
+type
+  [TTabela('PERFIL_USUARIO', 'PU', 'Perfil Usuário', 'Perfis Usuários')]
+  [TTabelaEstrangeira('USUARIO', 'U', 'ID', 'IDUSUARIO', 'LeftJoin')]
+  TPerfilUsuarioVO = class(TInterfacedObject, IBaseVO<TPerfilUsuarioVO>)
+    private
+      FId: integer;
+      FPerfil: string;
+      FGeral: string;
+      FFinanceiro: string;
+      FEstoque: string;
+      FVendas: string;
+      FFiscal: string;
+      FDfe: string;
+      FPedido: string;
+      FIdUsuario: integer;
+      FNomeUsuario: string;
+    public
+      [TChavePrimaria('ID', 'Código', 'Códigos')]
+      [TGridCadastro('ID', 'Código', 'Códigos', 5)]
+      [TGridConsulta('ID', 'Código', 'Códigos', 5)]
+      [TCampoFiltro('ID', True)]
+      property Id: integer read FId write FId;
+      [TCampoTexto('PERFIL', 'Perfil Usuário', 'Perfis Usuários', '', 80, False)]
+      [TGridCadastro('PERFIL', 'Perfil Usuário', 'Perfis Usuários', 50)]
+      [TGridConsulta('PERFIL', 'Perfil Usuário', 'Perfis Usuários', 50)]
+      [TCampoFiltro('PERFIL', True)]
+      property Perfil: string read FPerfil write FPerfil;
+      [TCampoTexto('GERAL', 'Mód. Geral', 'Mód. Geral', '', 80, False)]
+      property Geral: string read FGeral write FGeral;
+      [TCampoTexto('FINANCEIRO', 'Mód. Financeiro', 'Mód. Financeiro', '', 80, False)]
+      property Financeiro: string read FFinanceiro write FFinanceiro;
+      [TCampoTexto('ESTOQUE', 'Mód. Estoque', 'Mód. Estoque', '', 80, False)]
+      property Estoque: string read FEstoque write FEstoque;
+      [TCampoTexto('VENDAS', 'Mód. Venda', 'Mód. Venda', '', 80, False)]
+      property Vendas: string read FVendas write FVendas;
+      [TCampoTexto('FISCAL', 'Mód. Fiscal', 'Mód. Fiscal', '', 80, False)]
+      property Fiscal: string read FFiscal write FFiscal;
+      [TCampoTexto('DFE', 'Mód. DFE', 'Mód. DFE', '', 80, False)]
+      property Dfe: string read FDfe write FDfe;
+      [TCampoTexto('PEDIDO', 'Mód. Pedido', 'Mód. Pedido', '', 80, False)]
+      property Pedido: string read FPedido write FPedido;
+      [TChaveEstrangeira('IDUSUARIO', 'USUARIO')]
+      property IdUsuario: integer read FIdUsuario write FIdUsuario;
+      [TCampoEstrangeiro('NOME', 'USUARIO', 'U')]
+      [TGridCadastro('NOME', 'Usuário', 'Usuários', 45)]
+      [TGridConsulta('NOME', 'Usuário', 'Usuários', 45)]
+      [TCampoFiltro('NOME', True)]
+      property NomeUsuario: string read FNomeUsuario write FNomeUsuario;
+      constructor Create;
+      destructor Destroy;override;
+      class function New: IBaseVO<TPerfilUsuarioVO>;
+      function toJson(): string;
+      function fromJson(json: string): TPerfilUsuarioVO;
+  end;
+
+implementation
+
+{ TPerfilUsuarioVO }
+
+constructor TPerfilUsuarioVO.Create;
+begin
+  //
+end;
+
+destructor TPerfilUsuarioVO.Destroy;
+begin
+  //
+  inherited;
+end;
+
+function TPerfilUsuarioVO.fromJson(json: string): TPerfilUsuarioVO;
+begin
+   Result := TJson.JsonToObject<TPerfilUsuarioVO>(json);
+end;
+
+class function TPerfilUsuarioVO.New: IBaseVO<TPerfilUsuarioVO>;
+begin
+  Result := Self.Create;
+end;
+
+function TPerfilUsuarioVO.toJson: string;
+begin
+  Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

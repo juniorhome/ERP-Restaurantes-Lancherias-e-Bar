@@ -5,8 +5,11 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.WinXCtrls, Vcl.CategoryButtons, frxClass, System.Actions, Vcl.ActnList,
-  System.ImageList, Vcl.ImgList, Vcl.Buttons, Vcl.StdCtrls;
+  Vcl.WinXCtrls, Vcl.CategoryButtons, System.Actions, Vcl.ActnList,
+  System.ImageList, Vcl.ImgList, Vcl.Buttons, Vcl.StdCtrls,
+  Cli_Windows.Model.PerfilUsuarioVO, Fabica_Objetos.IFactoryMethod,
+  Fabrica_Objetos.FabricaObjeto, Cli_Windows.Controller.PerfilUsuarioController,
+  orm.IBaseVO;
 
 type
   TfrmPrincipal = class(TForm)
@@ -73,6 +76,7 @@ type
     pnlPedido: TPanel;
     btnFazerPedido: TSpeedButton;
     btnRelatórios: TSpeedButton;
+    Timer1: TTimer;
     procedure imgMenuClick(Sender: TObject);
     procedure btnGeralMouseEnter(Sender: TObject);
     procedure btnDfeMouseEnter(Sender: TObject);
@@ -107,8 +111,19 @@ type
     procedure btnPlanoContaMouseEnter(Sender: TObject);
     procedure btnDfeClick(Sender: TObject);
     procedure btnNfceClick(Sender: TObject);
+    procedure btnNfeClick(Sender: TObject);
+    procedure btnNfseClick(Sender: TObject);
+    procedure btnEstoqueClick(Sender: TObject);
+    procedure btnFinanceiroClick(Sender: TObject);
+    procedure btnTributacaoClick(Sender: TObject);
+    procedure btnPedidoClick(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    FPerfil: IBaseVO<TPerfilUsuarioVO>;
+    FFabrica: IFactoryMethod<TPerfilUsuarioVO>;
+    //FController: TPerfilUsuarioController;
   public
     { Public declarations }
     procedure IconBmp(Btn: TSpeedButton; ind: integer);
@@ -172,6 +187,11 @@ begin
   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), False);
 end;
 
+procedure TfrmPrincipal.btnEstoqueClick(Sender: TObject);
+begin
+   pnlEstoque.Visible := not pnlEstoque.Visible;
+end;
+
 procedure TfrmPrincipal.btnEstoqueMouseEnter(Sender: TObject);
 begin
    Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), True);
@@ -180,6 +200,11 @@ end;
 procedure TfrmPrincipal.btnEstoqueMouseLeave(Sender: TObject);
 begin
   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnFinanceiroClick(Sender: TObject);
+begin
+   pnlFinanceiro.Visible := not pnlFinanceiro.Visible;
 end;
 
 procedure TfrmPrincipal.btnFinanceiroMouseEnter(Sender: TObject);
@@ -232,6 +257,21 @@ begin
    pnlNfce.Visible := not pnlNfce.Visible;
 end;
 
+procedure TfrmPrincipal.btnNfeClick(Sender: TObject);
+begin
+   pnlNfe.Visible := not pnlNfe.Visible;
+end;
+
+procedure TfrmPrincipal.btnNfseClick(Sender: TObject);
+begin
+   pnlNfse.Visible := not pnlNfse.Visible;
+end;
+
+procedure TfrmPrincipal.btnPedidoClick(Sender: TObject);
+begin
+   pnlPedido.Visible := not pnlPedido.Visible;
+end;
+
 procedure TfrmPrincipal.btnPedidoMouseEnter(Sender: TObject);
 begin
    Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), True);
@@ -270,6 +310,11 @@ end;
 procedure TfrmPrincipal.btnSairMouseLeave(Sender: TObject);
 begin
    Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), False);
+end;
+
+procedure TfrmPrincipal.btnTributacaoClick(Sender: TObject);
+begin
+   pnlTributacao.Visible := not pnlTributacao.Visible;
 end;
 
 procedure TfrmPrincipal.btnTributacaoMouseEnter(Sender: TObject);
@@ -356,6 +401,13 @@ begin
    end;
 end;
 
+procedure TfrmPrincipal.FormCreate(Sender: TObject);
+begin
+  FFabrica := TFabricaObjeto<TPerfilUsuarioVO>.Create;
+  FPerfil := FFabrica.FabricaObjeto(ttPerfilUsuario);
+  //FController := TPerfilUsuarioController<TPerfilUsuarioVO>.Create;
+end;
+
 procedure TfrmPrincipal.IconBmp(Btn: TSpeedButton; ind: integer);
 var
   bmp: TBitmap;
@@ -407,6 +459,11 @@ begin
          (frmPrincipal.Components[j] as TPanel).Visible := False;
      end;
    end;
+end;
+
+procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
+begin
+   lblDataHorario.Caption := DateTimeToStr(Now);
 end;
 
 end.

@@ -1,13 +1,12 @@
 object DMCliente: TDMCliente
   OldCreateOrder = False
-  Height = 111
-  Width = 297
+  Height = 159
+  Width = 381
   object RESTDWDataBase1: TRESTDWDataBase
     Active = False
     Compression = True
     CriptOptions.Use = False
     CriptOptions.Key = 'RDWBASEKEY256'
-    MyIP = '0.0.0.0'
     AuthenticationOptions.AuthorizationOption = rdwAONone
     Proxy = False
     ProxyOptions.Port = 8888
@@ -16,6 +15,7 @@ object DMCliente: TDMCliente
     StateConnection.AutoCheck = False
     StateConnection.InTime = 1000
     RequestTimeOut = 10000
+    ConnectTimeOut = 3000
     EncodeStrings = True
     Encoding = esUtf8
     StrsTrim = False
@@ -58,10 +58,45 @@ object DMCliente: TDMCliente
     CacheUpdateRecords = True
     AutoCommitData = False
     AutoRefreshAfterCommit = False
+    ThreadRequest = False
     RaiseErrors = True
     ActionCursor = crSQLWait
     ReflectChanges = False
-    Left = 160
+    Left = 152
     Top = 32
+  end
+  object DWClientEvents1: TDWClientEvents
+    CriptOptions.Use = False
+    CriptOptions.Key = 'RDWBASEKEY256'
+    RESTClientPooler = RESTClientPooler1
+    Events = <>
+    Left = 256
+    Top = 32
+  end
+  object RESTClientPooler1: TRESTClientPooler
+    DataCompression = True
+    Encoding = esUtf8
+    hEncodeStrings = True
+    ThreadRequest = False
+    Host = 'localhost'
+    AuthenticationOptions.AuthorizationOption = rdwAONone
+    ProxyOptions.BasicAuthentication = False
+    ProxyOptions.ProxyPort = 0
+    RequestTimeOut = 10000
+    ConnectTimeOut = 3000
+    AllowCookies = False
+    RedirectMaximum = 0
+    HandleRedirects = False
+    FailOver = False
+    FailOverConnections = <>
+    FailOverReplaceDefaults = False
+    BinaryRequest = False
+    CriptOptions.Use = False
+    CriptOptions.Key = 'RDWBASEKEY256'
+    UserAgent = 
+      'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, l' +
+      'ike Gecko) Chrome/41.0.2227.0 Safari/537.36'
+    Left = 264
+    Top = 96
   end
 end

@@ -1,9 +1,10 @@
 ﻿object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
+  BorderStyle = bsNone
   Caption = 'frmPrincipal'
-  ClientHeight = 458
-  ClientWidth = 1054
+  ClientHeight = 497
+  ClientWidth = 1070
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +18,7 @@
   object pnlTitulo: TPanel
     Left = 0
     Top = 0
-    Width = 1054
+    Width = 1070
     Height = 65
     Align = alTop
     BevelOuter = bvNone
@@ -422,7 +423,7 @@
       OnClick = imgMenuClick
     end
     object Image1: TImage
-      Left = 986
+      Left = 1002
       Top = 0
       Width = 68
       Height = 65
@@ -623,6 +624,7 @@
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFF00}
       Stretch = True
+      ExplicitLeft = 986
       ExplicitTop = -6
     end
     object Label1: TLabel
@@ -740,8 +742,8 @@
   object pnlFundo: TPanel
     Left = 0
     Top = 65
-    Width = 1054
-    Height = 393
+    Width = 1070
+    Height = 432
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
@@ -749,7 +751,7 @@
       Left = 0
       Top = 0
       Width = 38
-      Height = 393
+      Height = 432
       Align = alLeft
       BevelOuter = bvNone
       Color = 16443110
@@ -985,6 +987,7 @@
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         Margin = 10
         ParentFont = False
+        OnClick = btnEstoqueClick
         OnMouseEnter = btnEstoqueMouseEnter
         OnMouseLeave = btnEstoqueMouseLeave
         ExplicitLeft = 24
@@ -1064,6 +1067,7 @@
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         Margin = 10
         ParentFont = False
+        OnClick = btnTributacaoClick
         OnMouseEnter = btnTributacaoMouseEnter
         OnMouseLeave = btnTributacaoMouseLeave
         ExplicitTop = 145
@@ -1142,6 +1146,7 @@
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         Margin = 10
         ParentFont = False
+        OnClick = btnFinanceiroClick
         OnMouseEnter = btnFinanceiroMouseEnter
         OnMouseLeave = btnFinanceiroMouseLeave
         ExplicitWidth = 113
@@ -1219,6 +1224,7 @@
           FFFFFFFFFFB4AD9F6F6246857B63F4F2F1FFFFFFFFFFFFFFFFFF}
         Margin = 10
         ParentFont = False
+        OnClick = btnPedidoClick
         OnMouseEnter = btnPedidoMouseEnter
         OnMouseLeave = btnPedidoMouseLeave
         ExplicitTop = 184
@@ -1304,7 +1310,7 @@
       object btnSair: TSpeedButton
         Tag = 9
         Left = 0
-        Top = 354
+        Top = 393
         Width = 38
         Height = 39
         Align = alBottom
@@ -1590,6 +1596,7 @@
         Font.Style = [fsBold]
         Margin = 10
         ParentFont = False
+        OnClick = btnNfseClick
         ExplicitLeft = -4
         ExplicitTop = 50
       end
@@ -2046,5 +2053,10 @@
     Width = 48
     Left = 672
     Top = 89
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 848
+    Top = 97
   end
 end

@@ -82,7 +82,7 @@ end;
 
 class function TPerfilUsuarioVO.New: IBaseVO<TPerfilUsuarioVO>;
 begin
-  Result := Self.Create;
+  result := Self.Create;
 end;
 
 function TPerfilUsuarioVO.toJson: string;
