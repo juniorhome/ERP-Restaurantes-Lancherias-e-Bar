@@ -5,14 +5,14 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uDWAbout, uRESTDWBase, Vcl.StdCtrls,
-  Vcl.ExtCtrls, IniFiles;
+  Vcl.ExtCtrls, IniFiles, ServerUtils, uRESTDWBasic, uRESTDWComponentBase,
+  uRESTDWIdBase;
 
 type
   TFrmPrincipal = class(TForm)
     pnlConfigServidor: TPanel;
     Label1: TLabel;
     edtPorta: TEdit;
-    RESTServicePooler1: TRESTServicePooler;
     Label2: TLabel;
     edtUsuario: TEdit;
     Label3: TLabel;
@@ -41,6 +41,7 @@ type
     btnSair: TButton;
     btnGerarArquivo: TButton;
     Label14: TLabel;
+    RESTDWServicePooler: TRESTDWIdServicePooler;
     procedure btnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnGerarArquivoClick(Sender: TObject);
@@ -53,6 +54,7 @@ type
     procedure LerIni();
   public
     { Public declarations }
+    procedure ConfiguraRDW;
   end;
 
 var
@@ -66,13 +68,14 @@ uses UDMServidor;
 
 procedure TFrmPrincipal.btnConectarClick(Sender: TObject);
 begin
+  ConfiguraRDW;
   DMServidor.ConfiguraConexao;
-  RESTServicePooler1.Active := True;
+  RESTServicePooler.Active := True;
 end;
 
 procedure TFrmPrincipal.btnDesconectarClick(Sender: TObject);
 begin
-  RESTServicePooler1.Active := False;
+  RESTServicePooler.Active := False;
 end;
 
 procedure TFrmPrincipal.btnGerarArquivoClick(Sender: TObject);
@@ -83,6 +86,14 @@ end;
 procedure TFrmPrincipal.btnSairClick(Sender: TObject);
 begin
    Application.Terminate;
+end;
+
+procedure TFrmPrincipal.ConfiguraRDW;
+begin
+   RESTServicePooler.AuthenticationOptions.OptionParams.AuthDialog := CheckBox1.Checked;
+   TRDWAuthOptionBasic(RESTServicePooler.AuthenticationOptions.OptionParams).Username := edtUsuario.Text;
+   TRDWAuthOptionBasic(RESTServicePooler.AuthenticationOptions.OptionParams).Password := edtSenha.Text;
+   RESTServicePooler.ServicePort := StrToInt(edtPorta.Text);
 end;
 
 procedure TFrmPrincipal.EscreverIni;
@@ -109,7 +120,7 @@ end;
 
 procedure TFrmPrincipal.FormCreate(Sender: TObject);
 begin
-   RESTServicePooler1.ServerMethodClass := TDMServidor;
+   RESTServicePooler.ServerMethodClass := TDMServidor;
 
    if FileExists(ExtractFilePath(Application.ExeName) + '\' + 'Config.ini') then
    begin
@@ -134,13 +145,13 @@ begin
      edtUsuario.Text := FArqIni.ReadString('Servidor', 'Usuario', '');
      edtSenha.Text := FArqIni.ReadString('Servidor', 'Senha', '');
      CheckBox1.Checked := FArqIni.ReadBool('Servidor', 'Autenticacao', True);
-     cmbDriver.Items := FArqIni.ReadString('Banco', 'Base', '');
+     cmbDriver.Text := FArqIni.ReadString('Banco', 'Base', '');
      edtUsuarioBanco.Text := FArqIni.ReadString('Banco', 'Usuario', '');
      edtSenhaBanco.Text := FArqIni.ReadString('Banco', 'Senha', '');
      edtLocal.Text := FArqIni.ReadString('Banco', 'Servidor', '');
      edtCaminhoDLL.Text := FArqIni.ReadString('Banco', 'Biblioteca', '');
      edtCaminhoBanco.Text := FArqIni.ReadString('Banco', 'Caminho', '');
-     ComboBox1.Items := FArqIni.ReadString('Banco', 'Framework', '');
+     ComboBox1.Text := FArqIni.ReadString('Banco', 'Framework', '');
    finally
      FArqIni.Free;
    end;

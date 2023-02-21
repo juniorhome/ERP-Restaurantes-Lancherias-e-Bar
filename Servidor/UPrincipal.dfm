@@ -23,7 +23,6 @@ object FrmPrincipal: TFrmPrincipal
     Align = alTop
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 651
     object Label1: TLabel
       Left = 4
       Top = 51
@@ -108,8 +107,6 @@ object FrmPrincipal: TFrmPrincipal
     Height = 281
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 651
-    ExplicitHeight = 271
     object Label6: TLabel
       Left = 116
       Top = 6
@@ -277,7 +274,7 @@ object FrmPrincipal: TFrmPrincipal
       OnClick = btnGerarArquivoClick
     end
   end
-  object RESTServicePooler: TRESTServicePooler
+  object RESTDWServicePooler: TRESTDWIdServicePooler
     Active = False
     CORS = False
     CORS_CustomHeaders.Strings = (
@@ -291,25 +288,20 @@ object FrmPrincipal: TFrmPrincipal
     PathTraversalRaiseError = True
     RequestTimeout = -1
     ServicePort = 8082
-    ProxyOptions.Port = 8888
-    AuthenticationOptions.AuthorizationOption = rdwAOBasic
-    AuthenticationOptions.OptionParams.AuthDialog = True
-    AuthenticationOptions.OptionParams.CustomDialogAuthMessage = 'Protected Space...'
-    AuthenticationOptions.OptionParams.Custom404TitleMessage = '(404) The address you are looking for does not exist'
-    AuthenticationOptions.OptionParams.Custom404BodyMessage = '404'
-    AuthenticationOptions.OptionParams.Custom404FooterMessage = 'Take me back to <a href="./">Home REST Dataware'
-    AuthenticationOptions.OptionParams.Username = 'testserver'
-    AuthenticationOptions.OptionParams.Password = 'testserver'
-    SSLMethod = sslvSSLv2
-    SSLVersions = []
+    ProxyOptions.ProxyPort = 0
+    AuthenticationOptions.AuthorizationOption = rdwAONone
     Encoding = esUtf8
     RootPath = '/'
-    SSLVerifyMode = []
-    SSLVerifyDepth = 0
     ForceWelcomeAccess = False
     CriptOptions.Use = False
     CriptOptions.Key = 'RDWBASEKEY256'
-    Left = 576
-    Top = 48
+    EncodeErrors = False
+    SSLVersions = []
+    SSLVerifyMode = []
+    SSLVerifyDepth = 0
+    SSLMode = sslmUnassigned
+    SSLMethod = sslvSSLv2
+    Left = 552
+    Top = 24
   end
 end

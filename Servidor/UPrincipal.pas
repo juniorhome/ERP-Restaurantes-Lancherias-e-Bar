@@ -4,15 +4,15 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uDWAbout, uRESTDWBase, Vcl.StdCtrls,
-  Vcl.ExtCtrls, IniFiles, ServerUtils;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uDWAbout, uDWConsts, Vcl.StdCtrls,
+  Vcl.ExtCtrls, IniFiles, ServerUtils, uRESTDWBasic, uRESTDWComponentBase,
+  uRESTDWIdBase;
 
 type
   TFrmPrincipal = class(TForm)
     pnlConfigServidor: TPanel;
     Label1: TLabel;
     edtPorta: TEdit;
-    RESTServicePooler: TRESTServicePooler;
     Label2: TLabel;
     edtUsuario: TEdit;
     Label3: TLabel;
@@ -41,6 +41,7 @@ type
     btnSair: TButton;
     btnGerarArquivo: TButton;
     Label14: TLabel;
+    RESTDWServicePooler: TRESTDWIdServicePooler;
     procedure btnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnGerarArquivoClick(Sender: TObject);

@@ -1,9 +1,10 @@
 object FrmPrincipal: TFrmPrincipal
   Left = 0
   Top = 0
+  BorderStyle = bsDialog
   Caption = 'Tela de Configura'#231#227'o do  Servidor'
-  ClientHeight = 376
-  ClientWidth = 651
+  ClientHeight = 386
+  ClientWidth = 661
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +18,7 @@ object FrmPrincipal: TFrmPrincipal
   object pnlConfigServidor: TPanel
     Left = 0
     Top = 0
-    Width = 651
+    Width = 661
     Height = 105
     Align = alTop
     ParentBackground = False
@@ -44,7 +45,7 @@ object FrmPrincipal: TFrmPrincipal
       Caption = 'Senha:'
     end
     object Label4: TLabel
-      Left = 64
+      Left = 116
       Top = 16
       Width = 367
       Height = 24
@@ -102,12 +103,12 @@ object FrmPrincipal: TFrmPrincipal
   object pnlConfigBanco: TPanel
     Left = 0
     Top = 105
-    Width = 651
-    Height = 271
+    Width = 661
+    Height = 281
     Align = alClient
     TabOrder = 1
     object Label6: TLabel
-      Left = 88
+      Left = 116
       Top = 6
       Width = 349
       Height = 24
@@ -178,7 +179,7 @@ object FrmPrincipal: TFrmPrincipal
     end
     object cmbDriver: TComboBox
       Left = 8
-      Top = 65
+      Top = 64
       Width = 97
       Height = 21
       TabOrder = 0
@@ -243,6 +244,7 @@ object FrmPrincipal: TFrmPrincipal
       Height = 25
       Caption = 'Conectar'
       TabOrder = 7
+      OnClick = btnConectarClick
     end
     object btnDesconectar: TButton
       Left = 486
@@ -251,6 +253,7 @@ object FrmPrincipal: TFrmPrincipal
       Height = 25
       Caption = 'Desconectar'
       TabOrder = 8
+      OnClick = btnDesconectarClick
     end
     object btnSair: TButton
       Left = 565
@@ -270,40 +273,5 @@ object FrmPrincipal: TFrmPrincipal
       TabOrder = 10
       OnClick = btnGerarArquivoClick
     end
-  end
-  object RESTServicePooler1: TRESTServicePooler
-    Active = False
-    CORS = False
-    CORS_CustomHeaders.Strings = (
-      'Access-Control-Allow-Origin=*'
-      
-        'Access-Control-Allow-Methods=GET, POST, PATCH, PUT, DELETE, OPTI' +
-        'ONS'
-      
-        'Access-Control-Allow-Headers=Content-Type, Origin, Accept, Autho' +
-        'rization, X-CUSTOM-HEADER')
-    RequestTimeout = -1
-    ServicePort = 8082
-    ProxyOptions.Port = 8888
-    AuthenticationOptions.AuthorizationOption = rdwAOBasic
-    AuthenticationOptions.OptionParams.AuthDialog = True
-    AuthenticationOptions.OptionParams.CustomDialogAuthMessage = 'Protected Space...'
-    AuthenticationOptions.OptionParams.Custom404TitleMessage = '(404) The address you are looking for does not exist'
-    AuthenticationOptions.OptionParams.Custom404BodyMessage = '404'
-    AuthenticationOptions.OptionParams.Custom404FooterMessage = 'Take me back to <a href="./">Home REST Dataware'
-    AuthenticationOptions.OptionParams.Username = 'testserver'
-    AuthenticationOptions.OptionParams.Password = 'testserver'
-    SSLMethod = sslvSSLv2
-    SSLVersions = []
-    Encoding = esUtf8
-    RootPath = '/'
-    SSLVerifyMode = []
-    SSLVerifyDepth = 0
-    ForceWelcomeAccess = False
-    CriptOptions.Use = False
-    CriptOptions.Key = 'RDWBASEKEY256'
-    MultiCORE = False
-    Left = 576
-    Top = 48
   end
 end
