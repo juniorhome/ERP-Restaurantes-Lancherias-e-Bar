@@ -1,39 +1,7 @@
 object DMCliente: TDMCliente
   OldCreateOrder = False
   Height = 159
-  Width = 381
-  object RESTDWDataBase1: TRESTDWDataBase
-    Active = False
-    Compression = True
-    CriptOptions.Use = False
-    CriptOptions.Key = 'RDWBASEKEY256'
-    AuthenticationOptions.AuthorizationOption = rdwAONone
-    Proxy = False
-    ProxyOptions.Port = 8888
-    PoolerService = '127.0.0.1'
-    PoolerPort = 8082
-    StateConnection.AutoCheck = False
-    StateConnection.InTime = 1000
-    RequestTimeOut = 10000
-    ConnectTimeOut = 3000
-    EncodeStrings = True
-    Encoding = esUtf8
-    StrsTrim = False
-    StrsEmpty2Null = False
-    StrsTrim2Len = True
-    HandleRedirects = False
-    RedirectMaximum = 0
-    ParamCreate = True
-    FailOver = False
-    FailOverConnections = <>
-    FailOverReplaceDefaults = False
-    ClientConnectionDefs.Active = False
-    UserAgent = 
-      'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, l' +
-      'ike Gecko) Chrome/41.0.2227.0 Safari/537.36'
-    Left = 40
-    Top = 32
-  end
+  Width = 413
   object RESTDWClientSQL1: TRESTDWClientSQL
     Active = False
     Filtered = False
@@ -54,40 +22,43 @@ object DMCliente: TDMCliente
     DataCache = False
     MassiveType = mtMassiveCache
     Params = <>
-    DataBase = RESTDWDataBase1
+    DataBase = RESTDWIdDatabase1
     CacheUpdateRecords = True
     AutoCommitData = False
     AutoRefreshAfterCommit = False
     ThreadRequest = False
     RaiseErrors = True
-    ActionCursor = crSQLWait
     ReflectChanges = False
-    Left = 152
+    Left = 64
     Top = 32
   end
-  object DWClientEvents1: TDWClientEvents
+  object RESTDWClientEvents1: TRESTDWClientEvents
     CriptOptions.Use = False
     CriptOptions.Key = 'RDWBASEKEY256'
-    RESTClientPooler = RESTClientPooler1
+    RESTClientPooler = RESTDWIdClientPooler1
     Events = <>
-    Left = 256
-    Top = 32
+    Left = 328
+    Top = 8
   end
-  object RESTClientPooler1: TRESTClientPooler
+  object RESTDWIdClientPooler1: TRESTDWIdClientPooler
     DataCompression = True
+    Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    ContentEncoding = 'gzip, identity'
+    ContentType = 'application/x-www-form-urlencoded'
+    Charset = 'utf8'
     Encoding = esUtf8
-    hEncodeStrings = True
+    EncodedStrings = True
     ThreadRequest = False
     Host = 'localhost'
     AuthenticationOptions.AuthorizationOption = rdwAONone
-    ProxyOptions.BasicAuthentication = False
-    ProxyOptions.ProxyPort = 0
     RequestTimeOut = 10000
     ConnectTimeOut = 3000
     AllowCookies = False
     RedirectMaximum = 0
     HandleRedirects = False
+    ProxyOptions.ProxyPort = 0
     FailOver = False
+    UseSSL = False
     FailOverConnections = <>
     FailOverReplaceDefaults = False
     BinaryRequest = False
@@ -96,7 +67,53 @@ object DMCliente: TDMCliente
     UserAgent = 
       'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, l' +
       'ike Gecko) Chrome/41.0.2227.0 Safari/537.36'
-    Left = 264
+    PoolerNotFoundMessage = 'Pooler not found'
+    SSLVersions = []
+    SSLMode = sslmUnassigned
+    Left = 184
+    Top = 24
+  end
+  object RESTDWIdDatabase1: TRESTDWIdDatabase
+    Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    ContentType = 'application/x-www-form-urlencoded'
+    Charset = 'utf8'
+    ContentEncoding = 'gzip, identity'
+    Active = False
+    Compression = True
+    CriptOptions.Use = False
+    CriptOptions.Key = 'RDWBASEKEY256'
+    MyIP = '0.0.0.0'
+    IgnoreEchoPooler = False
+    AuthenticationOptions.AuthorizationOption = rdwAONone
+    Proxy = False
+    ProxyOptions.Port = 8888
+    PoolerService = '127.0.0.1'
+    PoolerPort = 8082
+    PoolerName = 'FrmPrincipal.RESTDWServicePooler1'
+    StateConnection.AutoCheck = False
+    StateConnection.InTime = 1000
+    RequestTimeOut = 10000
+    ConnectTimeOut = 3000
+    EncodedStrings = True
+    Encoding = esUtf8
+    StrsTrim = False
+    StrsEmpty2Null = False
+    StrsTrim2Len = True
+    PoolerNotFoundMessage = 'Pooler not found'
+    HandleRedirects = False
+    RedirectMaximum = 0
+    ParamCreate = True
+    FailOver = False
+    FailOverConnections = <>
+    FailOverReplaceDefaults = False
+    ClientConnectionDefs.Active = False
+    UseSSL = False
+    SSLVersions = []
+    UserAgent = 
+      'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, l' +
+      'ike Gecko) Chrome/41.0.2227.0 Safari/537.36'
+    SSLMode = sslmUnassigned
+    Left = 32
     Top = 96
   end
 end

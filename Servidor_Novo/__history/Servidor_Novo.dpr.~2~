@@ -1,0 +1,16 @@
+program Servidor_Novo;
+
+uses
+  Vcl.Forms,
+  UDMServidor in 'UDMServidor.pas' {DMServidor: TServerMethodDataModule},
+  UPrincipal in 'UPrincipal.pas' {FrmPrincipal};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDMServidor, DMServidor);
+  Application.CreateForm(TFrmPrincipal, FrmPrincipal);
+  Application.Run;
+end.

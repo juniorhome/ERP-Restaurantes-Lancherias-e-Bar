@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/12/24 16:37:24.000.874,=C:\Users\Carlos Jr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021/12/26 21:10:48.000.919,=C:\Users\Carlos Jr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/01/06 12:56:31.000.280,=C:\Users\Carlos Jr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/01/06 15:41:48.000.127,=C:\Users\Carlos Jr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/02/20 11:59:01.000.284,=C:\Users\Carlos Jr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/03/13 20:31:55.000.058,=C:\Users\Carlos Jr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/03/13 20:34:26.000.837,=C:\Projetos\ERP-Restaurantes-Lancherias-e-Bar\Servidor_Novo\UDMServidor.pas</Transaction>
+    <Transaction>2023/03/13 20:34:27.000.004,=C:\Projetos\ERP-Restaurantes-Lancherias-e-Bar\Servidor_Novo\UPrincipal.pas</Transaction>
+    <Transaction>2023/03/13 20:37:37.000.671,C:\Users\Carlos Jr\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj=C:\Projetos\ERP-Restaurantes-Lancherias-e-Bar\Servidor_Novo\Servidor_Novo.dproj</Transaction>
+    <Transaction>2023/03/14 16:19:31.000.527,=C:\Projetos\Framework\ORM\Conexao\orm.conexao.ModelConexaoFactory.pas</Transaction>
+    <Transaction>2023/03/14 16:20:01.000.802,=C:\Projetos\Framework\ORM\Conexao\Interfaces\orm.conexao.interfaces.Interfaces.pas</Transaction>
+    <Transaction>2023/03/14 16:20:34.000.121,=C:\Projetos\Framework\ORM\Conexao\Model_Firedac\orm.conexao.model_firedac.ModelFiredacConexao.pas</Transaction>
+    <Transaction>2023/03/14 16:20:57.000.173,=C:\Projetos\Framework\ORM\Conexao\Model_Firedac\orm.conexao.model_firedac.ModelFiredacQuery.pas</Transaction>
+    <Transaction>2023/03/14 16:21:23.000.373,=C:\Projetos\Framework\ORM\Conexao\Model_Zeos\orm.conexao.model_zeos.ModelZeosConexao.pas</Transaction>
+    <Transaction>2023/03/14 16:21:40.000.800,=C:\Projetos\Framework\ORM\Conexao\Model_Zeos\orm.conexao.model_zeos.ModelZeosQuery.pas</Transaction>
+    <Transaction>2023/03/14 16:22:46.000.759,=C:\Projetos\Framework\ORM\orm.IBaseVO.pas</Transaction>
+    <Transaction>2023/03/14 16:23:13.000.096,=C:\Projetos\Framework\ORM\orm.Atributos.pas</Transaction>
+  </Transactions>
+</BorlandProject>

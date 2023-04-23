@@ -4,7 +4,7 @@ object FrmPrincipal: TFrmPrincipal
   BorderStyle = bsDialog
   Caption = 'Tela de Configura'#231#227'o do  Servidor'
   ClientHeight = 386
-  ClientWidth = 661
+  ClientWidth = 645
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,11 +18,12 @@ object FrmPrincipal: TFrmPrincipal
   object pnlConfigServidor: TPanel
     Left = 0
     Top = 0
-    Width = 661
+    Width = 645
     Height = 105
     Align = alTop
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 661
     object Label1: TLabel
       Left = 4
       Top = 51
@@ -103,10 +104,11 @@ object FrmPrincipal: TFrmPrincipal
   object pnlConfigBanco: TPanel
     Left = 0
     Top = 105
-    Width = 661
+    Width = 645
     Height = 281
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 661
     object Label6: TLabel
       Left = 116
       Top = 6

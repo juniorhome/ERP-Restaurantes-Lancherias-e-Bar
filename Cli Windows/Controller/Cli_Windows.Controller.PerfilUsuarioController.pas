@@ -2,7 +2,7 @@ unit Cli_Windows.Controller.PerfilUsuarioController;
 
 interface
 
-uses orm.conexao.interfaces.Interfaces, orm.dao.BaseDAO, DB, uRESTDWPoolerDB, Cli_Windows.Model.PerfilUsuarioVO;
+uses orm.conexao.interfaces.Interfaces, orm.dao.BaseDAO, DB, uRESTDWPoolerDB, uDWConsts, Cli_Windows.Model.PerfilUsuarioVO;
 
   type
     TPerfilUsuarioController = class(TInterfacedObject, IController<TPerfilUsuarioVO>)

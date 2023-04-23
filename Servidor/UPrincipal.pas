@@ -91,6 +91,7 @@ end;
 procedure TFrmPrincipal.ConfiguraRDW;
 begin
    RESTServicePooler.AuthenticationOptions.OptionParams.AuthDialog := CheckBox1.Checked;
+   RESTServicePooler.AuthenticationOptions.Authorization := rdwAOBAsic;
    TRDWAuthOptionBasic(RESTServicePooler.AuthenticationOptions.OptionParams).Username := edtUsuario.Text;
    TRDWAuthOptionBasic(RESTServicePooler.AuthenticationOptions.OptionParams).Password := edtSenha.Text;
    RESTServicePooler.ServicePort := StrToInt(edtPorta.Text);

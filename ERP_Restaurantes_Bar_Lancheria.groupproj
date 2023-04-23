@@ -3,10 +3,10 @@
         <ProjectGuid>{86EF9615-B3DB-40D3-8B75-F6188C2C8358}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="Servidor\Servidor.dproj">
+        <Projects Include="Cli Windows\ErpClient.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="Cli Windows\ErpClient.dproj">
+        <Projects Include="Servidor_Novo\Servidor_Novo.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -17,15 +17,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="Servidor">
-        <MSBuild Projects="Servidor\Servidor.dproj"/>
-    </Target>
-    <Target Name="Servidor:Clean">
-        <MSBuild Projects="Servidor\Servidor.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="Servidor:Make">
-        <MSBuild Projects="Servidor\Servidor.dproj" Targets="Make"/>
-    </Target>
     <Target Name="ErpClient">
         <MSBuild Projects="Cli Windows\ErpClient.dproj"/>
     </Target>
@@ -35,14 +26,23 @@
     <Target Name="ErpClient:Make">
         <MSBuild Projects="Cli Windows\ErpClient.dproj" Targets="Make"/>
     </Target>
+    <Target Name="Servidor_Novo">
+        <MSBuild Projects="Servidor_Novo\Servidor_Novo.dproj"/>
+    </Target>
+    <Target Name="Servidor_Novo:Clean">
+        <MSBuild Projects="Servidor_Novo\Servidor_Novo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Servidor_Novo:Make">
+        <MSBuild Projects="Servidor_Novo\Servidor_Novo.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Servidor;ErpClient"/>
+        <CallTarget Targets="ErpClient;Servidor_Novo"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Servidor:Clean;ErpClient:Clean"/>
+        <CallTarget Targets="ErpClient:Clean;Servidor_Novo:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Servidor:Make;ErpClient:Make"/>
+        <CallTarget Targets="ErpClient:Make;Servidor_Novo:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
