@@ -3,19 +3,19 @@ unit Cli_Windows.Controller.CidadeController;
 interface
 
 uses orm.dao.BaseDAO, orm.conexao.interfaces.Interfaces, Cli_Windows.Model.CidadeVO,
-     DB, uRESTDWPoolerDB;
+     DB, uRESTDWIdBase, uRESTDWConsts;
 
 type
   TCidadeController = class(TInterfacedObject, IController<TCidadeVO>)
     private
-      FConexao: TRESTDWDatabase;
+      FConexao: TRESTDWIdDatabase;
     public
       function Salvar(obj: TCidadeVO): integer;
       function Atualizar(obj: TCidadeVO): boolean;
       function Excluir(obj: TCidadeVO): boolean;
       function Listagem(obj: TCidadeVO): TDataSet;
-      class function New(AConexao: TRESTDWDatabase): IController<TCidadeVO>;
-      constructor Create(AConexao: TRESTDWDatabase);
+      class function New(AConexao: TRESTDWIdDatabase): IController<TCidadeVO>;
+      constructor Create(AConexao: TRESTDWIdDatabase);
   end;
 
 implementation
@@ -27,7 +27,7 @@ begin
    Result := TBaseDAO<TCidadeVO>.New(FConexao).Atualizar(obj);
 end;
 
-constructor TCidadeController.Create(AConexao: TRESTDWDatabase);
+constructor TCidadeController.Create(AConexao: TRESTDWIdDatabase);
 begin
    FConexao := AConexao;
 end;
@@ -48,7 +48,7 @@ begin
 end;
 
 class function TCidadeController.New(
-  AConexao: TRESTDWDatabase): IController<TCidadeVO>;
+  AConexao: TRESTDWIdDatabase): IController<TCidadeVO>;
 begin
    Self.Create(AConexao);
 end;

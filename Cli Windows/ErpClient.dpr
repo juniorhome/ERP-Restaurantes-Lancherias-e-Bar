@@ -52,10 +52,12 @@ uses
   orm.lib.Constantes in '..\..\Framework\ORM\Lib\orm.lib.Constantes.pas',
   orm.seguranca.criptografia in '..\..\Framework\ORM\Seguranca\orm.seguranca.criptografia.pas',
   orm.Validacao in '..\..\Framework\ORM\Validacao\orm.Validacao.pas',
-  Cli_Windows.View.ufrmCadGrupo in 'View\Cli_Windows.View.ufrmCadGrupo.pas' {frmCadBasico1},
+  Cli_Windows.View.ufrmCadGrupo in 'View\Cli_Windows.View.ufrmCadGrupo.pas' {frmCadGrupo},
   orm.lib.SessaoUsuario in '..\..\Framework\ORM\Lib\orm.lib.SessaoUsuario.pas',
   Cli_Windows.Controller.UsuarioController in 'Controller\Cli_Windows.Controller.UsuarioController.pas',
-  Cli_Windows.Controller.PerfilUsuarioController in 'Controller\Cli_Windows.Controller.PerfilUsuarioController.pas';
+  Cli_Windows.Controller.PerfilUsuarioController in 'Controller\Cli_Windows.Controller.PerfilUsuarioController.pas',
+  Cli_Windows.Model.GrupoVO in 'Model\Cli_Windows.Model.GrupoVO.pas',
+  Cli_Windows.Controller.GrupoController in 'Controller\Cli_Windows.Controller.GrupoController.pas';
 
 //Cli_Windows.Model.CartaoVO in 'Model\Cli_Windows.Model.CartaoVO.pas',
   //Cli_Windows.Model.CFOPVO in 'Model\Cli_Windows.Model.CFOPVO.pas',
@@ -72,9 +74,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDMCliente, DMCliente);
-  Application.CreateForm(TfrmLogin, frmLogin);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmRelatorioBase, frmRelatorioBase);
-  Application.CreateForm(TfrmCadBasico1, frmCadBasico1);
   Application.Run;
 end.

@@ -1,0 +1,32 @@
+unit Cli_Windows.Model.GrupoVO;
+
+interface
+
+uses orm.Atributos, orm.IBaseVO, REST.Json;
+
+type
+  [TTabela('GRUPO', 'G', 'Grupo', 'Grupos')]
+  TGrupoVO = class(TInterfacedObject, IBaseVO<TGrupoVO>)
+   private
+     FId: integer;
+     FDescricao: string;
+   public
+     function toJson(): string;
+     function fromJson(json: string): TGrupoVO;
+  end;
+
+implementation
+
+{ TGrupoVO }
+
+function TGrupoVO.fromJson(json: string): TGrupoVO;
+begin
+  Result := TJson.JsonToObject<TGrupoVO>(json);
+end;
+
+function TGrupoVO.toJson: string;
+begin
+   Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

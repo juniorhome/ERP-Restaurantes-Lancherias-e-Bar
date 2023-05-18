@@ -99,7 +99,7 @@ procedure TfrmLogin.btnCancelarClick(Sender: TObject);
 begin
   edtNomeUsuario.Text := EmptyStr;
   edtSenha.Text := EmptyStr;
-  //Application.Terminate;
+  Application.Terminate;
 end;
 
 end.

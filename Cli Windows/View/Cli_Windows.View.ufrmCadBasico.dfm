@@ -319,8 +319,6 @@ object frmCadBasico: TfrmCadBasico
       Color = 16443110
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = -123
-      ExplicitTop = -24
       object pnlPesquisa: TPanel
         Left = 16
         Top = 24
@@ -332,7 +330,7 @@ object frmCadBasico: TfrmCadBasico
         TabOrder = 0
         object btnPesquisar: TSpeedButton
           Left = 739
-          Top = 42
+          Top = 44
           Width = 29
           Height = 25
           Glyph.Data = {

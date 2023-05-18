@@ -52,6 +52,8 @@ type
     Mostraratela1: TMenuItem;
     Mostraratela2: TMenuItem;
     btnMinimizar: TButton;
+    Label15: TLabel;
+    edtPortaBanco: TEdit;
     procedure btnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnGerarArquivoClick(Sender: TObject);
@@ -59,6 +61,10 @@ type
     procedure btnDesconectarClick(Sender: TObject);
     procedure btnMinimizarClick(Sender: TObject);
     procedure Mostraratela2Click(Sender: TObject);
+    procedure Conectar1Click(Sender: TObject);
+    procedure Desconectar1Click(Sender: TObject);
+    procedure Mostraratela1Click(Sender: TObject);
+    procedure Excluiroarquivoini1Click(Sender: TObject);
   private
     { Private declarations }
     FArqIni: TIniFile;
@@ -115,6 +121,11 @@ begin
    Application.Terminate;
 end;
 
+procedure TFrmPrincipal.Conectar1Click(Sender: TObject);
+begin
+   btnConectarClick(Sender);
+end;
+
 procedure TFrmPrincipal.ConfiguraRDW;
 begin
    RESTDWServicePooler.AuthenticationOptions.OptionParams.AuthDialog := CheckBox1.Checked;
@@ -122,6 +133,11 @@ begin
    TRESTDWAuthOptionBasic(RESTDWServicePooler.AuthenticationOptions.OptionParams).Username := edtUsuario.Text;
    TRESTDWAuthOptionBasic(RESTDWServicePooler.AuthenticationOptions.OptionParams).Password := edtSenha.Text;
    RESTDWServicePooler.ServicePort := StrToInt(edtPorta.Text);
+end;
+
+procedure TFrmPrincipal.Desconectar1Click(Sender: TObject);
+begin
+   btnDesconectarClick(Sender);
 end;
 
 procedure TFrmPrincipal.EscreverIni;
@@ -140,6 +156,7 @@ begin
        FArqIni.WriteString('Banco', 'Biblioteca', edtCaminhoDLL.Text);
        FArqIni.WriteString('Banco', 'Caminho', edtCaminhoBanco.Text);
        FArqIni.WriteString('Banco', 'Framework', cmbFramework.Text);
+       FArqIni.WriteInteger('Banco', 'Porta', StrToInt(edtPortaBanco.Text));
 
        if cmbFramework.Text = 'FIREDAC' then
        begin
@@ -151,6 +168,13 @@ begin
    finally
        FArqIni.Free;
    end;
+
+end;
+
+procedure TFrmPrincipal.Excluiroarquivoini1Click(Sender: TObject);
+begin
+  if MessageDlg('Você tem certeza de excluir o arquivo?', TMsgDlgType.mtConfirmation, mbYesNo, 0) = mrYes then
+    DeleteFile(ExtractFilePath(Application.ExeName) + '\' + 'Config.ini');
 
 end;
 
@@ -190,9 +214,16 @@ begin
      edtCaminhoDLL.Text := FArqIni.ReadString('Banco', 'Biblioteca', '');
      edtCaminhoBanco.Text := FArqIni.ReadString('Banco', 'Caminho', '');
      cmbFramework.Text := FArqIni.ReadString('Banco', 'Framework', '');
+     edtPortaBanco.Text := IntToStr(FArqIni.ReadInteger('Banco', 'Porta', 0));
    finally
      FArqIni.Free;
    end;
+end;
+
+procedure TFrmPrincipal.Mostraratela1Click(Sender: TObject);
+begin
+    Self.WindowState := TWindowState.wsNormal;
+    TrayIcon.Visible := False;
 end;
 
 procedure TFrmPrincipal.Mostraratela2Click(Sender: TObject);

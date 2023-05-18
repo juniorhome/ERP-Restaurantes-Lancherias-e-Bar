@@ -3,19 +3,19 @@ unit Cli_Windows.Controller.PessoaController;
 interface
 
 uses orm.dao.BaseDAO, orm.conexao.interfaces.Interfaces, Cli_Windows.Model.PessoaVO,
-     DB, uRESTDWPoolerDB;
+     DB, uRESTDWIdBase, uRESTDWConsts;
 
 type
   TPessoaController = class(TInterfacedObject, IController<TPessoaVO>)
     private
-      FConexao: TRESTDWDatabase;
+      FConexao: TRESTDWIdDatabase;
     public
       function Salvar(obj: TPessoaVO): integer;
       function Atualizar(obj: TPessoaVO): boolean;
       function Excluir(obj: TPessoaVO): boolean;
       function Listagem(obj: TPessoaVO): TDataSet;
-      class function New(AConexao: TRESTDWDatabase): IController<TPessoaVO>;
-      constructor Create(AConexao: TRESTDWDatabase);
+      class function New(AConexao: TRESTDWIdDatabase): IController<TPessoaVO>;
+      constructor Create(AConexao: TRESTDWIdDatabase);
   end;
 
 implementation
@@ -27,7 +27,7 @@ begin
    Result := TBaseDAO<TPessoaVO>.new(FConexao).Atualizar(obj);
 end;
 
-constructor TPessoaController.Create(AConexao: TRESTDWDatabase);
+constructor TPessoaController.Create(AConexao: TRESTDWIdDatabase);
 begin
   FConexao := AConexao;
 end;
@@ -39,11 +39,11 @@ end;
 
 function TPessoaController.Listagem(obj: TPessoaVO): TDataSet;
 begin
-  Result := TBaseDAO<TPessoaVO>.new(FConexao).Listagem(obj);
+  Result := TBaseDAO<TPessoaVO>.new(FConexao).Listagem(obj, '', '', False);
 end;
 
 class function TPessoaController.New(
-  AConexao: TRESTDWDatabase): IController<TPessoaVO>;
+  AConexao: TRESTDWIdDatabase): IController<TPessoaVO>;
 begin
    Self.Create(AConexao);
 end;

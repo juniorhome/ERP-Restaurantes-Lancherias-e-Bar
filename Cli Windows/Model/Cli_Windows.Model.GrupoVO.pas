@@ -1,0 +1,42 @@
+unit Cli_Windows.Model.GrupoVO;
+
+interface
+
+uses orm.Atributos, orm.IBaseVO, REST.Json;
+
+type
+  [TTabela('GRUPO', 'G', 'Grupo', 'Grupos')]
+  TGrupoVO = class(TInterfacedObject, IBaseVO<TGrupoVO>)
+   private
+     FId: integer;
+     FDescricao: string;
+   public
+     [TChavePrimaria('ID', 'Código', 'Códigos')]
+     [TGridCadastro('ID',  'Código', 'Códigos', 8)]
+     [TGridConsulta('ID', 'Código', 'Códigos', 8)]
+     [TCampoFiltro('ID', True) ]
+     property ID: integer read FId write FId;
+     [TCampoTexto('DESCRICAO', 'Descrição', 'Descrições', '', 80 , False)]
+     [TGridCadastro('DESCRICAO', 'Descrição', 'Descrições', 92)]
+     [TGridConsulta('DESCRICAO', 'Descrição', 'Descrições', 92)]
+     [TCampoFiltro('DESCRICAO', True)]
+     property Descricao: string read FDescricao write FDescricao;
+     function toJson(): string;
+     function fromJson(json: string): TGrupoVO;
+  end;
+
+implementation
+
+{ TGrupoVO }
+
+function TGrupoVO.fromJson(json: string): TGrupoVO;
+begin
+  Result := TJson.JsonToObject<TGrupoVO>(json);
+end;
+
+function TGrupoVO.toJson: string;
+begin
+   Result := TJson.ObjectToJsonString(Self);
+end;
+
+end.

@@ -2,18 +2,18 @@ unit Cli_Windows.Controller.PerfilUsuarioController;
 
 interface
 
-uses orm.conexao.interfaces.Interfaces, orm.dao.BaseDAO, DB, uRESTDWPoolerDB, uDWConsts, Cli_Windows.Model.PerfilUsuarioVO;
+uses orm.conexao.interfaces.Interfaces, orm.dao.BaseDAO, DB, uRESTDWIdBase, uRESTDWConsts, Cli_Windows.Model.PerfilUsuarioVO;
 
   type
     TPerfilUsuarioController = class(TInterfacedObject, IController<TPerfilUsuarioVO>)
     private
-      FConexao: TRESTDWDataBase;
+      FConexao: TRESTDWIdDatabase;
     public
       function Salvar(obj: TPerfilUsuarioVO): integer;
       function Atualizar(obj: TPerfilUsuarioVO): boolean;
       function Excluir(obj: TPerfilUsuarioVO): boolean;
       function Listagem(obj: TPerfilUsuarioVO): TDataSet;
-      constructor Create(AConexao: TRESTDWDataBase);
+      constructor Create(AConexao: TRESTDWIdDatabase);
       function ListagemId(obj: TPerfilUsuarioVO): TPerfilUsuarioVO;
     end;
 
@@ -26,7 +26,7 @@ begin
    Result := TBaseDAO<TPerfilUsuarioVO>.New(FConexao).Atualizar(obj);
 end;
 
-constructor TPerfilUsuarioController.Create(AConexao: TRESTDWDataBase);
+constructor TPerfilUsuarioController.Create(AConexao: TRESTDWIdDatabase);
 begin
   FConexao := AConexao;
 end;

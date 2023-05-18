@@ -1,0 +1,50 @@
+unit Cli_Windows.Controller.GrupoController;
+
+interface
+
+uses orm.dao.BaseDAO, orm.conexao.interfaces.Interfaces, DB, uRESTDWIdBase, uRESTDWConsts, Cli_Windows.Model.GrupoVO;
+
+type
+  TGrupoController = class(TInterfacedObject, IController<TGrupoVO>)
+    private
+      FConexao: TRESTDWIdDatabase;
+    public
+      function Salvar(obj: TGrupoVO): integer;
+      function Atualizar(obj: TGrupoVO): boolean;
+      class function New(aConexao: TRESTDWIdDatabase): IController<TGrupoVO>;
+      constructor Create(aConexao: TRESTDWIdDatabase);
+      destructor Destroy; override;
+  end;
+
+implementation
+
+{ TGrupoController }
+
+function TGrupoController.Atualizar(obj: TGrupoVO): boolean;
+begin
+  Result := TBaseDAO<TGrupoVO>.New(FConexao).Atualizar(obj);
+end;
+
+constructor TGrupoController.Create(aConexao: TRESTDWIdDatabase);
+begin
+   FConexao := aConexao;
+end;
+
+destructor TGrupoController.Destroy;
+begin
+  FConexao.Free;
+  inherited;
+end;
+
+class function TGrupoController.New(
+  aConexao: TRESTDWIdDatabase): IController<TGrupoVO>;
+begin
+   Result := Self.Create(aConexao);
+end;
+
+function TGrupoController.Salvar(obj: TGrupoVO): integer;
+begin
+   Result := TBaseDAO<TGrupoVO>.New(FConexao).Inserir(obj);
+end;
+
+end.

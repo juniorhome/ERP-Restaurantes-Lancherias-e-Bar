@@ -51,13 +51,14 @@ begin
     if sFramework = 'ZEOS' then
     begin
        RESTDWPoolerDB1.RESTDriver := RESTDWDriverZeos1;
-       RESTDWDriverZeos1.Connection :=  TZConnection(TModelConexaoFactory.New.Conexao(1).Connection);
+       RESTDWDriverZeos1.Connection :=  TZConnection(TModelConexaoFactory.New.Conexao(2).Connection);
     end
     else if sFramework = 'FIREDAC' then
          begin
            RESTDWPoolerDB1.RESTDriver := RESTDWDriverFD1;
-           RESTDWDriverFD1.Connection := TFDConnection(TModelConexaoFactory.New.Conexao(2).Connection);
+           RESTDWDriverFD1.Connection := TFDConnection(TModelConexaoFactory.New.Conexao(1).Connection);
          end;
+    RESTDWPoolerDB1.Active := True;
   finally
     FArqIni.Free;
   end;

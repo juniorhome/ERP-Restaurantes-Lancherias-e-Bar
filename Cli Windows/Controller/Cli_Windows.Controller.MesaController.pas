@@ -3,19 +3,19 @@ unit Cli_Windows.Controller.MesaController;
 interface
 
 uses orm.dao.BaseDAO, orm.conexao.interfaces.Interfaces, Cli_Windows.Model.MesaVO,
-     DB, uRESTDWPoolerDB;
+     DB, uRESTDWIdBase, uRESTDWConsts;
 
 type
   TMesaController = class(TInterfacedObject, IController<TMesaVO>)
     private
-      FConexao: TRESTDWDatabase;
+      FConexao: TRESTDWIdDatabase;
     public
-      function Inserir(obj: TMesaVO): integer;
+      function Salvar(obj: TMesaVO): integer;
       function Atualizar(obj: TMesaVO): boolean;
       function Excluir(obj: TMesaVO): boolean;
       function Listagem(obj: TMesaVO): TDataSet;
-      class function New(AConexao: TRESTDWDatabase): IController<TMesaVO>;
-      constructor Create(AConexao: TRESTDWDatabase);
+      class function New(AConexao: TRESTDWIdDatabase): IController<TMesaVO>;
+      constructor Create(AConexao: TRESTDWIdDatabase);
       destructor Destroy;override;
   end;
 
@@ -28,7 +28,7 @@ begin
    Result := TBaseDAO<TMesaVO>.New(FConexao).Atualizar(obj);
 end;
 
-constructor TMesaController.Create(AConexao: TRESTDWDatabase);
+constructor TMesaController.Create(AConexao: TRESTDWIdDatabase);
 begin
    FConexao := AConexao;
 end;
@@ -44,18 +44,18 @@ begin
   Result := TBaseDAO<TMesaVO>.New(FConexao).Excluir(obj);
 end;
 
-function TMesaController.Inserir(obj: TMesaVO): integer;
+function TMesaController.Salvar(obj: TMesaVO): integer;
 begin
   Result := TBaseDAO<TMesaVO>.New(FConexao).Inserir(obj);
 end;
 
 function TMesaController.Listagem(obj: TMesaVO): TDataSet;
 begin
-  Result := TBaseDAO<TMesaVO>.New(FConexao).Listagem(obj);
+  Result := TBaseDAO<TMesaVO>.New(FConexao).Listagem(obj, '', '', False);
 end;
 
 class function TMesaController.New(
-  AConexao: TRESTDWDatabase): IController<TMesaVO>;
+  AConexao: TRESTDWIdDatabase): IController<TMesaVO>;
 begin
    Self.Create(AConexao);
 end;

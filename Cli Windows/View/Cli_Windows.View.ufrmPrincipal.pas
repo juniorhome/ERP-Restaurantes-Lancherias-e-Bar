@@ -123,7 +123,7 @@ type
     { Private declarations }
     FPerfil: TPerfilUsuarioVO;
     //FFabrica: IFactoryMethod<TPerfilUsuarioVO>;
-    FController: TPerfilUsuarioController;
+    //FController: TPerfilUsuarioController<TPerfilUsuarioVO>;
   public
     { Public declarations }
     procedure IconBmp(Btn: TSpeedButton; ind: integer);
@@ -405,7 +405,7 @@ procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
   //FFabrica := TFabricaObjeto<TPerfilUsuarioVO>.Create;
   FPerfil := TPerfilUsuarioVO.Create;
-  FController := TPerfilUsuarioController<TPerfilUsuarioVO>.Create;
+  //FController := TPerfilUsuarioController<TPerfilUsuarioVO>.Create;
 end;
 
 procedure TfrmPrincipal.IconBmp(Btn: TSpeedButton; ind: integer);
