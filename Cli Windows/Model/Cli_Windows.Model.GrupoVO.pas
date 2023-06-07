@@ -11,15 +11,15 @@ type
      FId: integer;
      FDescricao: string;
    public
-     [TChavePrimaria('ID', 'Código', 'Códigos')]
      [TGridCadastro('ID',  'Código', 'Códigos', 8)]
      [TGridConsulta('ID', 'Código', 'Códigos', 8)]
-     [TCampoFiltro('ID', True) ]
+     [TCampoFiltro('ID', True)]
+     [TChavePrimaria('ID', 'Código', 'Códigos')]
      property ID: integer read FId write FId;
-     [TCampoTexto('DESCRICAO', 'Descrição', 'Descrições', '', 80 , False)]
      [TGridCadastro('DESCRICAO', 'Descrição', 'Descrições', 92)]
      [TGridConsulta('DESCRICAO', 'Descrição', 'Descrições', 92)]
      [TCampoFiltro('DESCRICAO', True)]
+     [TCampoTexto('DESCRICAO', 'Descrição', 'Descrições', '', 80 , False)]
      property Descricao: string read FDescricao write FDescricao;
      function toJson(): string;
      function fromJson(json: string): TGrupoVO;

@@ -2,7 +2,8 @@ unit Cli_Windows.Controller.PerfilUsuarioController;
 
 interface
 
-uses orm.conexao.interfaces.Interfaces, orm.dao.BaseDAO, DB, uRESTDWIdBase, uRESTDWConsts, Cli_Windows.Model.PerfilUsuarioVO;
+uses orm.conexao.interfaces.Interfaces, orm.dao.BaseDAO, DB, uRESTDWIdBase, uRESTDWConsts, Cli_Windows.Model.PerfilUsuarioVO,
+  Datasnap.DBClient;
 
   type
     TPerfilUsuarioController = class(TInterfacedObject, IController<TPerfilUsuarioVO>)
@@ -12,7 +13,7 @@ uses orm.conexao.interfaces.Interfaces, orm.dao.BaseDAO, DB, uRESTDWIdBase, uRES
       function Salvar(obj: TPerfilUsuarioVO): integer;
       function Atualizar(obj: TPerfilUsuarioVO): boolean;
       function Excluir(obj: TPerfilUsuarioVO): boolean;
-      function Listagem(obj: TPerfilUsuarioVO): TDataSet;
+      function Listagem(obj: TPerfilUsuarioVO): TClientDataSet;
       constructor Create(AConexao: TRESTDWIdDatabase);
       function ListagemId(obj: TPerfilUsuarioVO): TPerfilUsuarioVO;
     end;
@@ -36,7 +37,7 @@ begin
    Result := TBaseDAO<TPerfilUsuarioVO>.New(FConexao).Excluir(obj);
 end;
 
-function TPerfilUsuarioController.Listagem(obj: TPerfilUsuarioVO): TDataSet;
+function TPerfilUsuarioController.Listagem(obj: TPerfilUsuarioVO): TClientDataSet;
 begin
   Result := TBaseDAO<TPerfilUsuarioVO>.New(FConexao).Listagem(obj, '', '', False);
 end;

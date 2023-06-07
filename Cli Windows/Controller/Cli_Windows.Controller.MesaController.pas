@@ -3,7 +3,7 @@ unit Cli_Windows.Controller.MesaController;
 interface
 
 uses orm.dao.BaseDAO, orm.conexao.interfaces.Interfaces, Cli_Windows.Model.MesaVO,
-     DB, uRESTDWIdBase, uRESTDWConsts;
+     DB, uRESTDWIdBase, uRESTDWConsts, Datasnap.DBClient;
 
 type
   TMesaController = class(TInterfacedObject, IController<TMesaVO>)
@@ -13,7 +13,7 @@ type
       function Salvar(obj: TMesaVO): integer;
       function Atualizar(obj: TMesaVO): boolean;
       function Excluir(obj: TMesaVO): boolean;
-      function Listagem(obj: TMesaVO): TDataSet;
+      function Listagem(obj: TMesaVO): TClientDataSet;
       class function New(AConexao: TRESTDWIdDatabase): IController<TMesaVO>;
       constructor Create(AConexao: TRESTDWIdDatabase);
       destructor Destroy;override;
@@ -49,7 +49,7 @@ begin
   Result := TBaseDAO<TMesaVO>.New(FConexao).Inserir(obj);
 end;
 
-function TMesaController.Listagem(obj: TMesaVO): TDataSet;
+function TMesaController.Listagem(obj: TMesaVO): TClientDataSet;
 begin
   Result := TBaseDAO<TMesaVO>.New(FConexao).Listagem(obj, '', '', False);
 end;

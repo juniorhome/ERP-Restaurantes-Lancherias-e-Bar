@@ -2,7 +2,8 @@ unit Cli_Windows.Controller.UsuarioController;
 
 interface
 
-uses orm.conexao.interfaces.Interfaces, orm.dao.BaseDAO, DB, uRESTDWIdBase, uRESTDWConsts, Cli_Windows.Model.UsuarioVO;
+uses orm.conexao.interfaces.Interfaces, orm.dao.BaseDAO, DB, uRESTDWIdBase, uRESTDWConsts, Cli_Windows.Model.UsuarioVO,
+  Datasnap.DBClient;
 
 type
   TUsuarioController = class(TInterfacedObject, IController<TUsuarioVO>)
@@ -12,7 +13,7 @@ type
     function Salvar(obj: TUsuarioVO): integer;
     function Atualizar(obj: TUsuarioVO): boolean;
     function Excluir(obj: TUsuarioVO): boolean;
-    function Listagem(obj: TUsuarioVO): TDataSet;
+    function Listagem(obj: TUsuarioVO): TClientDataSet;
     //class function New(AConexao: TRESTDWIdDataBase): IController<TUsuarioVO>;
     constructor Create(AConexao: TRESTDWIdDataBase);
     function Login(obj: TUsuarioVO): TUsuarioVO;
@@ -40,7 +41,7 @@ begin
    Result := TBaseDAO<TUsuarioVO>.New(FConexao).Excluir(obj);
 end;
 
-function TUsuarioController.Listagem(obj: TUsuarioVO): TDataSet;
+function TUsuarioController.Listagem(obj: TUsuarioVO): TClientDataSet;
 begin
   Result := TBaseDAO<TUsuarioVO>.New(FConexao).Listagem(obj, '', '', False);
 end;

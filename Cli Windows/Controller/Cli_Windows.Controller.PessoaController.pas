@@ -3,7 +3,7 @@ unit Cli_Windows.Controller.PessoaController;
 interface
 
 uses orm.dao.BaseDAO, orm.conexao.interfaces.Interfaces, Cli_Windows.Model.PessoaVO,
-     DB, uRESTDWIdBase, uRESTDWConsts;
+     DB, uRESTDWIdBase, uRESTDWConsts, Datasnap.DBClient;
 
 type
   TPessoaController = class(TInterfacedObject, IController<TPessoaVO>)
@@ -13,7 +13,7 @@ type
       function Salvar(obj: TPessoaVO): integer;
       function Atualizar(obj: TPessoaVO): boolean;
       function Excluir(obj: TPessoaVO): boolean;
-      function Listagem(obj: TPessoaVO): TDataSet;
+      function Listagem(obj: TPessoaVO): TClientDataSet;
       class function New(AConexao: TRESTDWIdDatabase): IController<TPessoaVO>;
       constructor Create(AConexao: TRESTDWIdDatabase);
   end;
@@ -37,7 +37,7 @@ begin
   Result := TBaseDAO<TPessoaVO>.new(FConexao).Excluir(obj);
 end;
 
-function TPessoaController.Listagem(obj: TPessoaVO): TDataSet;
+function TPessoaController.Listagem(obj: TPessoaVO): TClientDataSet;
 begin
   Result := TBaseDAO<TPessoaVO>.new(FConexao).Listagem(obj, '', '', False);
 end;

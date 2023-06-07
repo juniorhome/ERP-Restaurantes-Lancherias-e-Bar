@@ -9,7 +9,7 @@ uses
   System.ImageList, Vcl.ImgList, Vcl.Buttons, Vcl.StdCtrls,
   Cli_Windows.Model.PerfilUsuarioVO, Fabica_Objetos.IFactoryMethod,
   Fabrica_Objetos.FabricaObjeto, Cli_Windows.Controller.PerfilUsuarioController,
-  orm.IBaseVO;
+  orm.IBaseVO, Cli_Windows.Model.ConfiguracaoVO;
 
 type
   TfrmPrincipal = class(TForm)
@@ -77,6 +77,7 @@ type
     btnFazerPedido: TSpeedButton;
     btnRelatórios: TSpeedButton;
     Timer1: TTimer;
+    Button1: TButton;
     procedure imgMenuClick(Sender: TObject);
     procedure btnGeralMouseEnter(Sender: TObject);
     procedure btnDfeMouseEnter(Sender: TObject);
@@ -119,6 +120,8 @@ type
     procedure btnPedidoClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure pnlMenuMouseEnter(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
     FPerfil: TPerfilUsuarioVO;
@@ -130,6 +133,8 @@ type
     procedure Focar(painel: TPanel; btn: TSpeedButton; focado: boolean);
     procedure MostrarEsconderPanel(painel: TPanel; btn: TSpeedButton; mostrar: boolean);
     procedure FocarSubMenu(painel: TPanel; btn: TSpeedButton; focar: boolean);
+    procedure HabilitarBotaoMenu;
+    procedure CarregarConfiguracao;
   end;
 
 var
@@ -139,6 +144,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses Cli_Windows.View.ufrmCadGrupo;
 
 { TfrmPrincipal }
 
@@ -337,6 +344,32 @@ begin
   Focar(pnlSelecionado, (TComponent(Sender) as TSpeedButton), False);
 end;
 
+procedure TfrmPrincipal.Button1Click(Sender: TObject);
+var frm: TfrmCadGrupo;
+begin
+   frm := TfrmCadGrupo.Create(Self);
+   try
+      frm.Parent      := pnlFundo;
+      frm.Align       := alClient;
+      frm.BorderStyle := bsNone;
+      frm.Show;
+   finally
+      FreeAndNil(frm);
+   end;
+end;
+
+procedure TfrmPrincipal.CarregarConfiguracao;
+var
+   FConfig: TConfiguracaoVO;
+begin
+   FConfig := TConfiguracaoVO.Create;
+   try
+     //Carregar as configurções do restaurante que vai usar o gestor.
+   finally
+     FConfig.Free;
+   end;
+end;
+
 procedure TfrmPrincipal.Focar(painel: TPanel; btn: TSpeedButton;
   focado: boolean);
 var i: integer;
@@ -406,6 +439,35 @@ begin
   //FFabrica := TFabricaObjeto<TPerfilUsuarioVO>.Create;
   FPerfil := TPerfilUsuarioVO.Create;
   //FController := TPerfilUsuarioController<TPerfilUsuarioVO>.Create;
+  pnlMenu.Enabled := False;
+end;
+
+procedure TfrmPrincipal.HabilitarBotaoMenu;
+begin
+   if pnlMenu.Width = 38 then
+   begin
+     btnGeral.Enabled := False;
+     btnDfe.Enabled := False;
+     btnEstoque.Enabled := False;
+     btnTributacao.Enabled := False;
+     btnFinanceiro.Enabled := False;
+     btnPedido.Enabled := False;
+     btnVenda.Enabled := False;
+     btnSair.Enabled := False;
+   end;
+
+   if pnlMenu.Width = 115 then
+   begin
+     btnGeral.Enabled := True;
+     btnDfe.Enabled := True;
+     btnEstoque.Enabled := True;
+     btnTributacao.Enabled := True;
+     btnFinanceiro.Enabled := True;
+     btnPedido.Enabled := True;
+     btnVenda.Enabled := True;
+     btnSair.Enabled := True;
+   end;
+
 end;
 
 procedure TfrmPrincipal.IconBmp(Btn: TSpeedButton; ind: integer);
@@ -424,9 +486,15 @@ end;
 procedure TfrmPrincipal.imgMenuClick(Sender: TObject);
 begin
    if bExpandido then
-      pnlMenu.Width := 38
+   begin
+      pnlMenu.Width := 38;
+      pnlMenu.Enabled := False;
+   end
    else
+   begin
       pnlMenu.Width := 115;
+      pnlMenu.Enabled := True;
+   end;
    bExpandido := not bExpandido;
 end;
 
@@ -459,6 +527,11 @@ begin
          (frmPrincipal.Components[j] as TPanel).Visible := False;
      end;
    end;
+end;
+
+procedure TfrmPrincipal.pnlMenuMouseEnter(Sender: TObject);
+begin
+  //HabilitarBotaoMenu;
 end;
 
 procedure TfrmPrincipal.Timer1Timer(Sender: TObject);

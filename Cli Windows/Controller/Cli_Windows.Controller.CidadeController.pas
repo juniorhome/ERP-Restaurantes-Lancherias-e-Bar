@@ -3,7 +3,7 @@ unit Cli_Windows.Controller.CidadeController;
 interface
 
 uses orm.dao.BaseDAO, orm.conexao.interfaces.Interfaces, Cli_Windows.Model.CidadeVO,
-     DB, uRESTDWIdBase, uRESTDWConsts;
+     DB, uRESTDWIdBase, uRESTDWConsts, Datasnap.DBClient;
 
 type
   TCidadeController = class(TInterfacedObject, IController<TCidadeVO>)
@@ -13,7 +13,7 @@ type
       function Salvar(obj: TCidadeVO): integer;
       function Atualizar(obj: TCidadeVO): boolean;
       function Excluir(obj: TCidadeVO): boolean;
-      function Listagem(obj: TCidadeVO): TDataSet;
+      function Listagem(obj: TCidadeVO): TClientDataSet;
       class function New(AConexao: TRESTDWIdDatabase): IController<TCidadeVO>;
       constructor Create(AConexao: TRESTDWIdDatabase);
   end;
@@ -42,7 +42,7 @@ begin
    Result := TBaseDAO<TCidadeVO>.New(FConexao).Inserir(obj);
 end;
 
-function TCidadeController.Listagem(obj: TCidadeVO): TDataSet;
+function TCidadeController.Listagem(obj: TCidadeVO): TClientDataSet;
 begin
    Result := TBaseDAO<TCidadeVO>.New(FConexao).Listagem(obj, '', '', False);
 end;

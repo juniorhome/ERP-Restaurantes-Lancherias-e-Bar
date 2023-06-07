@@ -2,17 +2,19 @@ unit Cli_Windows.Controller.GrupoController;
 
 interface
 
-uses orm.dao.BaseDAO, orm.conexao.interfaces.Interfaces, DB, uRESTDWIdBase, uRESTDWConsts, Cli_Windows.Model.GrupoVO;
+uses orm.dao.BaseDAO, orm.conexao.interfaces.Interfaces, DB, uRESTDWIdBase, uRESTDWConsts, Cli_Windows.Model.GrupoVO,
+  Datasnap.DBClient;
 
 type
   TGrupoController = class(TInterfacedObject, IController<TGrupoVO>)
     private
       FConexao: TRESTDWIdDatabase;
+      FDao: IDAO<TGrupoVO>;
     public
       function Salvar(obj: TGrupoVO): integer;
       function Atualizar(obj: TGrupoVO): boolean;
       function Excluir(obj: TGrupoVO): boolean;
-      function Listagem(obj: TGrupoVO): TDataSet;
+      function Listagem(obj: TGrupoVO): TClientDataSet;
       class function New(aConexao: TRESTDWIdDatabase): IController<TGrupoVO>;
       constructor Create(aConexao: TRESTDWIdDatabase);
       destructor Destroy; override;
@@ -27,9 +29,11 @@ begin
   Result := TBaseDAO<TGrupoVO>.New(FConexao).Atualizar(obj);
 end;
 
+
 constructor TGrupoController.Create(aConexao: TRESTDWIdDatabase);
 begin
    FConexao := aConexao;
+   FDao := TBaseDAO<TGrupoVO>.New(FConexao);
 end;
 
 destructor TGrupoController.Destroy;
@@ -43,9 +47,9 @@ begin
   Result := TBaseDAO<TGrupoVO>.New(FConexao).Excluir(obj);
 end;
 
-function TGrupoController.Listagem(obj: TGrupoVO): TDataSet;
+function TGrupoController.Listagem(obj: TGrupoVO): TClientDataSet;
 begin
-   Result := TBaseDAO<TGrupoVO>.New(FConexao).Listagem(obj, '', '', False);
+   Result := FDao.Listagem(obj, '', '', False);
 end;
 
 class function TGrupoController.New(
