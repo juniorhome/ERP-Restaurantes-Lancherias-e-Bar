@@ -182,6 +182,8 @@
         <DCCReference Include="Controller\Cli_Windows.Controller.PerfilUsuarioController.pas"/>
         <DCCReference Include="Model\Cli_Windows.Model.GrupoVO.pas"/>
         <DCCReference Include="Controller\Cli_Windows.Controller.GrupoController.pas"/>
+        <DCCReference Include="..\..\Framework\ORM\Lib\orm.lib.RttiUtils.pas"/>
+        <DCCReference Include="..\..\Framework\ORM\Lib\Helper\orm.lib.Helper.RttiHelper.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

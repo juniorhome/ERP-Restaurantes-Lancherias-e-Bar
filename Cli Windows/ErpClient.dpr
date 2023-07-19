@@ -57,7 +57,9 @@ uses
   Cli_Windows.Controller.UsuarioController in 'Controller\Cli_Windows.Controller.UsuarioController.pas',
   Cli_Windows.Controller.PerfilUsuarioController in 'Controller\Cli_Windows.Controller.PerfilUsuarioController.pas',
   Cli_Windows.Model.GrupoVO in 'Model\Cli_Windows.Model.GrupoVO.pas',
-  Cli_Windows.Controller.GrupoController in 'Controller\Cli_Windows.Controller.GrupoController.pas';
+  Cli_Windows.Controller.GrupoController in 'Controller\Cli_Windows.Controller.GrupoController.pas',
+  orm.lib.RttiUtils in '..\..\Framework\ORM\Lib\orm.lib.RttiUtils.pas',
+  orm.lib.Helper.RttiHelper in '..\..\Framework\ORM\Lib\Helper\orm.lib.Helper.RttiHelper.pas';
 
 //Cli_Windows.Model.CartaoVO in 'Model\Cli_Windows.Model.CartaoVO.pas',
   //Cli_Windows.Model.CFOPVO in 'Model\Cli_Windows.Model.CFOPVO.pas',

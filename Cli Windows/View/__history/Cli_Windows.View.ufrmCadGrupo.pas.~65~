@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Cli_Windows.View.ufrmCadBasico, Data.DB,
   Datasnap.DBClient, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.ExtCtrls, Vcl.ComCtrls, Cli_Windows.Model.GrupoVO, orm.conexao.interfaces.Interfaces,
-  Cli_Windows.Controller.GrupoController, System.UITypes, orm.lib.Biblioteca;
+  Cli_Windows.Controller.GrupoController, System.UITypes, orm.lib.Biblioteca, uRESTDWBasicDB;
 
 type
   TfrmCadGrupo = class(TfrmCadBasico)
@@ -28,6 +28,7 @@ type
     { Private declarations }
     FGrupo: TGrupoVO;
     FLib: TLib<TGrupoVO>;
+    FController: IController<TGrupoVO>;
   public
     { Public declarations }
     procedure CarregarObjeto();override;
@@ -123,17 +124,17 @@ begin
   inherited;
   FGrupo := TGrupoVO.Create;
   Flib   := TLib<TGrupoVO>.Create;
+  FController := TGrupoController.New(DMCliente.RESTDWIdDatabase1);
 end;
 
 procedure TfrmCadGrupo.FormShow(Sender: TObject);
 begin
   inherited;
-  if Assigned(FGrupo) then
+  if Assigned(FController) then
   begin
      FLib.CriarCds(FGrupo, cdsGeral);
      cdsGeral.Active             := True;
-     FLib.CopiarParaDataSet(TGrupoController.New(DMCliente.RESTDWIdDatabase1).Listagem(FGrupo), TTipoQuery.tqRDW, cdsGeral);
-     //cdsGeral.DataSource.DataSet := TGrupoController.New(DMCliente.RESTDWIdDatabase1).Listagem(FGrupo);
+     cdsGeral                    := FController.Listagem(FGrupo);
   end;
 end;
 

@@ -130,14 +130,11 @@ end;
 procedure TfrmCadGrupo.FormShow(Sender: TObject);
 begin
   inherited;
-  if Assigned(FGrupo) then
+  if Assigned(FController) then
   begin
      FLib.CriarCds(FGrupo, cdsGeral);
-     if DMCliente.RESTDWIdDatabase1.Active then
-     begin
      cdsGeral.Active             := True;
      cdsGeral                    := FController.Listagem(FGrupo);
-     end;
   end;
 end;
 
