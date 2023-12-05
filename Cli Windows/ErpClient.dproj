@@ -184,6 +184,14 @@
         <DCCReference Include="Controller\Cli_Windows.Controller.GrupoController.pas"/>
         <DCCReference Include="..\..\Framework\ORM\Lib\orm.lib.RttiUtils.pas"/>
         <DCCReference Include="..\..\Framework\ORM\Lib\Helper\orm.lib.Helper.RttiHelper.pas"/>
+        <DCCReference Include="Model\Grupo\Cli_Windows.model.Grupo.Interfaces.pas"/>
+        <DCCReference Include="Model\Grupo\Cli_Windows.model.Grupo.pas"/>
+        <DCCReference Include="Controller\Grupo\Cli_Windows.Controller.Grupo.Interfaces.pas"/>
+        <DCCReference Include="Controller\Grupo\Cli_Windows.Controller.Grupo.pas"/>
+        <DCCReference Include="Model\Cli_Windows.Model.pas"/>
+        <DCCReference Include="Model\Cli_Windows.Model.Interfaces.pas"/>
+        <DCCReference Include="..\..\Framework\ORM\Mapaeamento\RttiSQL\orm.mapeamento.rttisql.interfaces.pas"/>
+        <DCCReference Include="..\..\Framework\ORM\Mapaeamento\RttiSQL\orm.mapeamento.rttisql.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -1,0 +1,32 @@
+unit Cli_Windows.Controller.Grupo;
+
+interface
+
+uses
+  Cli_Windows.Controller.Grupo.Interfaces, Data.DB, Cli_Windows.Model.GrupoVO,
+  Cli_Windows.model.Grupo.Interfaces, System.Generics.Collections;
+
+type
+  TControllerGrupo = class(TInterfacedObject, iControllerGrupo)
+    private
+      FModel: iModelGrupo;
+      FDataSouce: TDataSource;
+      FLista: TObjectList<TGrupoVO>;
+    public
+      constructor Create;
+      destructor Destroy; override;
+      class function New: iControllerGrupo;
+       function DataSource(aDataSource: TDataSource): iControllerGrupo;
+       function Buscar: iControllerGrupo; overload;
+       function Buscar(aId: integer): iControllerGrupo; overload;
+       function Buscar(aDescricao: string): iControllerGrupo; overload;
+       function Buscar(aDataInicio, aDataFinal: string): iControllerGrupo; overload;
+       function Inserir: iControllerGrupo;
+       function Delete: iControllerGrupo;
+       function Update: iControllerGrupo;
+       function Entidade: TGrupoVO;
+  end;
+
+implementation
+
+end.

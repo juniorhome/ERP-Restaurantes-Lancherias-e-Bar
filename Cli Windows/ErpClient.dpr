@@ -59,7 +59,15 @@ uses
   Cli_Windows.Model.GrupoVO in 'Model\Cli_Windows.Model.GrupoVO.pas',
   Cli_Windows.Controller.GrupoController in 'Controller\Cli_Windows.Controller.GrupoController.pas',
   orm.lib.RttiUtils in '..\..\Framework\ORM\Lib\orm.lib.RttiUtils.pas',
-  orm.lib.Helper.RttiHelper in '..\..\Framework\ORM\Lib\Helper\orm.lib.Helper.RttiHelper.pas';
+  orm.lib.Helper.RttiHelper in '..\..\Framework\ORM\Lib\Helper\orm.lib.Helper.RttiHelper.pas',
+  Cli_Windows.model.Grupo.Interfaces in 'Model\Grupo\Cli_Windows.model.Grupo.Interfaces.pas',
+  Cli_Windows.model.Grupo in 'Model\Grupo\Cli_Windows.model.Grupo.pas',
+  Cli_Windows.Controller.Grupo.Interfaces in 'Controller\Grupo\Cli_Windows.Controller.Grupo.Interfaces.pas',
+  Cli_Windows.Controller.Grupo in 'Controller\Grupo\Cli_Windows.Controller.Grupo.pas',
+  Cli_Windows.Model in 'Model\Cli_Windows.Model.pas',
+  Cli_Windows.Model.Interfaces in 'Model\Cli_Windows.Model.Interfaces.pas',
+  orm.mapeamento.rttisql.interfaces in '..\..\Framework\ORM\Mapaeamento\RttiSQL\orm.mapeamento.rttisql.interfaces.pas',
+  orm.mapeamento.rttisql in '..\..\Framework\ORM\Mapaeamento\RttiSQL\orm.mapeamento.rttisql.pas';
 
 //Cli_Windows.Model.CartaoVO in 'Model\Cli_Windows.Model.CartaoVO.pas',
   //Cli_Windows.Model.CFOPVO in 'Model\Cli_Windows.Model.CFOPVO.pas',

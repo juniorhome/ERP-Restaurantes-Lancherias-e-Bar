@@ -1,0 +1,21 @@
+unit Cli_Windows.Controller.Grupo.Interfaces;
+
+interface
+
+uses
+  Data.DB, Cli_Windows.Model.GrupoVO;
+
+type
+ iControllerProduto = interface
+   ['{DEED434B-2FFD-42E9-92FE-B9388FA2C44C}']
+   function DataSource(aDataSource: TDataSource): iControllerProduto;
+   function Buscar: iControllerProduto;
+   function Inserir: iControllerProduto;
+   function Delete: iControllerProduto;
+   function Update: iControllerProduto;
+   function Entidade: TGrupoVO;
+ end;
+
+implementation
+
+end.
